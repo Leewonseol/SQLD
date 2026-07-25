@@ -1,0 +1,6 @@
+# 실습용 SQLite DB는 스크립트로 재생성 가능한 산출물이므로 커밋하지 않는다.
+분석기법/_data/bigdata_exam.db
+Olist-고객데이터/01-기본탐색/olist.db
+Olist-고객데이터/02-관계파일확인/olist_full.db
+__pycache__/
+*.pyc
