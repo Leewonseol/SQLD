@@ -2,9 +2,12 @@
 type: technique
 pilot: true
 category: 지도학습-분류
+primary_dbms: [oracle, sqlserver]
+oracle_verified: false
+sqlserver_verified: false
 ---
 
-# SVM (Support Vector Machine)
+# SVM (Support Vector Machine) — Oracle · SQL Server 중심
 
 ## 필기 공식
 
@@ -20,27 +23,35 @@ category: 지도학습-분류
 
 | 층 | 내용 |
 |---|---|
-| SQL (`01_prepare.sql`) | 특성 표준화(z-score), 학습/평가 분할(`split` 컬럼, 80/20) |
+| SQL (`01_prepare_oracle.sql` / `01_prepare_sqlserver.sql`) | 특성 표준화(z-score), 학습/평가 분할(`split` 컬럼, 80/20) |
 | Python (`02_analyze.py`) | `sklearn.svm.SVC(kernel="rbf")` 학습·예측, 서포트벡터 개수 확인 |
-| SQL (`03_verify.sql`) | 실제값·예측값 비교, 오류 사례 집계, 클래스별 정확도 조회 |
+| SQL (`03_verify_oracle.sql` / `03_verify_sqlserver.sql`) | 결과 테이블 DDL, 실제값·예측값 비교, 오류 사례 집계, 클래스별 정확도 |
 
-## DBMS별 SQL 차이
+## 두 DBMS에서 같은 부분
 
-학습/평가 분할은 결정적(deterministic) 방식으로 만든다. `ROWID`(SQLite 내부 행 번호)로
-나머지 연산을 하면 재현 가능한 분할을 얻는다.
+- 표준화 구조(파티션 없는 `OVER()`)와 최종 서포트벡터·정확도 값은 동일하다.
 
-| DBMS | 결정적 분할 키 |
-|---|---|
-| Oracle | `ROWNUM` 또는 `ORA_HASH(customer_id)` |
-| SQL Server | `ROW_NUMBER() OVER(ORDER BY customer_id)` 또는 `CHECKSUM(customer_id)` |
-| SQLite | `ROWID` |
+## 두 DBMS에서 다른 부분
+
+- 결정적 분할 키: `ROWID % 5`(SQLite 전용) 대신 두 DBMS 모두
+  `ROW_NUMBER() OVER (ORDER BY customer_id)`를 쓴다. Oracle의 `ROWNUM`은 정렬 전에
+  매겨지는 값이라 `ORDER BY`와 함께 쓰면 "정렬 후 몇 번째"가 아니라 "저장 순서상 몇
+  번째"가 되어 분할이 매번 달라질 위험이 있다 — 결정적 분할에는 `ROWNUM`보다
+  `ROW_NUMBER() OVER(ORDER BY ...)`가 안전하다(09-랜덤포레스트, 08-의사결정나무와
+  동일한 결론).
+- 클래스별 정확도 계산에서 SQL Server는 `actual`/`predicted`가 `INT`라 `1.0 *`이
+  필요하지만 Oracle `NUMBER`는 필요 없다.
 
 ## 실행
 
 ```bash
-sqlite3 ../_data/bigdata_exam.db < 01_prepare.sql   # 또는: python3 ../_data/run_sql.py 01_prepare.sql
+# Oracle / SQL Server: *_oracle.sql, *_sqlserver.sql을 각 환경에 복사해 실행 (이 저장소에서 실행 불가)
 python3 02_analyze.py
-sqlite3 ../_data/bigdata_exam.db < 03_verify.sql    # 또는: python3 ../_data/run_sql.py 03_verify.sql
+
+# 보조(SQLite, 이 저장소에서 실제 실행 확인됨):
+python3 ../_data/run_sql.py optional/01_prepare_sqlite.sql
+python3 02_analyze.py
+python3 ../_data/run_sql.py optional/03_verify_sqlite.sql
 ```
 
 ## 필기 공식 ↔ 실기 코드 연결

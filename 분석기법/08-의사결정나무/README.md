@@ -2,9 +2,12 @@
 type: technique
 pilot: true
 category: 지도학습-분류
+primary_dbms: [oracle, sqlserver]
+oracle_verified: false
+sqlserver_verified: false
 ---
 
-# 의사결정나무 (Decision Tree)
+# 의사결정나무 (Decision Tree) — Oracle · SQL Server 중심
 
 ## 필기 공식
 
@@ -20,28 +23,36 @@ category: 지도학습-분류
 
 | 층 | 내용 |
 |---|---|
-| SQL (`01_prepare.sql`) | 학습 데이터 구성(원 척도 그대로), 파생변수(`recency_bucket`) 생성 |
+| SQL (`01_prepare_oracle.sql` / `01_prepare_sqlserver.sql`) | 학습 데이터 구성(원 척도 그대로), 파생변수(`recency_bucket`), train/test 분할 |
 | Python (`02_analyze.py`) | `sklearn.tree.DecisionTreeClassifier` 학습, 변수중요도·예측값 저장 |
-| SQL (`03_verify.sql`) | 변수중요도 순위 조회, 파생변수별 실제 이탈률과 모델 예측 비교 |
+| SQL (`03_verify_oracle.sql` / `03_verify_sqlserver.sql`) | 결과 테이블 DDL, 변수중요도 순위 조회, 파생변수별 실제 이탈률과 모델 예측 비교 |
 
-## DBMS별 SQL 차이
+## 두 DBMS에서 같은 부분
 
-구간화(bucketing)는 `CASE WHEN`으로 어느 DBMS에서나 동일하게 작성 가능하다. Oracle은
-`WIDTH_BUCKET`, SQL Server는 `NTILE`로 자동 구간화를 지원하지만, 구간 경계를 직접
-통제하려면 이 실습처럼 `CASE WHEN`이 더 명확하다.
+- `CASE WHEN` 기반 구간화(`recency_bucket`)는 문법이 완전히 동일하다.
+- `GROUP BY recency_bucket`은 (별칭이 아니라 `tree_input`에 저장된 실제 컬럼이므로)
+  Oracle·SQL Server 모두 문제없이 동작한다 — 06-로지스틱회귀의 "GROUP BY 별칭 불가"
+  함정과 겉보기엔 비슷해 보이지만 실제로는 다른 상황임을 구분해야 한다.
 
-| DBMS | 자동 구간화 보조 함수 |
-|---|---|
-| Oracle | `WIDTH_BUCKET(x, min, max, n)` |
-| SQL Server | `NTILE(n) OVER(ORDER BY x)` |
-| SQLite | 해당 함수 없음 → `CASE WHEN`으로 직접 구간 정의 |
+## 두 DBMS에서 다른 부분
+
+- train/test 분할: `ROWID % 5`(SQLite) 대신 `ROW_NUMBER() OVER (ORDER BY customer_id)`에
+  `MOD`(Oracle)/`%`(SQL Server)를 적용한다(09-랜덤포레스트와 동일한 이유).
+- 자동 구간화 보조함수: Oracle `WIDTH_BUCKET(x,min,max,n)`, SQL Server
+  `NTILE(n) OVER(ORDER BY x)` — 이 실습처럼 구간 경계(`30/90/180일`)를 직접 지정해야
+  하는 문제에서는 두 함수 다 맞지 않아 `CASE WHEN`을 쓴다(자동 구간화는 "N등분"이지
+  "특정 경계"가 아니기 때문).
 
 ## 실행
 
 ```bash
-sqlite3 ../_data/bigdata_exam.db < 01_prepare.sql   # 또는: python3 ../_data/run_sql.py 01_prepare.sql
+# Oracle / SQL Server: *_oracle.sql, *_sqlserver.sql을 각 환경에 복사해 실행 (이 저장소에서 실행 불가)
 python3 02_analyze.py
-sqlite3 ../_data/bigdata_exam.db < 03_verify.sql    # 또는: python3 ../_data/run_sql.py 03_verify.sql
+
+# 보조(SQLite, 이 저장소에서 실제 실행 확인됨):
+python3 ../_data/run_sql.py optional/01_prepare_sqlite.sql
+python3 02_analyze.py
+python3 ../_data/run_sql.py optional/03_verify_sqlite.sql
 ```
 
 ## 필기 공식 ↔ 실기 코드 연결

@@ -2,9 +2,12 @@
 type: technique
 pilot: true
 category: 지도학습-분류
+primary_dbms: [oracle, sqlserver]
+oracle_verified: false
+sqlserver_verified: false
 ---
 
-# 랜덤 포레스트 (Random Forest)
+# 랜덤 포레스트 (Random Forest) — Oracle · SQL Server 중심
 
 ## 필기 공식
 
@@ -19,25 +22,50 @@ category: 지도학습-분류
 
 | 층 | 내용 |
 |---|---|
-| SQL (`01_prepare.sql`) | 학습 데이터 구성, 파생변수(주문액 구간) 생성 |
+| SQL (`01_prepare_oracle.sql` / `01_prepare_sqlserver.sql`) | 학습 데이터 구성, 파생변수(주문액 구간), train/test 분할 |
 | Python (`02_analyze.py`) | `sklearn.ensemble.RandomForestClassifier` 학습(OOB 포함), 변수중요도·예측값 저장 |
-| SQL (`03_verify.sql`) | 변수중요도 집계, 예측값 vs 실제값 교차표, 평가지표 재계산 |
+| SQL (`03_verify_oracle.sql` / `03_verify_sqlserver.sql`) | 결과 테이블 DDL, 변수중요도 집계, 예측값 vs 실제값 교차표 |
 
-## DBMS별 SQL 차이
+## 두 DBMS에서 같은 부분
 
-의사결정나무와 동일하게 `CASE WHEN` 기반 구간화를 사용한다. 별도 DBMS 차이는 없으며,
-[`08-의사결정나무`](../08-의사결정나무/README.md)의 표를 그대로 참고하면 된다.
+- `CASE WHEN` 기반 구간화(`aov_bucket`)는 Oracle·SQL Server 문법이 동일하다.
+- `ROW_NUMBER() OVER (ORDER BY customer_id)`로 결정적 순번을 매기는 방식도 동일하다.
+
+## 두 DBMS에서 다른 부분 — train/test 분할 키
+
+`optional/01_prepare_sqlite.sql`은 `f.ROWID % 5 = 0`으로 분할했다. 이 방식은
+**Oracle/SQL Server로 그대로 옮길 수 없다**:
+
+- Oracle의 `ROWID`는 정수가 아니라 **물리 저장 주소를 인코딩한 문자열**이라
+  `MOD(ROWID, 5)` 같은 산술이 불가능하다(`ROWID`끼리 순서 비교는 가능하지만 나머지
+  연산 대상이 아니다).
+- SQL Server에는 `ROWID` 개념 자체가 없다(Oracle 전용 의사컬럼).
+
+두 DBMS 모두 `ROW_NUMBER() OVER (ORDER BY customer_id)`로 먼저 순번을 만든 뒤 그
+순번에 `MOD`(Oracle)/`%`(SQL Server)를 적용해야 한다 — **SQLite 전용 코드를 옮길 때
+"의사컬럼이 다른 DBMS에도 있을 것"이라는 가정이 가장 흔히 깨지는 지점**이다.
+
+## SQLD 출제 함정
+
+- `ROWID`/`ROWNUM`을 정렬·분할 키로 오해하는 문제가 자주 나온다 — `ROWID`는 저장
+  위치, `ROWNUM`은 조회 시 매겨지는 순번(정렬 전에 매겨짐)이며 둘 다 "입력 순서"를
+  보장하지 않는다는 점이 [문제07](../../필기계산문제-멀티DBMS/문제07-DBMS문법차이-문자열날짜LIMIT/README.md)의
+  `ROWNUM` 함정과 같은 맥락이다.
 
 ## 실행
 
-`03_verify.sql`은 [`08-의사결정나무`](../08-의사결정나무/README.md)가 만든
-`tree_feature_importance`와 비교하는 쿼리를 포함하므로, 08 폴더를 먼저 실행해두면
-더 풍부한 비교가 가능하다(먼저 실행하지 않아도 랜덤포레스트 자체 결과 확인에는 문제 없음).
+`03_verify_oracle.sql`/`03_verify_sqlserver.sql`은 [`08-의사결정나무`](../08-의사결정나무/README.md)가
+만든 `tree_feature_importance`와 비교하는 쿼리를 포함하므로, 08 폴더를 먼저 실행해두면
+더 풍부한 비교가 가능하다.
 
 ```bash
-sqlite3 ../_data/bigdata_exam.db < 01_prepare.sql   # 또는: python3 ../_data/run_sql.py 01_prepare.sql
+# Oracle / SQL Server: *_oracle.sql, *_sqlserver.sql을 각 환경에 복사해 실행 (이 저장소에서 실행 불가)
 python3 02_analyze.py
-sqlite3 ../_data/bigdata_exam.db < 03_verify.sql    # 또는: python3 ../_data/run_sql.py 03_verify.sql
+
+# 보조(SQLite, 이 저장소에서 실제 실행 확인됨):
+python3 ../_data/run_sql.py optional/01_prepare_sqlite.sql
+python3 02_analyze.py
+python3 ../_data/run_sql.py optional/03_verify_sqlite.sql
 ```
 
 ## 필기 공식 ↔ 실기 코드 연결

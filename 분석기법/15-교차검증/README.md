@@ -2,9 +2,12 @@
 type: technique
 pilot: true
 category: 모델검증
+primary_dbms: [oracle, sqlserver]
+oracle_verified: false
+sqlserver_verified: false
 ---
 
-# 교차검증 (Cross-Validation)
+# 교차검증 (Cross-Validation) — Oracle · SQL Server 중심
 
 ## 필기 공식
 
@@ -19,26 +22,38 @@ category: 모델검증
 
 | 층 | 내용 |
 |---|---|
-| SQL (`01_prepare.sql`) | 고객마다 fold 번호(1~5)를 결정적으로 배정한 `cv_folds` 테이블 생성, fold별 클래스 비율 확인(층화 여부 점검) |
+| SQL (`01_prepare_oracle.sql` / `01_prepare_sqlserver.sql`) | 고객마다 fold 번호(1~5)를 해시 기반으로 결정적 배정, fold별 클래스 비율 확인 |
 | Python (`02_analyze.py`) | fold를 SQL이 정한 대로 그대로 사용해 `DecisionTreeClassifier`를 5번 학습·평가 |
-| SQL (`03_verify.sql`) | fold별 성능 집계, 평균·표준편차 계산, sklearn 결과와 SQL 재계산 비교 |
+| SQL (`03_verify_oracle.sql` / `03_verify_sqlserver.sql`) | 결과 테이블 DDL, fold별 성능 집계, 평균·표준편차 계산, sklearn 결과와 SQL 재계산 비교 |
 
-## DBMS별 SQL 차이
+## 두 DBMS에서 같은 부분
 
-fold 배정은 `customer_id`(문자열)의 해시값을 5로 나눈 나머지로 결정적으로 만든다.
+- 최종 fold 배정(어떤 고객이 몇 번 fold인지)은 해시 함수가 다르므로 **값 자체는
+  다르지만**, fold별 표본 수·이탈률의 균등성이라는 **성질**은 두 DBMS에서 동일하게
+  나타난다(해시 기반 배정은 원래 어떤 해시함수를 쓰든 균등 분포를 목표로 하기 때문).
 
-| DBMS | 문자열 해시 |
-|---|---|
-| Oracle | `ORA_HASH(customer_id, 4)` (0~4, 5개 값) |
-| SQL Server | `ABS(CHECKSUM(customer_id)) % 5` |
-| SQLite | 내장 해시 함수 없음 → 이 실습은 `ROWID % 5` (행 생성 순서가 고정이므로 재현 가능) 사용 |
+## 두 DBMS에서 다른 부분
+
+| 항목 | Oracle | SQL Server |
+|---|---|---|
+| 해시 기반 fold 배정 | `ORA_HASH(customer_id, 4) + 1` — 0~4를 바로 반환 | `(ABS(CHECKSUM(customer_id)) % 5) + 1` — `CHECKSUM`이 음수를 반환할 수 있어 `ABS` 필수 |
+| 컬럼명 `precision` | 예약어 충돌 위험 → `precision_metric`으로 변경 | 동일하게 `precision_metric` 사용 |
+
+`ORA_HASH`는 버킷 개수(`max_bucket`)를 인수로 받아 그 범위 안의 값을 바로 반환하지만,
+`CHECKSUM`은 임의의 부호 있는 정수를 반환하므로 버킷 개수로 나눈 나머지를 직접
+계산해야 한다 — "해시 함수가 몇 버킷짜리 값을 직접 주는가, 원시 해시값만 주는가"라는
+설계 차이가 그대로 SQL 코드량 차이로 이어진다.
 
 ## 실행
 
 ```bash
-sqlite3 ../_data/bigdata_exam.db < 01_prepare.sql   # 또는: python3 ../_data/run_sql.py 01_prepare.sql
+# Oracle / SQL Server: *_oracle.sql, *_sqlserver.sql을 각 환경에 복사해 실행 (이 저장소에서 실행 불가)
 python3 02_analyze.py
-sqlite3 ../_data/bigdata_exam.db < 03_verify.sql    # 또는: python3 ../_data/run_sql.py 03_verify.sql
+
+# 보조(SQLite, 이 저장소에서 실제 실행 확인됨):
+python3 ../_data/run_sql.py optional/01_prepare_sqlite.sql
+python3 02_analyze.py
+python3 ../_data/run_sql.py optional/03_verify_sqlite.sql
 ```
 
 ## 필기 공식 ↔ 실기 코드 연결
