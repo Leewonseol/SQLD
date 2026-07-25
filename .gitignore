@@ -1,0 +1,4 @@
+# 분석기법 실습용 SQLite DB는 build_db.py로 재생성 가능한 산출물이므로 커밋하지 않는다.
+분석기법/_data/bigdata_exam.db
+__pycache__/
+*.pyc
