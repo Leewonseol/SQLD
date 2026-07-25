@@ -4,6 +4,10 @@ SQL개발자(SQLD)·빅데이터분석기사 시험 대비용 개념·기출·�
 **이 저장소의 주 학습 대상은 Oracle과 SQL Server다.** DuckDB·MariaDB(MySQL 호환)·
 SQLite는 실제로 돌려서 결과를 비교·검증하는 보조 엔진이며, 학습자료의 기준이 아니다.
 
+## SQLD 시험 직전 압축 복습
+
+- [시험 직전 압축 학습 경로](./SQLD-시험직전-압축/README.md)
+
 ## 1. Oracle과 SQL Server를 비교하는 이유
 
 SQLD(SQL개발자)와 빅데이터분석기사 실기가 실제로 다루는 DBMS는 Oracle과 SQL Server다.
