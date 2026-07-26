@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<title>SQLD 1과목 NULL 계산훈련 문제</title>
+<style>
+  :root{--ink:#1f2328;--sub:#57606a;--line:#d0d7de;--paper:#fbfaf7;--accent:#2f5d50;--accent-soft:#e7efec;--tag:#8a6d3b;}
+  *{box-sizing:border-box;}
+  body{background:var(--paper);color:var(--ink);margin:0;font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6;}
+  .wrap{max-width:820px;margin:0 auto;padding:40px 26px 100px;}
+  h1{font-size:23px;border-bottom:3px solid var(--ink);padding-bottom:14px;margin-bottom:6px;}
+  .sub{color:var(--sub);font-size:13.5px;}
+  .note{background:var(--accent-soft);border:1px solid #b9d0c7;border-radius:8px;padding:13px 16px;margin:18px 0;font-size:13.5px;}
+  .problem{background:#fff;border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:16px 0;}
+  .phead{display:flex;gap:8px;align-items:baseline;margin-bottom:8px;flex-wrap:wrap;}
+  .pnum{font-weight:800;font-size:14px;color:#fff;background:var(--accent);padding:2px 9px;border-radius:5px;}
+  .ptag{font-size:11.5px;color:var(--tag);border:1px solid #d8c69a;background:#fbf5e6;padding:1px 7px;border-radius:10px;}
+  .stem{font-size:14.5px;margin:8px 0 12px;}
+  .bogi{border:2px solid var(--ink);border-radius:2px;margin:10px 0 14px;padding:12px 14px;background:#fdfdfb;}
+  .bogi-label{display:inline-block;font-weight:800;font-size:12px;border:1px solid var(--ink);border-radius:3px;padding:1px 8px;margin-bottom:8px;}
+  .bogi table{border-collapse:collapse;margin:6px auto;font-size:13px;}
+  .bogi table th,.bogi table td{border:1px solid #999;padding:5px 12px;text-align:center;}
+  ol.ch{list-style:none;margin:0;padding:0;}
+  ol.ch li{display:flex;gap:7px;padding:6px 3px;font-size:14px;border-top:1px dashed #ddd;}
+  ol.ch li:first-child{border-top:none;}
+  .n{font-weight:700;color:var(--accent);flex:0 0 auto;}
+</style>
+
+<style id="print-ready-css">
+  @page {
+    size: A4 portrait;
+    margin: 15mm 14mm 16mm 14mm;
+  }
+  @media print {
+    html, body {
+      background: #fff !important;
+      color: #000 !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    body {
+      font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif !important;
+      font-size: 10.5pt !important;
+      line-height: 1.52 !important;
+    }
+    .wrap {
+      max-width: none !important;
+      width: auto !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    h1 {
+      font-size: 17pt !important;
+      margin: 0 0 8mm !important;
+      padding-bottom: 3mm !important;
+      border-bottom: 1.5pt solid #000 !important;
+      break-after: avoid-page;
+    }
+    h2, h2.chap {
+      font-size: 12.5pt !important;
+      margin: 8mm 0 3mm !important;
+      padding: 1.5mm 0 1.5mm 3mm !important;
+      border-left: 3pt solid #000 !important;
+      background: transparent !important;
+      break-after: avoid-page;
+    }
+    p, li, td, th {
+      orphans: 3;
+      widows: 3;
+    }
+    p {
+      text-align: left !important;
+    }
+    .sub, .note, .progress, .dlegend {
+      color: #000 !important;
+      background: transparent !important;
+      border: 0.75pt solid #777 !important;
+      box-shadow: none !important;
+    }
+    .problem, .ans, .bogi {
+      background: #fff !important;
+      color: #000 !important;
+      border-color: #777 !important;
+      box-shadow: none !important;
+      break-inside: avoid-page;
+      page-break-inside: avoid;
+    }
+    .problem, .ans {
+      margin: 0 0 5mm !important;
+      padding: 4mm 4.5mm !important;
+    }
+    .bogi {
+      padding: 3mm 3.5mm !important;
+    }
+    .phead, .ahead {
+      break-after: avoid-page;
+    }
+    .pnum, .anum, .lvl, .ptag, .dcode, .acorrect, .bogi-label {
+      color: #000 !important;
+      background: #fff !important;
+      border: 0.75pt solid #555 !important;
+    }
+    ol.ch li {
+      border-top: 0.5pt dotted #aaa !important;
+      padding: 1.5mm 0 !important;
+    }
+    table {
+      width: 100% !important;
+      border-collapse: collapse !important;
+      break-inside: avoid-page;
+      page-break-inside: avoid;
+    }
+    th, td {
+      border: 0.6pt solid #777 !important;
+      padding: 1.5mm 2mm !important;
+      background: #fff !important;
+      color: #000 !important;
+    }
+    svg {
+      max-width: 100% !important;
+      height: auto !important;
+      break-inside: avoid-page;
+    }
+    code {
+      font-family: Consolas, "Courier New", monospace !important;
+      font-size: 9.5pt !important;
+    }
+    a {
+      color: #000 !important;
+      text-decoration: none !important;
+    }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<h1>SQLD 1과목 NULL 계산훈련 문제</h1>
+<p class="print-hint" style="font-size:12px;color:#57606a;margin:-4px 0 14px;">인쇄 권장: A4 · 배율 100% · 머리글/바닥글 끄기</p>
+<p class="sub">NULL은 개념 설명이 아니라 직접 계산해봐야 몸에 붙습니다 — 표를 보고 실제 결과값을 계산한 뒤 선지를 고르세요</p>
+<div class="note">문항 1~9는 표준 SQL의 일반적인 NULL 규칙을 전제로 한다. 문항 10은 Oracle의 NVL 함수를 사용한다. 해설은 행별 연산 → WHERE 판정 → 집계 순서로 확인한다.</div>
+<div class="problem">
+<div class="phead"><span class="pnum">문항 1</span><span class="ptag">산술연산</span></div>
+<div class="bogi"><span class="bogi-label">보기</span>
+<table><tr><th>행</th><th>A</th><th>B</th></tr>
+<tr><td>1</td><td>10</td><td>5</td></tr>
+<tr><td>2</td><td>20</td><td>NULL</td></tr>
+<tr><td>3</td><td>NULL</td><td>NULL</td></tr></table>
+</div>
+<p class="stem">각 행에 대해 A + B를 계산했을 때, 결과로 옳은 것은?</p>
+<ol class="ch">
+<li><span class="n">①</span>1행: 15, 2행: 20, 3행: 0</li>
+<li><span class="n">②</span>1행: 15, 2행: NULL, 3행: NULL</li>
+<li><span class="n">③</span>1행: 15, 2행: 20, 3행: NULL</li>
+<li><span class="n">④</span>세 행 모두 NULL이 하나라도 있으면 오류가 발생해 계산 자체가 불가능하다.</li>
+<li><span class="n">⑤</span>1행: 15, 2행: NULL, 3행: 0</li>
+</ol>
+</div>
+<div class="problem">
+<div class="phead"><span class="pnum">문항 2</span><span class="ptag">비교연산</span></div>
+<div class="bogi"><span class="bogi-label">보기</span>
+<table><tr><th>사원번호</th><th>부서코드</th></tr>
+<tr><td>1001</td><td>D01</td></tr>
+<tr><td>1002</td><td>NULL</td></tr>
+<tr><td>1003</td><td>D02</td></tr></table>
+</div>
+<p class="stem"><code>WHERE 부서코드 = NULL</code> 조건으로 조회하면 몇 건이 반환되는가?</p>
+<ol class="ch">
+<li><span class="n">①</span>1건(1002번 사원)</li>
+<li><span class="n">②</span>0건</li>
+<li><span class="n">③</span>3건(전체)</li>
+<li><span class="n">④</span>2건(1001, 1003번 사원)</li>
+<li><span class="n">⑤</span>DBMS마다 결과가 달라 예측할 수 없다.</li>
+</ol>
+</div>
+<div class="problem">
+<div class="phead"><span class="pnum">문항 3</span><span class="ptag">비교연산</span></div>
+<p class="stem">문항 2와 같은 표에서 <code>WHERE 부서코드 IS NOT NULL</code>로 조회하면 몇 건이 반환되는가?</p>
+<ol class="ch">
+<li><span class="n">①</span>0건</li>
+<li><span class="n">②</span>1건</li>
+<li><span class="n">③</span>2건(1001, 1003번 사원)</li>
+<li><span class="n">④</span>3건</li>
+<li><span class="n">⑤</span><code>부서코드 != NULL</code>과 결과가 같으므로 둘 중 아무거나 써도 무방하다.</li>
+</ol>
+</div>
+<div class="problem">
+<div class="phead"><span class="pnum">문항 4</span><span class="ptag">NOT IN 함정</span></div>
+<div class="bogi"><span class="bogi-label">보기</span>
+<table><tr><th>제외할 부서코드 목록</th></tr>
+<tr><td>D01</td></tr><tr><td>D02</td></tr><tr><td>NULL</td></tr></table>
+<p style="font-size:12px;margin:6px 0 0;">쿼리: <code>SELECT * FROM 사원 WHERE 부서코드 NOT IN ('D01','D02',NULL)</code></p>
+</div>
+<p class="stem">위 쿼리의 결과 행 수는?</p>
+<ol class="ch">
+<li><span class="n">①</span>D01, D02를 제외한 나머지 사원이 모두 반환된다.</li>
+<li><span class="n">②</span>0건</li>
+<li><span class="n">③</span>NULL은 목록에서 자동으로 무시되므로 D01, D02만 제외한 결과와 같다.</li>
+<li><span class="n">④</span>전체 사원이 반환된다.</li>
+<li><span class="n">⑤</span>오류가 발생해 쿼리가 실행되지 않는다.</li>
+</ol>
+</div>
+<div class="problem">
+<div class="phead"><span class="pnum">문항 5</span><span class="ptag">3값 논리 AND</span></div>
+<p class="stem">조건 P가 TRUE이고 조건 Q가 NULL 비교로 인해 UNKNOWN이 되었을 때, <code>P AND Q</code>의 결과는?</p>
+<ol class="ch">
+<li><span class="n">①</span>TRUE</li>
+<li><span class="n">②</span>FALSE</li>
+<li><span class="n">③</span>UNKNOWN</li>
+<li><span class="n">④</span>NULL이라는 값 자체가 반환된다.</li>
+<li><span class="n">⑤</span>오류</li>
+</ol>
+</div>
+<div class="problem">
+<div class="phead"><span class="pnum">문항 6</span><span class="ptag">3값 논리 AND/OR</span></div>
+<p class="stem">조건 P가 FALSE이고 조건 Q가 UNKNOWN일 때, <code>P AND Q</code>와 <code>P OR Q</code>의 결과를 순서대로 옳게 짝지은 것은?</p>
+<ol class="ch">
+<li><span class="n">①</span>UNKNOWN, UNKNOWN</li>
+<li><span class="n">②</span>FALSE, UNKNOWN</li>
+<li><span class="n">③</span>FALSE, FALSE</li>
+<li><span class="n">④</span>UNKNOWN, TRUE</li>
+<li><span class="n">⑤</span>TRUE, FALSE</li>
+</ol>
+</div>
+<div class="problem">
+<div class="phead"><span class="pnum">문항 7</span><span class="ptag">COUNT</span></div>
+<div class="bogi"><span class="bogi-label">보기</span>
+<table><tr><th>행</th><th>보너스</th></tr>
+<tr><td>1</td><td>100</td></tr><tr><td>2</td><td>NULL</td></tr>
+<tr><td>3</td><td>NULL</td></tr><tr><td>4</td><td>200</td></tr></table>
+</div>
+<p class="stem"><code>COUNT(*)</code>와 <code>COUNT(보너스)</code>의 값을 순서대로 옳게 짝지은 것은?</p>
+<ol class="ch">
+<li><span class="n">①</span>4, 4</li>
+<li><span class="n">②</span>2, 2</li>
+<li><span class="n">③</span>4, 2</li>
+<li><span class="n">④</span>2, 4</li>
+<li><span class="n">⑤</span>4, 0</li>
+</ol>
+</div>
+<div class="problem">
+<div class="phead"><span class="pnum">문항 8</span><span class="ptag">SUM/AVG</span></div>
+<p class="stem">문항 7과 같은 표에서 <code>SUM(보너스)</code>와 <code>AVG(보너스)</code>의 값을 순서대로 옳게 짝지은 것은?</p>
+<ol class="ch">
+<li><span class="n">①</span>300, 75 (300 ÷ 4)</li>
+<li><span class="n">②</span>300, 150</li>
+<li><span class="n">③</span>NULL, NULL</li>
+<li><span class="n">④</span>300, 100</li>
+<li><span class="n">⑤</span>0, 0</li>
+</ol>
+</div>
+<div class="problem">
+<div class="phead"><span class="pnum">문항 9</span><span class="ptag">GROUP BY</span></div>
+<div class="bogi"><span class="bogi-label">보기</span>
+<table><tr><th>사원번호</th><th>부서코드</th></tr>
+<tr><td>1001</td><td>D01</td></tr><tr><td>1002</td><td>D01</td></tr>
+<tr><td>1003</td><td>NULL</td></tr><tr><td>1004</td><td>NULL</td></tr></table>
+<p style="font-size:12px;margin:6px 0 0;">쿼리: <code>SELECT 부서코드, COUNT(*) FROM 사원 GROUP BY 부서코드</code></p>
+</div>
+<p class="stem">위 쿼리의 결과로 옳은 것은?</p>
+<ol class="ch">
+<li><span class="n">①</span>D01 그룹만 나오고, 부서코드가 NULL인 두 행은 결과에서 완전히 빠진다.</li>
+<li><span class="n">②</span>D01 그룹(2건)과 NULL 그룹(2건), 총 2개 그룹</li>
+<li><span class="n">③</span>NULL인 행은 각각 별개의 그룹으로 나뉘어 두 개의 NULL 그룹이 나온다.</li>
+<li><span class="n">④</span>NULL이 하나라도 있으면 GROUP BY 자체가 오류를 낸다.</li>
+<li><span class="n">⑤</span>D01, NULL, NULL, NULL 네 그룹으로 나뉜다.</li>
+</ol>
+</div>
+<div class="problem">
+<div class="phead"><span class="pnum">문항 10</span><span class="ptag">NVL/치환</span></div>
+<div class="bogi"><span class="bogi-label">보기</span>
+<table><tr><th>행</th><th>보너스</th></tr>
+<tr><td>1</td><td>100</td></tr><tr><td>2</td><td>NULL</td></tr></table>
+<p style="font-size:12px;margin:6px 0 0;">쿼리: <code>SELECT SUM(NVL(보너스, 0)) FROM 급여</code></p>
+</div>
+<p class="stem">Oracle에서 위 쿼리를 실행했을 때 결과값으로 옳은 것은?</p>
+<ol class="ch">
+<li><span class="n">①</span>NULL — NVL을 써도 원래 NULL이었던 값은 집계에 반영되지 않는다.</li>
+<li><span class="n">②</span>100</li>
+<li><span class="n">③</span>0 — NVL을 쓰면 전체 결과가 0으로 초기화된다.</li>
+<li><span class="n">④</span>200 — NVL이 NULL을 100으로 자동 대체한다.</li>
+<li><span class="n">⑤</span>오류 — NVL은 집계함수 안에서 사용할 수 없다.</li>
+</ol>
+</div>
+</div>
+</body>
+</html>
