@@ -15,6 +15,16 @@ sqlserver_verified: false
 폴더의 3층 구조를 차용하되 Python은 모델을 학습하지 않는다 — SQL 결과의
 자동 검증과 결과 적재만 담당한다.
 
+**데이터 출처**: 모든 테이블의 `customer_id`는 저장소 루트의
+`olist_customers_dataset.csv`(99,441행)에서 실제로 뽑은 값이다. 다만 이
+CSV는 5개 열 전체에서 **결측치가 0건**이다(`Olist-고객데이터/00-데이터사전`
+문서, 이 세션에서 전체 스캔으로 재확인). 즉 NULL 실습에 쓸 결측값이
+원본에는 없다 — 그래서 `분석기법/22-KNN결측값대체` 모듈과 같은 원칙으로,
+실제 `customer_id`를 기본키로 그대로 쓰되 그 위에 얹은 속성(`total_spent`,
+`note_text`, `region` 등)은 이 실습을 위해 새로 만들고 그 안에 의도적으로
+NULL을 넣었다. 없는 결측치를 있는 것처럼 지어내지 않기 위해, customer_id는
+지어내지 않고 부가 속성만 새로 만들었다는 뜻이다.
+
 ## 학습 목표
 
 - NULL이 비교·산술·집계·조인·그룹화·정렬 각 위치에서 서로 다른 규칙을
@@ -55,20 +65,23 @@ README.md (이 문서)
 
 ## 데이터셋
 
+모든 테이블의 `customer_id`는 CSV 실제 값(`분석기법/22-KNN결측값대체`와
+같은 원칙으로 부가 속성만 새로 만듦). 괄호 안은 부가 속성 값.
+
 | 테이블 | 용도 |
 |---|---|
-| `score_t` (10, NULL, 20) | COUNT/SUM/AVG/MIN/MAX, =NULL, IS NULL, 산술 전파 (N04~N07,N10~N12,N14~N17) |
-| `score_zero` (10, 20, 0) | NULL과 0의 평균 차이 대조군(N18) |
-| `score_dup` (10,10,NULL,20) | COUNT(DISTINCT 열) 전용(N13) |
-| `str_t` ('APPLE',NULL,'',' ') | NULL/빈문자열/공백 구분, LIKE(N01~N03B, N09) |
-| `null_left`(1,2,3) / `null_right`(1,2) | OUTER JOIN이 만드는 NULL, COUNT 차이(N28,N29) |
-| `region_t` (서울,NULL,NULL) | GROUP BY의 NULL(N30,N30B) |
-| `distinct_t` (1,1,NULL,NULL) | DISTINCT의 NULL(N31) |
-| `order_t` (10,NULL,5) | ORDER BY의 NULL 위치(N32,N32B) |
-| `unique_test` | UNIQUE 제약과 NULL - Oracle 3행 vs SQL Server 2행(N35) |
-| `notnull_test` | PK/NOT NULL 제약 메타데이터 확인(N33,N34) |
-| `fk_parent` / `fk_child` | FOREIGN KEY와 NULL(N36) |
-| `base_vals`(1,2,3) / `exclude_list`(1,3,NULL) | 서브쿼리 NOT IN과 NULL 함정(N22) |
+| `customer_order_summary` (실제 고객 3명, total_spent=10,NULL,20) | COUNT/SUM/AVG/MIN/MAX, =NULL, IS NULL, 산술 전파 (N04~N07,N10~N12,N14~N17) |
+| `customer_order_summary_zero` (10, 20, 0) | NULL과 0의 평균 차이 대조군(N18) |
+| `customer_order_summary_dup` (10,10,NULL,20) | COUNT(DISTINCT 열) 전용(N13) |
+| `customer_note` ('VIP GOOD',NULL,'',' ') | NULL/빈문자열/공백 구분, LIKE(N01~N03B, N09) |
+| `customer_left`(실제 3명) / `customer_right_order`(그 중 2명) | OUTER JOIN이 만드는 NULL, COUNT 차이(N28,N29) |
+| `customer_region` (Nordeste,NULL,NULL) | GROUP BY의 NULL(N30,N30B) |
+| `customer_val` (1,1,NULL,NULL) | DISTINCT의 NULL(N31) |
+| `customer_orderval` (10,NULL,5) | ORDER BY의 NULL 위치(N32,N32B) |
+| `customer_code` | UNIQUE 제약과 NULL - Oracle 3행 vs SQL Server 2행(N35) |
+| `customer_meta` | PK/NOT NULL 제약 메타데이터 확인(N33,N34) |
+| `membership_tier` / `customer_membership` | FOREIGN KEY와 NULL - 등급 미배정 고객은 tier_id가 NULL(N36) |
+| `customer_flag_check`(실제 3명, flag_val=1,2,3) / `customer_flag_exclude`(1,3,NULL) | 서브쿼리 NOT IN과 NULL 함정(N22) |
 
 ## 필기 개념 ↔ 예제 대응표
 
@@ -132,10 +145,11 @@ README.md (이 문서)
 
 - 필기의 "COUNT(*)는 행을 세고, COUNT(열)은 NULL이 아닌 값만 센다"(N11,
   N12, N29)는 OUTER JOIN이 만든 NULL 행에서 실제로 값이 갈리는 것을
-  `null_left`/`null_right` 데이터로 직접 확인한다.
+  `customer_left`/`customer_right_order` 데이터로 직접 확인한다.
 - 필기의 "NOT IN 목록에 NULL이 있으면 결과가 비어버릴 수 있다"(N22)는
-  `base_vals`/`exclude_list`로 직접 재현한다 — VAL=2가 목록의 어떤 값과도
-  일치하지 않는데도 결과에 나오지 않는다는, 가장 흔한 실무 함정이다.
+  `customer_flag_check`/`customer_flag_exclude`로 직접 재현한다 —
+  flag_val=2가 목록의 어떤 값과도 일치하지 않는데도 결과에 나오지 않는다는,
+  가장 흔한 실무 함정이다.
 - 필기의 "Oracle은 빈 문자열을 NULL처럼 취급한다"(N01, N02)는 SQL Server
   버전과 나란히 실행해 `expected_numeric_value`가 실제로 다르다는 것으로
   확인한다 — 이 차이는 관례가 아니라 실제 결과값의 차이다.
@@ -155,14 +169,15 @@ JOIN-표준JOIN 폴더와 완전히 동일한 방식(환경변수 기반 연결 
 ## 실제 DB 실행 여부
 
 **이 세션에는 Oracle과 SQL Server 실행 환경이 없다.** 대신 이 폴더의 핵심
-숫자 예제(N01~N32B 중 값이 있는 40개 항목)를 SQLite로 이 세션에서 **실제로
-실행**해 전부 PASS를 확인했다. Oracle의 `''=NULL` 특성은 STR_T의 id=3에
-NULL을 직접 넣은 대조 테이블로, SQL Server의 `''≠NULL`은 원본 STR_T로 각각
-시뮬레이션해 N01/N02 두 값이 실제로 다르다는 것까지 확인했다. SQLite의 기본
-NULL 정렬(ASC=처음, DESC=마지막)은 SQL Server와 같으므로 N32/N32B의 SQL
-Server 쪽 값을 직접 검증했고, Oracle 쪽 값(정반대)은 정렬 규칙을 근거로
-추론했다. N33~N36(제약조건 메타데이터), N24/N25(NVL/ISNULL 함수명 자체)는
-SQLite 문법 특성상 이 방식으로 검증할 수 없어 여전히 손으로 확인한 값이다.
+숫자 예제(N01~N32B 중 값이 있는 항목, 실제 customer_id 값 그대로)를 SQLite로
+이 세션에서 **실제로 실행**해 전부 PASS를 확인했다. Oracle의 `''=NULL` 특성은
+CUSTOMER_NOTE의 빈 문자열 행에 NULL을 직접 넣은 대조 테이블로, SQL Server의
+`''≠NULL`은 원본 CUSTOMER_NOTE로 각각 시뮬레이션해 N01/N02 두 값이 실제로
+다르다는 것까지 확인했다. SQLite의 기본 NULL 정렬(ASC=처음, DESC=마지막)은
+SQL Server와 같으므로 N32/N32B의 SQL Server 쪽 값을 직접 검증했고, Oracle
+쪽 값(정반대)은 정렬 규칙을 근거로 추론했다. N33~N36(제약조건 메타데이터),
+N24/N25(NVL/ISNULL 함수명 자체)는 SQLite 문법 특성상 이 방식으로 검증할 수
+없어 여전히 손으로 확인한 값이다.
 `02_validate.py`를 실제 Oracle/SQL Server에 연결해 돌린 적은 없다. 실제
 환경에서 실행하려면 JOIN-표준JOIN/README.md와 동일한 환경변수를 설정하고
 `python3 02_validate.py --dbms oracle` 또는 `--dbms sqlserver`를 실행한다.

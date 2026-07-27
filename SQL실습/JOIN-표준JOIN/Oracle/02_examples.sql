@@ -12,291 +12,294 @@ COMMIT;
 
 -- =====================================================================
 -- J01. 테이블 수 (FROM에 테이블 1개 -> JOIN 아님)
--- 예상 결과: 1행(집계행), EMP 전체 8건
+-- 예상 결과: 1행(집계행), CUSTOMERS 전체 8건
 -- =====================================================================
-SELECT * FROM emp;
+SELECT * FROM customers;
 
 INSERT INTO sql_example_result
-SELECT 'J01', 1, COUNT(*), NULL, SYSDATE FROM emp;
+SELECT 'J01', 1, COUNT(*), NULL, SYSDATE FROM customers;
 
 -- =====================================================================
 -- J02. 연결 조건 존재 여부 - 카티션 곱 (조건 없음)
--- 예상 결과: EMP(8) x DEPT(4) = 32행
+-- 예상 결과: CUSTOMERS(8) x STATE_REGION(4) = 32행
 -- =====================================================================
-SELECT COUNT(*) AS cnt FROM emp CROSS JOIN dept;
+SELECT COUNT(*) AS cnt FROM customers CROSS JOIN state_region;
 
 INSERT INTO sql_example_result
-SELECT 'J02', 1, COUNT(*), NULL, SYSDATE FROM emp CROSS JOIN dept;
+SELECT 'J02', 1, COUNT(*), NULL, SYSDATE FROM customers CROSS JOIN state_region;
 
 -- =====================================================================
 -- J03. 연결 조건 존재 여부 - 조건부 JOIN
--- 예상 결과: 8행. EMP 8명 전원이 DEPT(10,20,30) 안에 속하므로 카티션 곱(32행)
--- 대신 조건을 만족하는 8행만 남는다.
+-- 예상 결과: 8행. 고객 8명 전원이 STATE_REGION(SP,RJ,MG) 안에 속하므로
+-- 카티션 곱(32행) 대신 조건을 만족하는 8행만 남는다.
 -- =====================================================================
-SELECT e.ename, d.dname
-FROM emp e JOIN dept d ON e.deptno = d.deptno;
+SELECT c.customer_id, r.region
+FROM customers c JOIN state_region r ON c.state = r.state;
 
 INSERT INTO sql_example_result
 SELECT 'J03', 1, COUNT(*), NULL, SYSDATE
-FROM emp e JOIN dept d ON e.deptno = d.deptno;
+FROM customers c JOIN state_region r ON c.state = r.state;
 
 -- =====================================================================
 -- J04. 카티션 곱 계산 (행수=곱, 열수=합)
--- 예상 결과: DEPT(4행,2열) x GRADE_BAND(3행,2열) = 12행, 4열
+-- 예상 결과: STATE_REGION(4행,2열) x REVIEW_TIER(3행,2열) = 12행, 4열
 -- =====================================================================
 SELECT COUNT(*) AS row_cnt, 2 + 2 AS col_cnt
-FROM dept CROSS JOIN grade_band;
+FROM state_region CROSS JOIN review_tier;
 
 INSERT INTO sql_example_result
-SELECT 'J04', 1, COUNT(*), NULL, SYSDATE FROM dept CROSS JOIN grade_band;
+SELECT 'J04', 1, COUNT(*), NULL, SYSDATE FROM state_region CROSS JOIN review_tier;
 
 -- =====================================================================
 -- J05. CROSS JOIN - 첨부 표준 JOIN 문제 9번 유형(A 2행, B 3행)
 -- 예상 결과: 2 x 3 = 6행
 -- =====================================================================
-SELECT COUNT(*) AS cnt FROM small_a CROSS JOIN small_b;
+SELECT COUNT(*) AS cnt FROM sample_states CROSS JOIN sample_scores;
 
 INSERT INTO sql_example_result
-SELECT 'J05', 1, COUNT(*), NULL, SYSDATE FROM small_a CROSS JOIN small_b;
+SELECT 'J05', 1, COUNT(*), NULL, SYSDATE FROM sample_states CROSS JOIN sample_scores;
 
 -- =====================================================================
--- J06. 등가 조인 (A.DEPTNO = B.DEPTNO)
+-- J06. 등가 조인 (CUSTOMERS.STATE = STATE_REGION.STATE)
 -- 예상 결과: 8행 (J03과 동일 데이터, "=" 비교라는 점을 강조)
 -- =====================================================================
 INSERT INTO sql_example_result
 SELECT 'J06', 1, COUNT(*), NULL, SYSDATE
-FROM emp e JOIN dept d ON e.deptno = d.deptno;
+FROM customers c JOIN state_region r ON c.state = r.state;
 
 -- =====================================================================
--- J07. 비등가 조인 (SALARY BETWEEN LOSAL AND HISAL)
--- 예상 결과: 8행. EMP 8명 전원의 급여가 SALGRADE 어느 한 구간에 속한다.
+-- J07. 비등가 조인 (TOTAL_SPENT BETWEEN LOSAL AND HISAL)
+-- 예상 결과: 8행. 고객 8명 전원의 TOTAL_SPENT가 SPEND_TIER 어느 한 구간에 속한다.
 -- =====================================================================
-SELECT e.ename, e.salary, s.grade
-FROM emp e JOIN salgrade s ON e.salary BETWEEN s.losal AND s.hisal;
+SELECT c.customer_id, c.total_spent, t.tier
+FROM customers c JOIN spend_tier t ON c.total_spent BETWEEN t.losal AND t.hisal;
 
 INSERT INTO sql_example_result
 SELECT 'J07', 1, COUNT(*), NULL, SYSDATE
-FROM emp e JOIN salgrade s ON e.salary BETWEEN s.losal AND s.hisal;
+FROM customers c JOIN spend_tier t ON c.total_spent BETWEEN t.losal AND t.hisal;
 
 -- =====================================================================
 -- J08. 조인 조건과 일반 필터 조건 구분
---   DEPTNO 조건 = 조인 조건, SALARY>2000 = 일반 필터 조건
--- 예상 결과: 4행 (JONES 2975, BLAKE 2850, CLARK 2450, SCOTT 3000)
+--   STATE 조건 = 조인 조건, TOTAL_SPENT>2000 = 일반 필터 조건
+-- 예상 결과: 4행 (RJ고객1 2975, RJ고객3 2850, MG고객1 2450, MG고객2 3000)
 -- =====================================================================
-SELECT e.ename, e.salary
-FROM emp e JOIN dept d ON e.deptno = d.deptno
-WHERE e.salary > 2000;
+SELECT c.customer_id, c.total_spent
+FROM customers c JOIN state_region r ON c.state = r.state
+WHERE c.total_spent > 2000;
 
 INSERT INTO sql_example_result
 SELECT 'J08', 1, COUNT(*), NULL, SYSDATE
-FROM emp e JOIN dept d ON e.deptno = d.deptno
-WHERE e.salary > 2000;
+FROM customers c JOIN state_region r ON c.state = r.state
+WHERE c.total_spent > 2000;
 
 -- =====================================================================
 -- J09. 중복값에 따른 결과 행 수 증가 - 첨부 JOIN 문제 5번
---   T1(1,2,3) x T2(2,2,3)
--- 예상 결과: 3행 (COL1=1: 0개, COL1=2: 1x2=2개, COL1=3: 1x1=1개, 합계 3)
+--   CUSTOMER_DIM: U1(1회성 고객), U2(실제 3회 재구매 고객 중 2건),
+--   U3(실제 2회 재구매 고객 중 1건)
+-- 예상 결과: 3행 (U1: 0개, U2: 1x2=2개, U3: 1x1=1개, 합계 3)
 -- =====================================================================
-SELECT t1.col1
-FROM dup_t1 t1 JOIN dup_t2 t2 ON t1.col1 = t2.col1;
+SELECT d.customer_unique_id
+FROM customer_dim d JOIN customer_orders_sample o
+  ON d.customer_unique_id = o.customer_unique_id;
 
 INSERT INTO sql_example_result
 SELECT 'J09', 1, COUNT(*), NULL, SYSDATE
-FROM dup_t1 t1 JOIN dup_t2 t2 ON t1.col1 = t2.col1;
+FROM customer_dim d JOIN customer_orders_sample o
+  ON d.customer_unique_id = o.customer_unique_id;
 
 -- =====================================================================
--- J10. INNER JOIN - STUDENT(202301,202302,202303) / SCORE(202301,202302,202304)
--- 예상 결과: 2행 (공통 학번 202301, 202302만 유지)
+-- J10. INNER JOIN - CUSTOMER_MASTER(Ca,Cb,Cc) / CUSTOMER_REVIEW(Ca,Cb,Cd)
+-- 예상 결과: 2행 (공통 고객 Ca, Cb만 유지)
 -- =====================================================================
-SELECT s.stuno, s.stuname, sc.subject, sc.scoreval
-FROM student s JOIN score sc ON s.stuno = sc.stuno;
+SELECT m.customer_id, m.city, r.subject, r.scoreval
+FROM customer_master m JOIN customer_review r ON m.customer_id = r.customer_id;
 
 INSERT INTO sql_example_result
 SELECT 'J10', 1, COUNT(*), NULL, SYSDATE
-FROM student s JOIN score sc ON s.stuno = sc.stuno;
+FROM customer_master m JOIN customer_review r ON m.customer_id = r.customer_id;
 
 -- =====================================================================
 -- J11. LEFT OUTER JOIN
--- 예상 결과: 3행 (학생 3명 전원 보존, 202303은 성적 열이 NULL)
+-- 예상 결과: 3행 (MASTER 3명 전원 보존, Cc는 리뷰 열이 NULL)
 -- =====================================================================
-SELECT s.stuno, s.stuname, sc.scoreval
-FROM student s LEFT OUTER JOIN score sc ON s.stuno = sc.stuno;
+SELECT m.customer_id, r.scoreval
+FROM customer_master m LEFT OUTER JOIN customer_review r ON m.customer_id = r.customer_id;
 
 INSERT INTO sql_example_result
 SELECT 'J11', 1, COUNT(*), NULL, SYSDATE
-FROM student s LEFT OUTER JOIN score sc ON s.stuno = sc.stuno;
+FROM customer_master m LEFT OUTER JOIN customer_review r ON m.customer_id = r.customer_id;
 
 -- =====================================================================
 -- J12. RIGHT OUTER JOIN
--- 예상 결과: 3행 (성적 3건 보존, 202304는 학생쪽 열이 NULL)
+-- 예상 결과: 3행 (REVIEW 3건 보존, Cd는 MASTER쪽 열이 NULL)
 -- =====================================================================
-SELECT s.stuno, sc.stuno AS score_stuno, sc.scoreval
-FROM student s RIGHT OUTER JOIN score sc ON s.stuno = sc.stuno;
+SELECT m.customer_id AS master_id, r.customer_id AS review_id, r.scoreval
+FROM customer_master m RIGHT OUTER JOIN customer_review r ON m.customer_id = r.customer_id;
 
 INSERT INTO sql_example_result
 SELECT 'J12', 1, COUNT(*), NULL, SYSDATE
-FROM student s RIGHT OUTER JOIN score sc ON s.stuno = sc.stuno;
+FROM customer_master m RIGHT OUTER JOIN customer_review r ON m.customer_id = r.customer_id;
 
 -- =====================================================================
--- J13. FULL OUTER JOIN - 첨부 표준 JOIN 문제 8번 그대로(A:1,2 / B:2,3)
--- 예상 결과: 3행 (1은 A에만, 2는 양쪽에 결합 1행, 3은 B에만 -> 총 3행)
+-- J13. FULL OUTER JOIN - 첨부 표준 JOIN 문제 8번 그대로(A:SP,RJ / B:RJ,MG)
+-- 예상 결과: 3행 (SP는 A에만, RJ는 양쪽 결합 1행, MG는 B에만 -> 총 3행)
 -- =====================================================================
-SELECT a.id AS a_id, b.id AS b_id
-FROM full_a a FULL OUTER JOIN full_b b ON a.id = b.id;
+SELECT a.state AS a_state, b.state AS b_state
+FROM full_a a FULL OUTER JOIN full_b b ON a.state = b.state;
 
 INSERT INTO sql_example_result
 SELECT 'J13', 1, COUNT(*), NULL, SYSDATE
-FROM full_a a FULL OUTER JOIN full_b b ON a.id = b.id;
+FROM full_a a FULL OUTER JOIN full_b b ON a.state = b.state;
 
 -- =====================================================================
--- J13B. FULL OUTER JOIN 추가 연습(STUDENT/SCORE)
--- 예상 결과: 4행 (202301,202302,202303,202304 각각 1행씩)
+-- J13B. FULL OUTER JOIN 추가 연습(CUSTOMER_MASTER/CUSTOMER_REVIEW)
+-- 예상 결과: 4행 (Ca,Cb,Cc,Cd 각각 1행씩)
 -- =====================================================================
 INSERT INTO sql_example_result
 SELECT 'J13B', 1, COUNT(*), NULL, SYSDATE
-FROM student s FULL OUTER JOIN score sc ON s.stuno = sc.stuno;
+FROM customer_master m FULL OUTER JOIN customer_review r ON m.customer_id = r.customer_id;
 
 -- =====================================================================
--- J14. ON - 열 이름이 서로 달라도 가능 (EMP.DEPTNO = DEPT2.DEPT_ID)
+-- J14. ON - 열 이름이 서로 달라도 가능 (CUSTOMERS.STATE = STATE_REGION2.STATE_CODE)
 -- 예상 결과: 8행 (J03과 같은 결과지만 조인 열 이름이 서로 다름 -> USING/NATURAL 불가,
 -- ON만 가능함을 보여준다)
 -- =====================================================================
-SELECT e.ename, d2.dept_name
-FROM emp e JOIN dept2 d2 ON e.deptno = d2.dept_id;
+SELECT c.customer_id, r2.region_name
+FROM customers c JOIN state_region2 r2 ON c.state = r2.state_code;
 
 INSERT INTO sql_example_result
 SELECT 'J14', 1, COUNT(*), NULL, SYSDATE
-FROM emp e JOIN dept2 d2 ON e.deptno = d2.dept_id;
+FROM customers c JOIN state_region2 r2 ON c.state = r2.state_code;
 
 -- =====================================================================
--- J15. USING - 양쪽 조인 열 이름이 같을 때(STUNO)
+-- J15. USING - 양쪽 조인 열 이름이 같을 때(customer_id)
 -- 예상 결과: 2행 (INNER JOIN과 동일한 등가 조인 결과)
 -- =====================================================================
-SELECT stuno, stuname, subject, scoreval
-FROM student JOIN score USING (stuno);
+SELECT customer_id, city, subject, scoreval
+FROM customer_master JOIN customer_review USING (customer_id);
 
 INSERT INTO sql_example_result
 SELECT 'J15', 1, COUNT(*), NULL, SYSDATE
-FROM student JOIN score USING (stuno);
+FROM customer_master JOIN customer_review USING (customer_id);
 
 -- =====================================================================
--- J16. NATURAL JOIN - 이름이 같은 공통 열(STUNO)을 자동으로 사용
--- 예상 결과: 2행 (STUDENT/SCORE의 공통 열은 STUNO 하나뿐이므로 USING(STUNO)과 동일)
+-- J16. NATURAL JOIN - 이름이 같은 공통 열(customer_id)을 자동으로 사용
+-- 예상 결과: 2행 (MASTER/REVIEW의 공통 열은 customer_id 하나뿐이므로 USING과 동일)
 -- =====================================================================
-SELECT stuno, stuname, subject, scoreval
-FROM student NATURAL JOIN score;
+SELECT customer_id, city, subject, scoreval
+FROM customer_master NATURAL JOIN customer_review;
 
 INSERT INTO sql_example_result
 SELECT 'J16', 1, COUNT(*), NULL, SYSDATE
-FROM student NATURAL JOIN score;
+FROM customer_master NATURAL JOIN customer_review;
 
 -- =====================================================================
 -- J17. 구문형 JOIN (FROM A, B ... WHERE 조인조건)
 -- 예상 결과: 4행 (J08과 같은 조건, 문법만 다름)
 -- =====================================================================
-SELECT a.ename, a.salary
-FROM emp a, dept b
-WHERE a.deptno = b.deptno
-  AND a.salary > 2000;
+SELECT a.customer_id, a.total_spent
+FROM customers a, state_region b
+WHERE a.state = b.state
+  AND a.total_spent > 2000;
 
 INSERT INTO sql_example_result
 SELECT 'J17', 1, COUNT(*), NULL, SYSDATE
-FROM emp a, dept b
-WHERE a.deptno = b.deptno
-  AND a.salary > 2000;
+FROM customers a, state_region b
+WHERE a.state = b.state
+  AND a.total_spent > 2000;
 
 -- =====================================================================
--- J18. Oracle (+) - DEPT을 기준으로 보존, EMP가 부족한 쪽
---   DEPT 40(OPERATIONS)에는 직원이 없다 -> (+) 없이 등가조인하면 사라질 행이
---   (+) 덕분에 EMP 쪽 열이 NULL인 채로 보존된다.
--- 예상 결과: 9행 (EMP 8행이 각자의 DEPT와 매칭 + DEPT 40이 EMP NULL로 보존)
+-- J18. Oracle (+) - STATE_REGION을 기준으로 보존, CUSTOMERS가 부족한 쪽
+--   'BA'(Nordeste)에는 고객이 없다 -> (+) 없이 등가조인하면 사라질 행이
+--   (+) 덕분에 CUSTOMERS 쪽 열이 NULL인 채로 보존된다.
+-- 예상 결과: 9행 (CUSTOMERS 8행이 각자의 STATE와 매칭 + BA가 NULL로 보존)
 -- =====================================================================
-SELECT a.deptno, a.dname, b.ename
-FROM dept a, emp b
-WHERE a.deptno = b.deptno(+);
+SELECT a.state, a.region, b.customer_id
+FROM state_region a, customers b
+WHERE a.state = b.state(+);
 
 INSERT INTO sql_example_result
 SELECT 'J18', 1, COUNT(*), NULL, SYSDATE
-FROM dept a, emp b
-WHERE a.deptno = b.deptno(+);
+FROM state_region a, customers b
+WHERE a.state = b.state(+);
 
 -- =====================================================================
 -- J19. OUTER JOIN 이후 WHERE로 미일치 행 제거
 --   MEMBER 3명을 LEFT JOIN으로 전부 보존한 뒤, WHERE로 '휴대폰'만 필터링하면
---   LEFT JOIN으로 보존했던 M3(연락처 없음)이 다시 사라진다.
--- 예상 결과: 1행 (M1의 휴대폰 연락처만 남음)
+--   LEFT JOIN으로 보존했던 Mc(연락처 없음)이 다시 사라진다.
+-- 예상 결과: 1행 (Ma의 휴대폰 연락처만 남음)
 -- =====================================================================
-SELECT m.memberid, c.contact_type, c.contact_no
-FROM member m LEFT OUTER JOIN contact c ON m.memberid = c.memberid
+SELECT m.customer_id, c.contact_type, c.contact_no
+FROM member m LEFT OUTER JOIN contact c ON m.customer_id = c.customer_id
 WHERE c.contact_type = '휴대폰';
 
 INSERT INTO sql_example_result
 SELECT 'J19', 1, COUNT(*), NULL, SYSDATE
-FROM member m LEFT OUTER JOIN contact c ON m.memberid = c.memberid
+FROM member m LEFT OUTER JOIN contact c ON m.customer_id = c.customer_id
 WHERE c.contact_type = '휴대폰';
 
 -- =====================================================================
 -- J20. LEFT JOIN + IS NULL - 오른쪽에 대응 행이 없는 왼쪽 행만 추출
--- 예상 결과: 1행 (연락처가 없는 회원 M3)
+-- 예상 결과: 1행 (연락처가 없는 회원 Mc)
 -- =====================================================================
-SELECT m.memberid, m.membername
-FROM member m LEFT OUTER JOIN contact c ON m.memberid = c.memberid
-WHERE c.memberid IS NULL;
+SELECT m.customer_id, m.city
+FROM member m LEFT OUTER JOIN contact c ON m.customer_id = c.customer_id
+WHERE c.customer_id IS NULL;
 
 INSERT INTO sql_example_result
 SELECT 'J20', 1, COUNT(*), NULL, SYSDATE
-FROM member m LEFT OUTER JOIN contact c ON m.memberid = c.memberid
-WHERE c.memberid IS NULL;
+FROM member m LEFT OUTER JOIN contact c ON m.customer_id = c.customer_id
+WHERE c.customer_id IS NULL;
 
 -- =====================================================================
 -- J21 / J21B. COUNT(*)와 COUNT(오른쪽 열)의 차이
---   LEFT JOIN 결과: M1(2행) + M2(1행) + M3(연락처 NULL, 1행) = 4행
--- 예상 결과: COUNT(*)=4(J21), COUNT(CONTACT.MEMBERID)=3(J21B, M3의 NULL 제외)
+--   LEFT JOIN 결과: Ma(2행) + Mb(1행) + Mc(연락처 NULL, 1행) = 4행
+-- 예상 결과: COUNT(*)=4(J21), COUNT(CONTACT.customer_id)=3(J21B, Mc의 NULL 제외)
 -- =====================================================================
-SELECT COUNT(*) AS cnt_star, COUNT(c.memberid) AS cnt_col
-FROM member m LEFT OUTER JOIN contact c ON m.memberid = c.memberid;
+SELECT COUNT(*) AS cnt_star, COUNT(c.customer_id) AS cnt_col
+FROM member m LEFT OUTER JOIN contact c ON m.customer_id = c.customer_id;
 
 INSERT INTO sql_example_result
 SELECT 'J21', COUNT(*), NULL, NULL, SYSDATE
-FROM member m LEFT OUTER JOIN contact c ON m.memberid = c.memberid;
+FROM member m LEFT OUTER JOIN contact c ON m.customer_id = c.customer_id;
 
 INSERT INTO sql_example_result
-SELECT 'J21B', 1, COUNT(c.memberid), NULL, SYSDATE
-FROM member m LEFT OUTER JOIN contact c ON m.memberid = c.memberid;
+SELECT 'J21B', 1, COUNT(c.customer_id), NULL, SYSDATE
+FROM member m LEFT OUTER JOIN contact c ON m.customer_id = c.customer_id;
 
 -- =====================================================================
 -- J22. 테이블 별칭
---   FROM EMP A, DEPT B 선언 후에는 A.ENAME처럼 별칭으로만 참조해야 한다.
---   아래 EMP.ENAME은 별칭 선언 후 원래 테이블명을 쓴 오류 예시이며 실행하지
---   않는다(주석 처리, 첨부 JOIN 문제 2번 유형).
+--   FROM CUSTOMERS A, STATE_REGION B 선언 후에는 A.STATE처럼 별칭으로만
+--   참조해야 한다. 아래 CUSTOMERS.STATE는 별칭 선언 후 원래 테이블명을 쓴
+--   오류 예시이며 실행하지 않는다(주석 처리, 첨부 JOIN 문제 2번 유형).
 -- 예상 결과: 8행 (올바른 별칭 사용)
 -- =====================================================================
 -- 잘못된 예(실행하지 않음, 오류 발생):
--- SELECT EMP.ename FROM emp A, dept B WHERE A.deptno = B.deptno;
+-- SELECT customers.state FROM customers A, state_region B WHERE A.state = B.state;
 
-SELECT a.ename, b.dname
-FROM emp a, dept b
-WHERE a.deptno = b.deptno;
+SELECT a.customer_id, b.region
+FROM customers a, state_region b
+WHERE a.state = b.state;
 
 INSERT INTO sql_example_result
 SELECT 'J22', 1, COUNT(*), NULL, SYSDATE
-FROM emp a, dept b
-WHERE a.deptno = b.deptno;
+FROM customers a, state_region b
+WHERE a.state = b.state;
 
 -- =====================================================================
 -- J23. 첨부 문제 형태와 유사한 행 수 계산 연습
---   BRANCH(1,2,3) x BRANCH_SALES(2,2,3)
+--   STATE_BRANCH(SP,RJ,MG) x STATE_ORDERS(RJ,RJ,MG)
 -- 예상 결과: 3행
---   ID=1: BRANCH_SALES에 없음 -> 0행
---   ID=2: BRANCH 1행 x BRANCH_SALES 2행 -> 2행 생성
---   ID=3: BRANCH 1행 x BRANCH_SALES 1행 -> 1행 생성
+--   SP: STATE_ORDERS에 없음 -> 0행
+--   RJ: STATE_BRANCH 1행 x STATE_ORDERS 2행 -> 2행 생성
+--   MG: STATE_BRANCH 1행 x STATE_ORDERS 1행 -> 1행 생성
 --   총 3행
 -- =====================================================================
-SELECT br.id
-FROM branch br JOIN branch_sales bs ON br.id = bs.id;
+SELECT br.state
+FROM state_branch br JOIN state_orders o ON br.state = o.state;
 
 INSERT INTO sql_example_result
 SELECT 'J23', 1, COUNT(*), NULL, SYSDATE
-FROM branch br JOIN branch_sales bs ON br.id = bs.id;
+FROM state_branch br JOIN state_orders o ON br.state = o.state;
 
 COMMIT;

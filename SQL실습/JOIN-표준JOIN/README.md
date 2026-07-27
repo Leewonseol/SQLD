@@ -15,6 +15,17 @@ sqlserver_verified: false
 JOIN은 머신러닝 모델이 아니므로 Python은 모델을 학습하지 않는다. 대신
 Python은 **SQL 결과의 자동 검증과 결과 적재**만 담당한다.
 
+**데이터 출처**: 모든 `customer_id`/`customer_unique_id`/`city`/`state`
+값은 저장소 루트의 `olist_customers_dataset.csv`(99,441행)에서 실제로 뽑은
+값이다(`분석기법/_data/build_db.py`가 실제 고객 표본 위에 합성 특성을 얹는
+것과 같은 원칙, 자세한 내용은 아래 "어떤 분석기법을 모사했는가" 참고).
+`total_spent` 같은 숫자와 `contact`/`review` 같은 부가 속성은 이 실습을 위해
+새로 붙인 값이며 실제 Olist 거래 데이터가 아니다 — customer_id 문자열 자체는
+지어낸 것이 아니라 CSV의 실제 값이라는 뜻이다. J09(중복값 조인)는 실제로
+2번·3번 재구매해 `customer_unique_id`가 CSV에서 실제로 반복 등장하는 진짜
+고객의 실제 `customer_id`를 그대로 사용해, 값을 조작하지 않고도 "중복값에
+따른 결과 행 수 증가"를 재현한다.
+
 ## 학습 목표
 
 - JOIN을 만났을 때 "테이블 수 → 연결 조건 → 등가/비등가 → 보존 방식(INNER/
@@ -61,23 +72,23 @@ README.md (이 문서)
 
 ## 데이터셋
 
-| 테이블 | 용도 | 행 수 |
-|---|---|---|
-| `dept` / `emp` / `salgrade` | 등가·비등가 조인, 카티션 곱, 조인조건 vs 필터, 구문형 JOIN, `(+)` | 4 / 8 / 5 |
-| `dept2` | ON이 열 이름 달라도 동작함을 보여주는 전용 테이블(J14) | 4 |
-| `grade_band` | DEPT(4)×GRADE_BAND(3)=12행 카티션 곱(J04) | 3 |
-| `small_a` / `small_b` | 첨부 표준 JOIN 문제 9번 유형 CROSS JOIN(2×3=6행, J05) | 2 / 3 |
-| `dup_t1` / `dup_t2` | 첨부 JOIN 문제 5번 유형, 중복값 조인(1,2,3 × 2,2,3=3행, J09) | 3 / 3 |
-| `student` / `score` | INNER/LEFT/RIGHT/FULL JOIN, USING, NATURAL JOIN(J10~J13,J15,J16) | 3 / 3 |
-| `full_a` / `full_b` | 첨부 표준 JOIN 문제 8번 그대로(1,2 × 2,3=3행, J13) | 2 / 2 |
-| `member` / `contact` | OUTER JOIN 뒤 WHERE 제거, LEFT JOIN+IS NULL, COUNT 차이, `(+)`(J18~J21) | 3 / 3 |
-| `branch` / `branch_sales` | 첨부 문제 형태 행 수 계산 연습(J23) | 3 / 3 |
+| 테이블 | 용도 | 행 수 | 데이터 근거 |
+|---|---|---|---|
+| `customers` / `state_region` / `spend_tier` | 등가·비등가 조인, 카티션 곱, 조인조건 vs 필터, 구문형 JOIN, `(+)` | 8 / 4 / 5 | `customers`는 CSV 실제 8행(SP/RJ/MG), `state_region`은 실제 브라질 주-지역 매핑(BA는 CUSTOMERS에 없어 `(+)`/LEFT JOIN 보존 대상), `total_spent`/`spend_tier` 구간은 실습용 수치 |
+| `state_region2` | ON이 열 이름 달라도 동작함을 보여주는 전용 테이블(J14) | 4 | `state_region`과 동일 데이터, 열 이름만 다름 |
+| `review_tier` | STATE_REGION(4)×REVIEW_TIER(3)=12행 카티션 곱(J04) | 3 | 실습용 라벨(LOW/MID/HIGH) |
+| `sample_states` / `sample_scores` | 첨부 표준 JOIN 문제 9번 유형 CROSS JOIN(2×3=6행, J05) | 2 / 3 | 실제 주 코드 2개 + 실습용 점수 3개 |
+| `customer_dim` / `customer_orders_sample` | 첨부 JOIN 문제 5번 유형, 중복값 조인(0,2,1→3행, J09) | 3 / 3 | CSV에서 실제로 2회·3회 재구매한 실제 고객의 `customer_id` 일부만 사용 |
+| `customer_master` / `customer_review` | INNER/LEFT/RIGHT/FULL JOIN, USING, NATURAL JOIN(J10~J13,J15,J16) | 3 / 3 | CSV 실제 고객 4명(공통 2명 + 각 1명씩 미일치) |
+| `full_a` / `full_b` | 첨부 표준 JOIN 문제 8번 그대로(SP,RJ × RJ,MG=3행, J13) | 2 / 2 | 실제 주 코드 |
+| `member` / `contact` | OUTER JOIN 뒤 WHERE 제거, LEFT JOIN+IS NULL, COUNT 차이, `(+)`(J18~J21) | 3 / 3 | CSV 실제 고객 3명, 연락처는 실습용 부가 속성 |
+| `state_branch` / `state_orders` | 첨부 문제 형태 행 수 계산 연습(J23) | 3 / 3 | 실제 주 코드(SP,RJ,MG) |
 
 ## 필기 개념 ↔ 예제 대응표
 
 | example_id | 필기 개념(원문 순서) | 기대 결과 | Oracle/SQL Server 차이 |
 |---|---|---:|---|
-| J01 | 1. 테이블 수 | 8행(EMP 전체) | 없음 |
+| J01 | 1. 테이블 수 | 8행(CUSTOMERS 전체) | 없음 |
 | J02 | 2. 연결 조건 없음(카티션 곱) | 32행 | 없음 |
 | J03 | 2. 연결 조건 있음(조건부 JOIN) | 8행 | 없음 |
 | J04 | 2. 카티션 곱 계산(행수/열수) | 12행 | 없음 |

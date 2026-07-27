@@ -70,21 +70,21 @@ ORDER BY example_id;
 -- 핵심 결과값 재검산 (필기 개념과 직접 대조)
 -- =====================================================================
 
--- J09: 중복값 조인 - 값별 매칭 횟수를 직접 풀어서 재확인(합계가 3이어야 함)
-SELECT t1.col1,
-       (SELECT COUNT(*) FROM dup_t2 t2 WHERE t2.col1 = t1.col1) AS matched_in_t2
-FROM dup_t1 t1
-ORDER BY t1.col1;
+-- J09: 중복값 조인 - 실제 재구매 고객별 매칭 횟수를 직접 풀어서 재확인(합계가 3이어야 함)
+SELECT d.customer_unique_id,
+       (SELECT COUNT(*) FROM customer_orders_sample o WHERE o.customer_unique_id = d.customer_unique_id) AS matched_orders
+FROM customer_dim d
+ORDER BY d.customer_unique_id;
 
--- J18: Oracle (+) - DEPT 40이 EMP 없이도 보존되는지 직접 확인(1행 나와야 함)
-SELECT deptno, dname
-FROM dept
-WHERE deptno NOT IN (SELECT deptno FROM emp);
+-- J18: Oracle (+) - STATE_REGION의 'BA'가 CUSTOMERS 없이도 보존되는지 직접 확인(1행 나와야 함)
+SELECT state, region
+FROM state_region
+WHERE state NOT IN (SELECT state FROM customers);
 
 -- J21/J21B: COUNT(*) 4 vs COUNT(우측열) 3 차이가 실제로 NULL 1건 때문인지 확인
-SELECT m.memberid, c.memberid AS contact_memberid
-FROM member m LEFT OUTER JOIN contact c ON m.memberid = c.memberid
-WHERE c.memberid IS NULL;
+SELECT m.customer_id, c.customer_id AS contact_customer_id
+FROM member m LEFT OUTER JOIN contact c ON m.customer_id = c.customer_id
+WHERE c.customer_id IS NULL;
 
 -- =====================================================================
 -- DBMS별 차이 확인 (이 파일은 Oracle 전용 -> SQLServer/03_verify.sql과 대조할 것)

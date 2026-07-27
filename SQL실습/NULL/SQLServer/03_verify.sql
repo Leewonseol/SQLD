@@ -66,20 +66,20 @@ ORDER BY example_id;
 -- =====================================================================
 
 -- N19: 0행 집계에서도 COUNT(*)/COUNT(열)은 0, SUM/AVG/MAX/MIN은 NULL인지 직접 확인
-SELECT COUNT(*) AS cnt_star, COUNT(score) AS cnt_col,
-       SUM(score) AS sum_val, AVG(score) AS avg_val,
-       MAX(score) AS max_val, MIN(score) AS min_val
-FROM score_t WHERE score > 1000;
+SELECT COUNT(*) AS cnt_star, COUNT(total_spent) AS cnt_col,
+       SUM(total_spent) AS sum_val, AVG(total_spent) AS avg_val,
+       MAX(total_spent) AS max_val, MIN(total_spent) AS min_val
+FROM customer_order_summary WHERE total_spent > 1000;
 
 -- N22: 서브쿼리 NOT IN 함정 재현
-SELECT b.val,
-       (SELECT COUNT(*) FROM exclude_list x WHERE x.val = b.val) AS matched_non_null,
-       (SELECT COUNT(*) FROM exclude_list x WHERE x.val IS NULL) AS null_in_list
-FROM base_vals b
-ORDER BY b.val;
+SELECT b.flag_val,
+       (SELECT COUNT(*) FROM customer_flag_exclude x WHERE x.flag_val = b.flag_val) AS matched_non_null,
+       (SELECT COUNT(*) FROM customer_flag_exclude x WHERE x.flag_val IS NULL) AS null_in_list
+FROM customer_flag_check b
+ORDER BY b.flag_val;
 
 -- N35: UNIQUE + NULL - 실제로 CODE가 NULL인 행이 몇 개 저장됐는지 확인(1개만 허용됨)
-SELECT COUNT(*) AS null_code_rows FROM unique_test WHERE code IS NULL;
+SELECT COUNT(*) AS null_code_rows FROM customer_code WHERE code IS NULL;
 
 -- =====================================================================
 -- DBMS별 차이 확인 (이 파일은 SQL Server 전용 -> Oracle/03_verify.sql과 대조할 것)
