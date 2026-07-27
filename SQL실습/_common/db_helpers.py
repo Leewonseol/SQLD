@@ -228,7 +228,7 @@ def write_validation_rows(conn, dbms: str, results: list[ValidationResult]) -> N
 # 정적 검증 모드 (DB 연결 없음)
 # ---------------------------------------------------------------------------
 
-EXAMPLE_ID_PATTERN = re.compile(r"'([A-Z][0-9]{2}[A-Z]?)'")
+EXAMPLE_ID_PATTERN = re.compile(r"'([A-Z]{1,2}[0-9]{2}[A-Z]?)'")
 
 
 def static_check(topic: str, dbms: str, examples_sql_path: Path, expected_rows: list[ExpectedRow]) -> ValidationReport:
