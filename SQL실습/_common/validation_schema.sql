@@ -32,20 +32,46 @@
 -- sql_example_result — 실제 실행 결과 (예제당 정확히 1행)
 -- =====================================================================
 -- example_id              sql_example_expectation.example_id와 동일 키
--- actual_row_count        해당 예제 쿼리를 감싼 COUNT(*) 결과(또는 원본 행수)
--- actual_numeric_value    숫자 검증 대상 실제값
--- actual_text_value       문자열 검증 대상 실제값
+-- actual_row_count        이 예제의 INSERT SELECT가 sql_example_result에
+--                          "물리적으로 남기는 행 수". 기본적으로 항상 1이다
+--                          (아래 규칙 참고). J21/N29처럼 예외적으로 원본
+--                          COUNT(*) 자체를 검증 대상으로 삼는 옛 예제가 남아
+--                          있을 수 있으나, JOIN-NULL-통합 폴더는 이 예외를
+--                          쓰지 않는다.
+-- actual_numeric_value    COUNT/SUM/AVG/그룹수 등 이 예제가 실제로 검증하려는
+--                          핵심 수치. "행이 몇 개 나오는가"를 확인하는 예제라도
+--                          그 COUNT(*) 값은 여기(actual_numeric_value)에 담지
+--                          actual_row_count에 담지 않는다.
+-- actual_text_value       검증하려는 문자열 결과 또는 상태(예: 'RAW_NULL'/'RAW_ZERO')
 -- executed_at             02_examples.sql 실행 시각(재실행 시 갱신됨)
 --
 -- 설계 원칙: 02_examples.sql은 매 예제를 "SELECT 'ID', 집계식... " 형태로
 -- 감싸 항상 정확히 1행을 INSERT한다. 이렇게 하면 02_validate.py가 항상
 -- "example_id 하나 = 결과 한 행"만 비교하면 되어 로직이 단순해진다.
+--
+-- actual_row_count / actual_numeric_value 사용 규칙 (JOIN-NULL-통합 폴더는
+-- 예외 없이 이 규칙을 따른다 - README "검증 스키마" 절 참고):
+--   INSERT INTO sql_example_result
+--   SELECT 'JNxx', 1, COUNT(*), NULL, 현재시각
+--   FROM ...;
+-- 위처럼 actual_row_count 자리에는 항상 리터럴 1을 쓰고, 검증하려는 COUNT는
+-- actual_numeric_value 자리에 쓴다. 다음처럼 COUNT 결과를 actual_row_count에
+-- 직접 넣는 방식은 쓰지 않는다:
+--   SELECT 'JNxx', COUNT(*), NULL, NULL, 현재시각   -- 이렇게 쓰지 않는다
+-- 하나의 예제에서 두 개의 수치(예: COUNT(*)와 COUNT(우측열))를 동시에 검증해야
+-- 하면 example_id를 JNxxA/JNxxB로 나눠 각각 하나의 수치만 담는다.
+--
+-- sql_example_validation.status는 PASS/FAIL/NO_RESULT 세 가지로만 판정한다.
+-- NO_RESULT는 sql_example_expectation에는 있지만 sql_example_result에 해당
+-- example_id 행이 없는 경우(02_examples.sql 미실행, 또는 실제 DB 연결 없이
+-- 정적 점검만 수행한 경우)이며, 집계 시 PASS/FAIL 어느 쪽에도 넣지 않고
+-- pass_count/fail_count/no_result_count/total_count로 항상 구분해서 센다.
 
 -- =====================================================================
 -- sql_example_validation — PASS/FAIL 판정
 -- =====================================================================
 -- example_id              키
--- status                  'PASS' / 'FAIL' / 'SKIPPED(...)'
+-- status                  'PASS' / 'FAIL' / 'NO_RESULT'
 -- expected_value          02_validate.py가 만든 사람이 읽을 수 있는 기대값 요약
 -- actual_value            사람이 읽을 수 있는 실제값 요약
 -- validation_message      불일치 시 구체적 사유, 일치 시 "expected와 actual 일치"

@@ -143,31 +143,61 @@ NULL,ORACLE,N35,UNIQUE,3,,,Oracle은 UNIQUE 컬럼에 NULL 2개 모두 허용되
 NULL,SQLSERVER,N35,UNIQUE,2,,,SQL Server는 UNIQUE 컬럼에 NULL 1개만 허용되어 2행(2번째 NULL 삽입은 위반)
 NULL,ORACLE,N36,FOREIGN KEY와 NULL,1,1,,FK 컬럼이 NULL인 자식행 1건(선택적 관계로 허용)
 NULL,SQLSERVER,N36,FOREIGN KEY와 NULL,1,1,,FK 컬럼이 NULL인 자식행 1건(선택적 관계로 허용)
-JOIN_NULL,ORACLE,JN01,등가조인 키에 NULL이 있으면 매칭 안 됨,1,4,,SALES_REGION이 NULL인 고객은 INNER JOIN에서 제외되어 4행
-JOIN_NULL,SQLSERVER,JN01,등가조인 키에 NULL이 있으면 매칭 안 됨,1,4,,SALES_REGION이 NULL인 고객은 INNER JOIN에서 제외되어 4행
-JOIN_NULL,ORACLE,JN02,LEFT OUTER JOIN이 만드는 NULL,1,6,,고객5명 x 주문매칭수 2+1+1+1+1=6행
-JOIN_NULL,SQLSERVER,JN02,LEFT OUTER JOIN이 만드는 NULL,1,6,,고객5명 x 주문매칭수 2+1+1+1+1=6행
-JOIN_NULL,ORACLE,JN03,COUNT(*) vs COUNT(우측열),6,4,,COUNT(*)=6(row_count) COUNT(order_id)=4(numeric)
-JOIN_NULL,SQLSERVER,JN03,COUNT(*) vs COUNT(우측열),6,4,,COUNT(*)=6(row_count) COUNT(order_id)=4(numeric)
-JOIN_NULL,ORACLE,JN04,OUTER JOIN 후 WHERE로 보존행 제거 함정,1,2,,amount>100 조건이 NULL/미매칭 행을 모두 제거 2행만 남음
-JOIN_NULL,SQLSERVER,JN04,OUTER JOIN 후 WHERE로 보존행 제거 함정,1,2,,amount>100 조건이 NULL/미매칭 행을 모두 제거 2행만 남음
-JOIN_NULL,ORACLE,JN05,LEFT JOIN+IS NULL 안티조인(정상),1,2,,주문 없는 고객 2명 정확히 탐지
-JOIN_NULL,SQLSERVER,JN05,LEFT JOIN+IS NULL 안티조인(정상),1,2,,주문 없는 고객 2명 정확히 탐지
-JOIN_NULL,ORACLE,JN06,NOT IN 서브쿼리 함정(고아주문 NULL 때문에 깨짐),1,0,,서브쿼리에 NULL(O5) 있어 0행 - JN05의 2행과 대조되는 오답
-JOIN_NULL,SQLSERVER,JN06,NOT IN 서브쿼리 함정(고아주문 NULL 때문에 깨짐),1,0,,서브쿼리에 NULL(O5) 있어 0행 - JN05의 2행과 대조되는 오답
-JOIN_NULL,ORACLE,JN07,COALESCE로 미매칭 집계값 기본값 치환,1,0,,주문 없는 고객의 SUM은 NULL COALESCE로 0 치환
-JOIN_NULL,SQLSERVER,JN07,COALESCE로 미매칭 집계값 기본값 치환,1,0,,주문 없는 고객의 SUM은 NULL COALESCE로 0 치환
-JOIN_NULL,ORACLE,JN08,JOIN 결과 집계에서 NULL 제외(AVG),1,100,,고객1의 주문(100 NULL) 평균은 100(NULL 제외 0 아님)
-JOIN_NULL,SQLSERVER,JN08,JOIN 결과 집계에서 NULL 제외(AVG),1,100,,고객1의 주문(100 NULL) 평균은 100(NULL 제외 0 아님)
-JOIN_NULL,ORACLE,JN09,LEFT JOIN + GROUP BY의 NULL 그룹,1,4,,고객1 2 4 그룹 + 미매칭 NULL 그룹 1개 = 4그룹
-JOIN_NULL,SQLSERVER,JN09,LEFT JOIN + GROUP BY의 NULL 그룹,1,4,,고객1 2 4 그룹 + 미매칭 NULL 그룹 1개 = 4그룹
-JOIN_NULL,ORACLE,JN10,FULL OUTER JOIN + COALESCE 키 병합,7,,,공통2 + 왼쪽전용3 + 오른쪽전용2 = 7행 병합키는 전부 NOT NULL
-JOIN_NULL,SQLSERVER,JN10,FULL OUTER JOIN + COALESCE 키 병합,7,,,공통2 + 왼쪽전용3 + 오른쪽전용2 = 7행 병합키는 전부 NOT NULL
-JOIN_NULL,ORACLE,JN11,USING과 NULL 키,1,4,,USING(SALES_REGION)도 JN01과 동일하게 NULL 키 제외
-JOIN_NULL,SQLSERVER,JN11,USING 동등 표현과 NULL 키,1,4,,USING 미지원 ON으로도 JN01과 동일하게 NULL 키 제외
-JOIN_NULL,ORACLE,JN12,비등가조인(BETWEEN) 경계값 NULL,1,4,,TOTAL_SPENT가 NULL인 고객은 어느 구간과도 매칭 안됨
-JOIN_NULL,SQLSERVER,JN12,비등가조인(BETWEEN) 경계값 NULL,1,4,,TOTAL_SPENT가 NULL인 고객은 어느 구간과도 매칭 안됨
-JOIN_NULL,ORACLE,JN13,CROSS JOIN은 NULL과 무관하게 행수 유지,1,15,,5x3=15 JN01(4행)과 대조
-JOIN_NULL,SQLSERVER,JN13,CROSS JOIN은 NULL과 무관하게 행수 유지,1,15,,5x3=15 JN01(4행)과 대조
-JOIN_NULL,ORACLE,JN14,Oracle (+) 반대편 필터에 (+)누락시 무력화,1,2,,(+) 없는 AND 조건이 OUTER JOIN 효과를 지움 JN04와 동일 결과
-JOIN_NULL,SQLSERVER,JN14,Oracle (+) 동등 표현 - WHERE 함정,1,2,,(+) 미지원 LEFT JOIN+WHERE로 JN04와 동일한 함정 재현
+JOIN_NULL,ORACLE,JN01A,A.등가조인 키 NULL - INNER JOIN 매칭 제외,1,5,,SUL 2명+SUDESTE 3명=5행 권역미배정 C5/C6 제외
+JOIN_NULL,SQLSERVER,JN01A,A.등가조인 키 NULL - INNER JOIN 매칭 제외,1,5,,SUL 2명+SUDESTE 3명=5행 권역미배정 C5/C6 제외
+JOIN_NULL,ORACLE,JN01B,A.등가조인 키 NULL - LEFT OUTER JOIN 보존(양쪽 NULL도 매칭안됨),1,7,,매칭5행+C5/C6 미매칭보존2행=7행 R4(NULL)와도 매칭안됨
+JOIN_NULL,SQLSERVER,JN01B,A.등가조인 키 NULL - LEFT OUTER JOIN 보존(양쪽 NULL도 매칭안됨),1,7,,매칭5행+C5/C6 미매칭보존2행=7행 R4(NULL)와도 매칭안됨
+JOIN_NULL,ORACLE,JN02A,B.OUTER JOIN이 만든 패딩 NULL(주문 자체가 없음),1,2,,C5,C7 주문없음: order_id IS NULL로 식별되는 미매칭 보존행 2건
+JOIN_NULL,SQLSERVER,JN02A,B.OUTER JOIN이 만든 패딩 NULL(주문 자체가 없음),1,2,,C5,C7 주문없음: order_id IS NULL로 식별되는 미매칭 보존행 2건
+JOIN_NULL,ORACLE,JN02B,B.원본에 저장된 NULL(주문은 있으나 금액 NULL),1,2,,O2(C1),O7(C6): order_id NOT NULL인데 amount만 NULL인 실제 저장 NULL 2건
+JOIN_NULL,SQLSERVER,JN02B,B.원본에 저장된 NULL(주문은 있으나 금액 NULL),1,2,,O2(C1),O7(C6): order_id NOT NULL인데 amount만 NULL인 실제 저장 NULL 2건
+JOIN_NULL,ORACLE,JN03A,C.ON 필터 - 매칭 후보만 제한,1,7,,7명 전원 보존(ON 안의 amount>100은 매칭후보만 줄일 뿐 행을 지우지 않음)
+JOIN_NULL,SQLSERVER,JN03A,C.ON 필터 - 매칭 후보만 제한,1,7,,7명 전원 보존(ON 안의 amount>100은 매칭후보만 줄일 뿐 행을 지우지 않음)
+JOIN_NULL,ORACLE,JN03B,C.WHERE 필터 - 보존행까지 제거(null-rejecting),1,2,,O3,O4만 남음(WHERE의 amount>100이 NULL패딩 행까지 UNKNOWN으로 제거)
+JOIN_NULL,SQLSERVER,JN03B,C.WHERE 필터 - 보존행까지 제거(null-rejecting),1,2,,O3,O4만 남음(WHERE의 amount>100이 NULL패딩 행까지 UNKNOWN으로 제거)
+JOIN_NULL,ORACLE,JN04A,D.COUNT(*) - 미매칭 패딩행도 포함,1,8,,LEFT JOIN 결과 총 8행(2+1+1+1+1+1+1)
+JOIN_NULL,SQLSERVER,JN04A,D.COUNT(*) - 미매칭 패딩행도 포함,1,8,,LEFT JOIN 결과 총 8행(2+1+1+1+1+1+1)
+JOIN_NULL,ORACLE,JN04B,D.COUNT(NOT NULL 보장 키) - 미매칭 제외,1,6,,COUNT(o.order_id)=6 C5/C7 패딩 2건 제외
+JOIN_NULL,SQLSERVER,JN04B,D.COUNT(NOT NULL 보장 키) - 미매칭 제외,1,6,,COUNT(o.order_id)=6 C5/C7 패딩 2건 제외
+JOIN_NULL,ORACLE,JN04C,D.COUNT(nullable 일반열) - 원본 NULL도 추가 제외,1,4,,COUNT(o.amount)=4 패딩2건+원본NULL(O2,O7)2건 제외
+JOIN_NULL,SQLSERVER,JN04C,D.COUNT(nullable 일반열) - 원본 NULL도 추가 제외,1,4,,COUNT(o.amount)=4 패딩2건+원본NULL(O2,O7)2건 제외
+JOIN_NULL,ORACLE,JN05A,E.안티조인 - LEFT JOIN+IS NULL(정상),1,2,,주문 없는 고객 C5,C7 정확히 탐지
+JOIN_NULL,SQLSERVER,JN05A,E.안티조인 - LEFT JOIN+IS NULL(정상),1,2,,주문 없는 고객 C5,C7 정확히 탐지
+JOIN_NULL,ORACLE,JN05B,E.안티조인 - NOT EXISTS(정상),1,2,,상관 서브쿼리라 NULL 영향 없음 JN05A와 동일 2행
+JOIN_NULL,SQLSERVER,JN05B,E.안티조인 - NOT EXISTS(정상),1,2,,상관 서브쿼리라 NULL 영향 없음 JN05A와 동일 2행
+JOIN_NULL,ORACLE,JN05C,E.안티조인 - NOT IN(고아주문 NULL 때문에 깨짐),1,0,,서브쿼리에 O5/O8의 NULL customer_id 있어 0행(오답)
+JOIN_NULL,SQLSERVER,JN05C,E.안티조인 - NOT IN(고아주문 NULL 때문에 깨짐),1,0,,서브쿼리에 O5/O8의 NULL customer_id 있어 0행(오답)
+JOIN_NULL,ORACLE,JN05D,E.안티조인 - NOT IN 안전 대안(서브쿼리 NULL 제거),1,2,,WHERE customer_id IS NOT NULL 추가하면 다시 2행(정상)
+JOIN_NULL,SQLSERVER,JN05D,E.안티조인 - NOT IN 안전 대안(서브쿼리 NULL 제거),1,2,,WHERE customer_id IS NOT NULL 추가하면 다시 2행(정상)
+JOIN_NULL,ORACLE,JN06A,F.안티조인 검사열 - order_id IS NULL(올바름),1,2,,JN02A/JN05A와 동일 2행 NOT NULL 보장 키 검사
+JOIN_NULL,SQLSERVER,JN06A,F.안티조인 검사열 - order_id IS NULL(올바름),1,2,,JN02A/JN05A와 동일 2행 NOT NULL 보장 키 검사
+JOIN_NULL,ORACLE,JN06B,F.안티조인 검사열 - amount IS NULL(오답 상태 혼합),1,4,,C1,C5,C6,C7 4행 - 주문없음(C5,C7)과 금액NULL(C1,C6)이 뒤섞임
+JOIN_NULL,SQLSERVER,JN06B,F.안티조인 검사열 - amount IS NULL(오답 상태 혼합),1,4,,C1,C5,C6,C7 4행 - 주문없음(C5,C7)과 금액NULL(C1,C6)이 뒤섞임
+JOIN_NULL,ORACLE,JN07A,G.집계+OUTER JOIN - 실제 합계 0(C3),1,0,RAW_ZERO,C3 SUM(0)=0 원본부터 NULL이 아닌 진짜 0원
+JOIN_NULL,SQLSERVER,JN07A,G.집계+OUTER JOIN - 실제 합계 0(C3),1,0,RAW_ZERO,C3 SUM(0)=0 원본부터 NULL이 아닌 진짜 0원
+JOIN_NULL,ORACLE,JN07B,G.집계+OUTER JOIN - 주문없어 합계 NULL(C5),1,0,RAW_NULL,C5 SUM은 원본이 NULL NVL/ISNULL로 0 치환한 값이 우연히 C3와 같을 뿐
+JOIN_NULL,SQLSERVER,JN07B,G.집계+OUTER JOIN - 주문없어 합계 NULL(C5),1,0,RAW_NULL,C5 SUM은 원본이 NULL NVL/ISNULL로 0 치환한 값이 우연히 C3와 같을 뿐
+JOIN_NULL,ORACLE,JN08A,H.GROUP BY c.customer_id(왼쪽 고객별 그룹),1,7,,고객 7명 각자 그룹 - 미매칭 고객도 자기 그룹 유지
+JOIN_NULL,SQLSERVER,JN08A,H.GROUP BY c.customer_id(왼쪽 고객별 그룹),1,7,,고객 7명 각자 그룹 - 미매칭 고객도 자기 그룹 유지
+JOIN_NULL,ORACLE,JN08B,H.GROUP BY o.customer_id(우측 조인키별 NULL그룹 병합),1,6,,실제고객5그룹+미매칭 NULL 병합그룹1개=6그룹(C5,C7이 하나로 합쳐짐)
+JOIN_NULL,SQLSERVER,JN08B,H.GROUP BY o.customer_id(우측 조인키별 NULL그룹 병합),1,6,,실제고객5그룹+미매칭 NULL 병합그룹1개=6그룹(C5,C7이 하나로 합쳐짐)
+JOIN_NULL,ORACLE,JN08C,H.병합된 NULL 그룹의 실제 크기,1,2,,o.customer_id IS NULL 그룹에 C5,C7 2행이 들어있음
+JOIN_NULL,SQLSERVER,JN08C,H.병합된 NULL 그룹의 실제 크기,1,2,,o.customer_id IS NULL 그룹에 C5,C7 2행이 들어있음
+JOIN_NULL,ORACLE,JN09,I.FULL OUTER JOIN 행수(왼쪽전용+공통+오른쪽전용),1,9,,매칭5+왼쪽전용(C5,C6)2+오른쪽전용(R3,R4)2=9행
+JOIN_NULL,SQLSERVER,JN09,I.FULL OUTER JOIN 행수(왼쪽전용+공통+오른쪽전용),1,9,,매칭5+왼쪽전용(C5,C6)2+오른쪽전용(R3,R4)2=9행
+JOIN_NULL,ORACLE,JN09B,I.COALESCE 통합키가 NULL인 행(양쪽 다 NULL이라 안 합쳐짐),1,3,,C5,C6,R4 3행 - 서로 매칭 안되고 별도 행으로 남아 통합키도 NULL
+JOIN_NULL,SQLSERVER,JN09B,I.COALESCE 통합키가 NULL인 행(양쪽 다 NULL이라 안 합쳐짐),1,3,,C5,C6,R4 3행 - 서로 매칭 안되고 별도 행으로 남아 통합키도 NULL
+JOIN_NULL,ORACLE,JN10,J.USING과 NULL 키,1,5,,USING(sales_region)도 JN01A와 동일하게 5행 NULL 키 배제는 동일
+JOIN_NULL,SQLSERVER,JN10,J.USING 동등 표현과 NULL 키,1,5,,USING 미지원 ON으로도 JN01A와 동일하게 5행
+JOIN_NULL,ORACLE,JN11A,K.비등가조인(BETWEEN) INNER - 경계값 포함,1,5,,C1(0),C2(300),C3(301),C6(1000),C7(1001) 매칭 C4(범위밖)/C5(NULL) 제외
+JOIN_NULL,SQLSERVER,JN11A,K.비등가조인(BETWEEN) INNER - 경계값 포함,1,5,,C1(0),C2(300),C3(301),C6(1000),C7(1001) 매칭 C4(범위밖)/C5(NULL) 제외
+JOIN_NULL,ORACLE,JN11B,K.비등가조인(BETWEEN) LEFT - 미매칭 보존,1,7,,7명 전원 보존 C4/C5는 band 열이 NULL로 채워짐
+JOIN_NULL,SQLSERVER,JN11B,K.비등가조인(BETWEEN) LEFT - 미매칭 보존,1,7,,7명 전원 보존 C4/C5는 band 열이 NULL로 채워짐
+JOIN_NULL,ORACLE,JN12,L.복합 조인키 일부/양쪽 NULL - INNER,1,1,,O1-E1만 두 열 모두 일치 나머지는 한쪽 또는 양쪽 NULL이라 매칭안됨
+JOIN_NULL,SQLSERVER,JN12,L.복합 조인키 일부/양쪽 NULL - INNER,1,1,,O1-E1만 두 열 모두 일치 나머지는 한쪽 또는 양쪽 NULL이라 매칭안됨
+JOIN_NULL,ORACLE,JN12B,L.복합 조인키 - LEFT 보존,1,8,,주문 8건 전부 보존 O1만 이벤트와 매칭되고 나머지 7건은 이벤트열 NULL
+JOIN_NULL,SQLSERVER,JN12B,L.복합 조인키 - LEFT 보존,1,8,,주문 8건 전부 보존 O1만 이벤트와 매칭되고 나머지 7건은 이벤트열 NULL
+JOIN_NULL,ORACLE,JN13,M.CROSS JOIN 대조(등가조인과 달리 NULL과 무관),1,28,,7x4=28 JN01A(5행)와 대조 - 등가조인만 NULL 키를 제외한다
+JOIN_NULL,SQLSERVER,JN13,M.CROSS JOIN 대조(등가조인과 달리 NULL과 무관),1,28,,7x4=28 JN01A(5행)와 대조 - 등가조인만 NULL 키를 제외한다
+JOIN_NULL,ORACLE,JN14,N.Oracle (+) 반대편 필터에 (+)누락시 무력화,1,2,,JN03B와 동일 메커니즘/동일 결과(2행) (+) 있어도 후속 AND조건이 UNKNOWN 행을 지움
+JOIN_NULL,SQLSERVER,JN14,N.Oracle (+) 동등 표현 - ANSI LEFT JOIN+WHERE 함정,1,2,,JN03B와 완전히 동일한 SQL/동일한 메커니즘/동일 결과(2행)
