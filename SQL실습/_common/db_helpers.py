@@ -39,7 +39,7 @@ class ExpectedRow:
 @dataclass
 class ValidationResult:
     example_id: str
-    status: str  # PASS / FAIL / SKIPPED(NO_DATA)
+    status: str  # PASS / FAIL / NO_RESULT
     expected_value: str
     actual_value: str
     validation_message: str
@@ -60,8 +60,16 @@ class ValidationReport:
         return sum(1 for r in self.results if r.status == "FAIL")
 
     @property
-    def skipped_count(self) -> int:
+    def no_result_count(self) -> int:
+        """PASS도 FAIL도 아닌 상태(NO_RESULT) 건수. 전체 개수(len(results))에는
+        포함되지만 pass_count/fail_count 어느 쪽에도 들어가지 않으므로 반드시
+        따로 노출한다(섹션 8 규칙 - PASS/FAIL/NO_RESULT를 항상 구분해서 집계)."""
         return sum(1 for r in self.results if r.status not in ("PASS", "FAIL"))
+
+    @property
+    def skipped_count(self) -> int:
+        """no_result_count의 이전 이름. 하위 호환을 위해 유지."""
+        return self.no_result_count
 
 
 def load_expected_rows(topic: str, dbms: str) -> list[ExpectedRow]:
@@ -159,7 +167,7 @@ def compare_live(conn, expected_rows: list[ExpectedRow]) -> ValidationReport:
             report.results.append(
                 ValidationResult(
                     example_id=exp.example_id,
-                    status="SKIPPED(NO_DATA)",
+                    status="NO_RESULT",
                     expected_value=_expected_str(exp),
                     actual_value="(결과 없음: 02_examples.sql 미실행 가능성)",
                     validation_message="sql_example_result에 해당 example_id 없음",
@@ -242,7 +250,7 @@ def static_check(topic: str, dbms: str, examples_sql_path: Path, expected_rows: 
     found_ids = set(EXAMPLE_ID_PATTERN.findall(sql_text))
     for exp in expected_rows:
         if exp.example_id in found_ids:
-            status = "SKIPPED(STATIC_ONLY)"
+            status = "NO_RESULT"
             msg = "02_examples.sql에 example_id 존재 확인(정적 점검) — 실제 실행 결과는 미검증"
         else:
             status = "FAIL"
@@ -270,8 +278,8 @@ def print_report(report: ValidationReport) -> None:
             print(f"        expected: {r.expected_value}")
             print(f"        actual  : {r.actual_value}")
     print(
-        f"\n합계: PASS={report.pass_count} FAIL={report.fail_count} "
-        f"기타(정적/미실행)={report.skipped_count} / 전체={len(report.results)}"
+        f"\npass_count={report.pass_count} fail_count={report.fail_count} "
+        f"no_result_count={report.no_result_count} total_count={len(report.results)}"
     )
 
 
