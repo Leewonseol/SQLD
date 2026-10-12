@@ -152,4 +152,6 @@ WITH GRANT/ADMIN OPTION 회수 연쇄, 의사열(ROWNUM·LEVEL) 범주명.
 
 설정: 저장소 **Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: `main` / `/ (root)`** → Save.
 이 변경이 `main`에 병합된 뒤 몇 분 안에 `https://leewonseol.github.io/SQLD/sqld/`가 열린다.
-이미 다른 방식으로 Pages를 쓰고 있다면 그 설정을 유지하면 된다 — 저장소 루트의 기존 파일은 바꾸지 않았다.
+저장소 루트의 `index.html`은 사이트 첫 주소(`https://leewonseol.github.io/SQLD/`)를 `sqld/`로 넘긴다.
+이 파일이 없으면 Jekyll(jekyll-readme-index)이 루트 `README.md`를 첫 화면으로 그린다.
+루트 README는 `/SQLD/README.html`에서 계속 볼 수 있다.
