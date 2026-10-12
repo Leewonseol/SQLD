@@ -1,0 +1,26 @@
+name: SQLD 관계망 데이터 검증
+
+on:
+  push:
+    paths:
+      - "sqld/**"
+      - ".github/workflows/sqld-validate.yml"
+  pull_request:
+    paths:
+      - "sqld/**"
+      - ".github/workflows/sqld-validate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: 데이터·관계 정확성 검증
+        run: node sqld/tools/validate.mjs
