@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1과목 전용 지도 · SQLD 관계망</title>
+  <meta name="description" content="1과목(데이터 모델링의 이해) 개념과 문제를 다섯 관계로 연결한 지도">
+  <link rel="stylesheet" href="../assets/sqld-map.css">
+  <script src="../assets/sqld-map.js" defer></script>
+</head>
+<body data-map="subject-1" data-data="../data/subject-1.json">
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="../"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2.6" fill="#6d4fc4"/><circle cx="19" cy="6" r="2.6" fill="#c45a1c"/><circle cx="12" cy="18" r="2.6" fill="#23855c"/><path d="M7 7.2l3.6 8.6M17 7.2l-3.6 8.6M7.6 6h8.8" stroke="currentColor" stroke-width="1.6" fill="none" opacity=".55"/></svg>SQLD 관계망</a>
+      <nav class="site-nav" aria-label="지도 전환">
+      <a href="../">홈</a>
+      <a href="../subject-1/" aria-current="page">1과목 전용</a>
+      <a href="../bridge/">1·2과목 대응</a>
+      <a href="../subject-2/">2과목 전용</a>
+      </nav>
+      <button class="theme-btn" type="button">자동</button>
+    </div>
+  </header>
+  <main id="app" class="app">
+    <p class="loading">관계망 데이터를 불러오는 중…</p>
+    <noscript><p class="fatal">이 지도는 JavaScript가 필요합니다. 데이터 원본은 <a href="../data/subject-1.json">subject-1.json</a>에서 볼 수 있습니다.</p></noscript>
+  </main>
+</body>
+</html>
