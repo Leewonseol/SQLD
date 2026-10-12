@@ -6,7 +6,7 @@ SQLite는 실제로 돌려서 결과를 비교·검증하는 보조 엔진이며
 
 ## SQLD 개념 관계망 (웹)
 
-- [1과목·1·2과목 대응·2과목 다섯 관계 지도](./sqld/README.md) — GitHub Pages: `https://leewonseol.github.io/SQLD/sqld/`
+- [1과목·1·2과목 대응·2과목 다섯 관계 지도 — 사이트 열기](https://leewonseol.github.io/SQLD/sqld/) · [사이트 설명(README)](./sqld/README.md)
 
 ## SQLD 시험 직전 압축 복습
 
