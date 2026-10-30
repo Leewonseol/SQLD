@@ -1,6 +1,6 @@
 -- =====================================================================
 -- bootstrap_oracle_admin.sql  (관리자 SYSTEM 계정으로 1회 실행)
--- 목적: 실습 전용 스키마(SQLD_LAB)와 권한 실습용 보조 계정(SQLD_LAB_U2)만 만든다.
+-- 목적: 실습 전용 스키마(SQLD_LAB)와 권한 실습용 보조 계정(SQLD_LAB_U2, SQLD_LAB_U3)만 만든다.
 --       기존 사용자 객체는 건드리지 않는다. 이미 있으면 생성 단계를 건너뛴다.
 -- 실행: sqlplus system/<pw>@//localhost/XEPDB1 @tools/bootstrap_oracle_admin.sql
 -- 검증 환경: Oracle Database 21c XE (21.3.0.0.0) 컨테이너. 19c 미실행.
@@ -18,12 +18,14 @@ DECLARE
 BEGIN
   ensure_user('SQLD_LAB',    'SqldLab2026');
   ensure_user('SQLD_LAB_U2', 'SqldLab2026');
+  ensure_user('SQLD_LAB_U3', 'SqldLab2026');
 END;
 /
 GRANT CREATE SESSION, CREATE TABLE, CREATE VIEW, CREATE SEQUENCE,
       CREATE PROCEDURE, CREATE TRIGGER, CREATE SYNONYM TO SQLD_LAB;
 GRANT CREATE ROLE TO SQLD_LAB;
 GRANT CREATE SESSION TO SQLD_LAB_U2;
+GRANT CREATE SESSION TO SQLD_LAB_U3;
 ALTER USER SQLD_LAB    QUOTA UNLIMITED ON USERS;
 ALTER USER SQLD_LAB_U2 QUOTA UNLIMITED ON USERS;
 PROMPT bootstrap done

@@ -1,0 +1,49 @@
+-- 실행 결과: 14_transactions_permissions/examples/ex02_isolation_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+Table created.
+
+1 row created.
+
+Commit complete.
+
+== [Q1] Oracle 이 지원하는 격리 수준: READ COMMITTED(기본), SERIALIZABLE, 그리고 READ ONLY 트랜잭션
+
+Transaction set.
+
+V
+100
+
+1 row selected.
+
+Commit complete.
+
+== [Q2] READ UNCOMMITTED 는 지원하지 않는다 -> 오류
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+                                     *
+ERROR at line 1:
+ORA-02179: valid options: ISOLATION LEVEL { SERIALIZABLE | READ COMMITTED }
+
+== [Q3] READ ONLY 트랜잭션에서 DML -> 오류
+
+Transaction set.
+
+UPDATE d14_iso SET v = 1
+       *
+ERROR at line 1:
+ORA-01456: may not perform insert/delete/update operation inside a READ ONLY transaction
+
+Commit complete.
+
+== [Q4] SET TRANSACTION 은 트랜잭션의 첫 문장이어야 한다 -> DML 뒤에 쓰면 오류
+
+1 row updated.
+
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE
+*
+ERROR at line 1:
+ORA-01453: SET TRANSACTION must be first statement of transaction
+
+Rollback complete.
+
+PL/SQL procedure successfully completed.

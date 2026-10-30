@@ -1,0 +1,16 @@
+-- 실행 결과: 14_transactions_permissions/answers/ex01_tcl_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+(2 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+14-ex01-G1: CHECK_PASS (3행)
+id|bal
+--|---
+1|100
+2|100
+3|300
+
+(3 rows affected)

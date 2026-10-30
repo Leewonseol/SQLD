@@ -1,0 +1,97 @@
+-- 실행 결과: 14_transactions_permissions/examples/ex01_tcl_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+Commit complete.
+
+== [Q1] ROLLBACK: 마지막 COMMIT 이후의 변경을 모두 취소
+
+1 row updated.
+
+Rollback complete.
+
+ID|BAL
+1|100
+2|100
+
+2 rows selected.
+
+== [Q2] SAVEPOINT: 중간 지점까지만 취소 -> 1번 변경은 남고 2번 변경만 취소
+
+1 row updated.
+
+Savepoint created.
+
+1 row updated.
+
+Rollback complete.
+
+Commit complete.
+
+ID|BAL
+1|70
+2|100
+
+2 rows selected.
+
+== [Q3] DDL 은 실행 직전에 암묵적 COMMIT -> 앞의 INSERT 가 확정되어 ROLLBACK 해도 남는다
+
+1 row created.
+
+Table created.
+
+Rollback complete.
+
+ROWS_AFTER_DDL_ROLLBACK
+3
+
+1 row selected.
+
+== [Q4] 실패한 DDL(이미 있는 테이블 생성)도 앞의 트랜잭션을 커밋했는가?
+
+1 row created.
+
+CREATE TABLE d14_tmp (x NUMBER)
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+Rollback complete.
+
+ROWS_AFTER_FAILED_DDL_ROLLBACK
+4
+
+1 row selected.
+
+== [Q5] 문장 단위 롤백: 트랜잭션 안의 한 문장이 실패해도 앞 문장은 그대로 (트랜잭션은 계속)
+
+1 row updated.
+
+INSERT INTO d14_acc VALUES (1, 999)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SQLD_LAB.SYS_C008653) violated
+
+Commit complete.
+
+ID|BAL
+2|0
+
+1 row selected.
+
+== [Q6] 존재하지 않는 SAVEPOINT 로 ROLLBACK -> 오류
+ROLLBACK TO SAVEPOINT nope
+*
+ERROR at line 1:
+ORA-01086: savepoint 'NOPE' never established in this session or is invalid
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.

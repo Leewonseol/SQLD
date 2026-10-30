@@ -1,0 +1,2 @@
+-- 실행 결과: 14_transactions_permissions/setup_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+14 examples are self-contained

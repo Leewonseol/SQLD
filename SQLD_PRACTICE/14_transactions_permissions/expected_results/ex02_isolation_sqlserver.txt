@@ -1,0 +1,32 @@
+-- 실행 결과: 14_transactions_permissions/examples/ex02_isolation_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+(1 rows affected)
+== [Q1] 세션 격리 수준 바꾸기: 1 READ UNCOMMITTED, 2 READ COMMITTED(기본), 3 REPEATABLE READ, 4 SERIALIZABLE, 5 SNAPSHOT
+lvl
+---
+1
+
+(1 rows affected)
+lvl
+---
+3
+
+(1 rows affected)
+lvl
+---
+4
+
+(1 rows affected)
+lvl
+---
+2
+
+(1 rows affected)
+== [Q2] 이 DB 의 READ COMMITTED 는 잠금 방식인가(0) 스냅숏 방식인가(1)? 스냅숏 격리 허용 여부는?
+is_read_committed_snapshot_on|snapshot_isolation_state_desc
+-----------------------------|-----------------------------
+0|OFF
+
+(1 rows affected)
+== [Q3] ALLOW_SNAPSHOT_ISOLATION 이 꺼진 DB 에서 SNAPSHOT 트랜잭션으로 데이터 접근 -> 오류
+Msg 3952, Level 16, State 1, Server a70f428a7f8a, Line 2
+Snapshot isolation transaction failed accessing database 'SQLD_LAB' because snapshot isolation is not allowed in this database. Use ALTER DATABASE to allow snapshot isolation.

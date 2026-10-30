@@ -1,0 +1,40 @@
+-- 실행 결과: 14_transactions_permissions/examples/ex03_grant_revoke_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+(1 rows affected)
+== [Q1] 권한 없음 -> 권한 거부 오류 (Oracle 과 달리 객체의 존재는 드러난다)
+Msg 229, Level 14, State 5, Server a70f428a7f8a, Line 2
+The SELECT permission was denied on the object 'd14_secret', database 'SQLD_LAB', schema 'dbo'.
+== [Q2] GRANT SELECT 후 조회 가능, INSERT 는 거부
+id|v
+--|-
+1|top
+
+(1 rows affected)
+Msg 229, Level 14, State 5, Server a70f428a7f8a, Line 1
+The INSERT permission was denied on the object 'd14_secret', database 'SQLD_LAB', schema 'dbo'.
+== [Q3] WITH GRANT OPTION -> U2 가 U3 에게 부여
+u3_can_read
+-----------
+1
+
+(1 rows affected)
+== [Q4] 재부여한 권한이 있으면 CASCADE 없이 REVOKE 불가 -> 오류
+Msg 4611, Level 16, State 1, Server a70f428a7f8a, Line 2
+To revoke or deny grantable privileges, specify the CASCADE option.
+== [Q4b] REVOKE ... CASCADE: U3 의 권한까지 회수
+Msg 229, Level 14, State 5, Server a70f428a7f8a, Line 1
+The SELECT permission was denied on the object 'd14_secret', database 'SQLD_LAB', schema 'dbo'.
+== [Q5] ROLE: CREATE ROLE + ALTER ROLE ADD MEMBER
+via_role
+--------
+1
+
+(1 rows affected)
+== [Q6] DENY (SQL Server 전용): 역할로 받은 권한보다 DENY 가 우선
+Msg 229, Level 14, State 5, Server a70f428a7f8a, Line 1
+The SELECT permission was denied on the object 'd14_secret', database 'SQLD_LAB', schema 'dbo'.
+== [Q7] 정리
+current_user_name
+-----------------
+sqld_lab
+
+(1 rows affected)

@@ -305,3 +305,15 @@ file,engine,status,errors_found,errors_expected,unexpected,missing,check_pass,ch
 13_dml_ddl_constraints/examples/ex06_ctas_sqlserver.sql,sqlserver,OK,MSG-156,MSG-156,,,0,0
 13_dml_ddl_constraints/setup_oracle.sql,oracle,OK,,,,,0,0
 13_dml_ddl_constraints/setup_sqlserver.sql,sqlserver,OK,,,,,0,0
+14_transactions_permissions/answers/ex01_tcl_answer_oracle.sql,oracle,OK,,,,,1,0
+14_transactions_permissions/answers/ex01_tcl_answer_sqlserver.sql,sqlserver,OK,,,,,1,0
+14_transactions_permissions/answers/ex03_grant_revoke_answer_oracle.sql,oracle,OK,,,,,1,0
+14_transactions_permissions/answers/ex03_grant_revoke_answer_sqlserver.sql,sqlserver,OK,,,,,1,0
+14_transactions_permissions/examples/ex01_tcl_oracle.sql,oracle,OK,ORA-00001 ORA-00955 ORA-01086,ORA-00001 ORA-00955 ORA-01086,,,0,0
+14_transactions_permissions/examples/ex01_tcl_sqlserver.sql,sqlserver,OK,MSG-2627 MSG-3903,MSG-2627 MSG-3903,,,0,0
+14_transactions_permissions/examples/ex02_isolation_oracle.sql,oracle,OK,ORA-01453 ORA-01456 ORA-02179,ORA-01453 ORA-01456 ORA-02179,,,0,0
+14_transactions_permissions/examples/ex02_isolation_sqlserver.sql,sqlserver,OK,MSG-3952,MSG-3952,,,0,0
+14_transactions_permissions/examples/ex03_grant_revoke_oracle.sql,oracle,OK,ORA-00942 ORA-01031,ORA-00942 ORA-01031,,,0,0
+14_transactions_permissions/examples/ex03_grant_revoke_sqlserver.sql,sqlserver,OK,MSG-229 MSG-4611,MSG-229 MSG-4611,,,0,0
+14_transactions_permissions/setup_oracle.sql,oracle,OK,,,,,0,0
+14_transactions_permissions/setup_sqlserver.sql,sqlserver,OK,,,,,0,0

@@ -1,0 +1,2 @@
+-- 실행 결과: 14_transactions_permissions/setup_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+14 examples are self-contained

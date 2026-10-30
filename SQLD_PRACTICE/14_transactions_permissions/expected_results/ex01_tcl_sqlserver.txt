@@ -1,0 +1,99 @@
+-- 실행 결과: 14_transactions_permissions/examples/ex01_tcl_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+(2 rows affected)
+== [Q1] 자동 커밋 모드: BEGIN TRAN 없이 UPDATE 하면 바로 확정 -> ROLLBACK 은 오류
+
+(1 rows affected)
+Msg 3903, Level 16, State 1, Server a70f428a7f8a, Line 2
+The ROLLBACK TRANSACTION request has no corresponding BEGIN TRANSACTION.
+id|bal
+--|---
+1|50
+2|100
+
+(2 rows affected)
+
+(1 rows affected)
+== [Q2] SAVE TRANSACTION / ROLLBACK TRANSACTION 저장점
+
+(1 rows affected)
+
+(1 rows affected)
+id|bal
+--|---
+1|70
+2|100
+
+(2 rows affected)
+== [Q3] DDL 도 트랜잭션 안에서 ROLLBACK 된다: INSERT 와 CREATE TABLE 모두 취소
+
+(1 rows affected)
+rows_after_rollback|ddl_state
+-------------------|---------
+2|TABLE ROLLED BACK
+
+(1 rows affected)
+== [Q4] TRUNCATE 도 트랜잭션 안에서 ROLLBACK 된다
+in_tran_after_truncate
+----------------------
+0
+
+(1 rows affected)
+after_rollback
+--------------
+2
+
+(1 rows affected)
+== [Q5] 중첩 트랜잭션: 안쪽 COMMIT 은 @@TRANCOUNT 만 줄인다. 바깥 ROLLBACK 이 전부 취소
+
+(1 rows affected)
+trancount_inner
+---------------
+2
+
+(1 rows affected)
+trancount_after_inner_commit
+----------------------------
+1
+
+(1 rows affected)
+id|bal
+--|---
+1|70
+
+(1 rows affected)
+== [Q6] 문장 단위 롤백 (XACT_ABORT OFF 기본): 실패한 INSERT 만 취소, 앞의 UPDATE 는 커밋됨
+
+(1 rows affected)
+Msg 2627, Level 14, State 1, Server a70f428a7f8a, Line 2
+Violation of PRIMARY KEY constraint 'PK__d14_acc__3213E83FC801FDF6'. Cannot insert duplicate key in object 'dbo.d14_acc'. The duplicate key value is (1).
+The statement has been terminated.
+id|bal
+--|---
+2|0
+
+(1 rows affected)
+
+(1 rows affected)
+== [Q7] SET XACT_ABORT ON: 오류가 나면 트랜잭션 전체가 롤백된다
+
+(1 rows affected)
+Msg 2627, Level 14, State 1, Server a70f428a7f8a, Line 5
+Violation of PRIMARY KEY constraint 'PK__d14_acc__3213E83FC801FDF6'. Cannot insert duplicate key in object 'dbo.d14_acc'. The duplicate key value is (1).
+id|bal|trancount
+--|---|---------
+2|130|0
+
+(1 rows affected)
+== [Q8] IMPLICIT_TRANSACTIONS ON: Oracle 처럼 첫 DML 에서 트랜잭션이 자동 시작
+
+(1 rows affected)
+trancount_implicit
+------------------
+1
+
+(1 rows affected)
+id|bal
+--|---
+1|70
+
+(1 rows affected)
