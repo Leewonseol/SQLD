@@ -1,0 +1,21 @@
+-- ex03 날짜 함수와 날짜 연산 (요구목록 §7)  | Oracle  (고정 날짜로 결과를 확정한다. NLS_DATE_FORMAT='YYYY-MM-DD')
+PROMPT == [Q1] DATE + 숫자 = 일 단위 덧셈. 1/24 = 1시간
+SELECT DATE '2024-01-31' + 1 plus1, TO_CHAR(DATE '2024-01-31' + 1/24, 'YYYY-MM-DD HH24:MI') plus1h FROM dual;
+
+PROMPT == [Q2] DATE - DATE = 일 수(숫자)
+SELECT DATE '2024-03-01' - DATE '2024-02-01' days_feb_2024, DATE '2023-03-01' - DATE '2023-02-01' days_feb_2023 FROM dual;
+
+PROMPT == [Q3] ADD_MONTHS: 말일은 말일로. MONTHS_BETWEEN: 실수 개월 수
+SELECT ADD_MONTHS(DATE '2024-01-31', 1) am1, ADD_MONTHS(DATE '2024-02-29', 12) am12,
+       MONTHS_BETWEEN(DATE '2024-03-31', DATE '2024-02-29') mb_lastdays,
+       ROUND(MONTHS_BETWEEN(DATE '2024-02-01', DATE '2024-01-31'), 4) mb_1day FROM dual;
+
+PROMPT == [Q4] LAST_DAY / TRUNC(날짜, 단위) / ROUND(날짜, 단위)
+SELECT LAST_DAY(DATE '2024-02-10') last_d, TRUNC(DATE '2024-03-15', 'MM') trunc_mm, TRUNC(DATE '2024-03-15', 'YYYY') trunc_yy,
+       ROUND(DATE '2024-03-16', 'MM') round_mm FROM dual;
+
+PROMPT == [Q5] EXTRACT 와 TO_CHAR 로 부분 추출
+SELECT EXTRACT(YEAR FROM DATE '2024-03-15') y, EXTRACT(MONTH FROM DATE '2024-03-15') m, TO_CHAR(DATE '2024-03-15', 'DD') dd FROM dual;
+
+PROMPT == [Q6] 현재 시각 함수: SYSDATE(DATE), SYSTIMESTAMP (값은 실행 시점마다 다르므로 자료형만 확인)
+SELECT CASE WHEN SYSDATE > DATE '2020-01-01' THEN 'SYSDATE_OK' END chk FROM dual;

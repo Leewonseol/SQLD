@@ -1,0 +1,52 @@
+-- 실행 결과: 07_single_row_functions/examples/ex01_char_functions_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] LOWER / UPPER (INITCAP 없음)
+lo|up
+--|--
+sql developer|SQL DEVELOPER
+
+(1 rows affected)
+== [Q2] LEN 은 뒤 공백을 세지 않는다. DATALENGTH 는 바이트(NVARCHAR 한글 2바이트)
+len_trailing|dlen|len_ko|dlen_ko|len_empty
+------------|----|------|-------|---------
+2|4|3|6|0
+
+(1 rows affected)
+== [Q3] SUBSTRING(문자열, 시작, 길이) - 길이 필수, 음수 시작 없음 -> RIGHT
+s1|s2|s3
+--|--|--
+Dev|per|Developer
+
+(1 rows affected)
+== [Q4] CHARINDEX(찾을값, 문자열, 시작) - 인수 순서가 INSTR 와 반대, n번째 지정 없음
+i1|i2_from3|i3
+--|--------|--
+2|5|0
+
+(1 rows affected)
+== [Q5] TRIM 계열 (2022: LTRIM/RTRIM 두 번째 인수, TRIM LEADING 지원)
+l|r|b|lead|sp
+-|-|-|----|--
+ABxx|xxAB|AB|ABxx|[AB]
+
+(1 rows affected)
+== [Q6] LPAD/RPAD 없음 -> RIGHT(REPLICATE(...) + 값) / LEFT(값 + REPLICATE(...))
+lp|rp|cut
+--|--|---
+007|AB***|ABC
+
+(1 rows affected)
+== [Q7] REPLACE / TRANSLATE (2017+). REPLACE 의 세 번째 인수는 필수
+rep|rep_del|tr
+---|-------|--
+20240315|AA|2o24/o3/15
+
+(1 rows affected)
+== [Q8] CONCAT(인수 여러 개), +, ASCII, CHAR
+c3|plus|asc_a|chr_66
+--|----|-----|------
+ABC|ABC|65|B
+
+(1 rows affected)
+== [Q9] INITCAP 은 없는 함수 -> 오류
+Msg 195, Level 15, State 10, Server a70f428a7f8a, Line 2
+'INITCAP' is not a recognized built-in function name.

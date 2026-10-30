@@ -1,0 +1,20 @@
+-- 실행 결과: 07_single_row_functions/answers/ex04_conversion_functions_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 입사일 'YYYY년 MM월'
+07-ex04-G1: CHECK_PASS (3행)
+ename|hire_ym
+-----|-------
+CLARK|1981년 06월
+KING|1981년 11월
+MILLER|1982년 01월
+
+(3 rows affected)
+== [G2] '3,000' 이상 급여
+07-ex04-G2: CHECK_PASS (3행)
+ename
+-----
+FORD
+KING
+SCOTT
+
+(3 rows affected)

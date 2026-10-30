@@ -1,0 +1,17 @@
+-- 실행 결과: 07_single_row_functions/examples/ex07_regex_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] REGEXP_LIKE: 숫자로만 된 code
+
+ID|CODE
+1|001
+2|01
+3|1
+4|10
+
+4 rows selected.
+
+== [Q2] REGEXP_SUBSTR / REGEXP_INSTR / REGEXP_COUNT / REGEXP_REPLACE
+
+SUB2|INS3|CNT|MASKED
+22|7|6|010-1234-****
+
+1 row selected.

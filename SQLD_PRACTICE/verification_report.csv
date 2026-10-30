@@ -132,3 +132,33 @@ file,engine,status,errors_found,errors_expected,unexpected,missing,check_pass,ch
 06_group_having/examples/ex06_top_n_sqlserver.sql,sqlserver,OK,MSG-102 MSG-1062 MSG-153 MSG-207,MSG-102 MSG-1062 MSG-153 MSG-207,,,0,0
 06_group_having/setup_oracle.sql,oracle,OK,,,,,0,0
 06_group_having/setup_sqlserver.sql,sqlserver,OK,,,,,0,0
+07_single_row_functions/answers/ex01_char_functions_answer_oracle.sql,oracle,OK,,,,,2,0
+07_single_row_functions/answers/ex01_char_functions_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+07_single_row_functions/answers/ex02_number_functions_answer_oracle.sql,oracle,OK,,,,,2,0
+07_single_row_functions/answers/ex02_number_functions_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+07_single_row_functions/answers/ex03_date_functions_answer_oracle.sql,oracle,OK,,,,,2,0
+07_single_row_functions/answers/ex03_date_functions_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+07_single_row_functions/answers/ex04_conversion_functions_answer_oracle.sql,oracle,OK,,,,,2,0
+07_single_row_functions/answers/ex04_conversion_functions_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+07_single_row_functions/answers/ex05_null_functions_answer_oracle.sql,oracle,OK,,,,,2,0
+07_single_row_functions/answers/ex05_null_functions_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+07_single_row_functions/answers/ex06_case_decode_answer_oracle.sql,oracle,OK,,,,,2,0
+07_single_row_functions/answers/ex06_case_decode_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+07_single_row_functions/answers/ex07_regex_answer_oracle.sql,oracle,OK,,,,,2,0
+07_single_row_functions/answers/ex07_regex_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+07_single_row_functions/examples/ex01_char_functions_oracle.sql,oracle,OK,,,,,0,0
+07_single_row_functions/examples/ex01_char_functions_sqlserver.sql,sqlserver,OK,MSG-195,MSG-195,,,0,0
+07_single_row_functions/examples/ex02_number_functions_oracle.sql,oracle,OK,ORA-01476,ORA-01476,,,0,0
+07_single_row_functions/examples/ex02_number_functions_sqlserver.sql,sqlserver,OK,MSG-195 MSG-8134,MSG-195 MSG-8134,,,0,0
+07_single_row_functions/examples/ex03_date_functions_oracle.sql,oracle,OK,,,,,0,0
+07_single_row_functions/examples/ex03_date_functions_sqlserver.sql,sqlserver,OK,MSG-206,MSG-206,,,0,0
+07_single_row_functions/examples/ex04_conversion_functions_oracle.sql,oracle,OK,ORA-01722 ORA-01843,ORA-01722 ORA-01843,,,0,0
+07_single_row_functions/examples/ex04_conversion_functions_sqlserver.sql,sqlserver,OK,MSG-242 MSG-245,MSG-242 MSG-245,,,0,0
+07_single_row_functions/examples/ex05_null_functions_oracle.sql,oracle,OK,ORA-01722,ORA-01722,,,0,0
+07_single_row_functions/examples/ex05_null_functions_sqlserver.sql,sqlserver,OK,MSG-195 MSG-4127 MSG-8114,MSG-195 MSG-4127 MSG-8114,,,0,0
+07_single_row_functions/examples/ex06_case_decode_oracle.sql,oracle,OK,ORA-00932,ORA-00932,,,0,0
+07_single_row_functions/examples/ex06_case_decode_sqlserver.sql,sqlserver,OK,MSG-195 MSG-245,MSG-195 MSG-245,,,0,0
+07_single_row_functions/examples/ex07_regex_oracle.sql,oracle,OK,,,,,0,0
+07_single_row_functions/examples/ex07_regex_sqlserver.sql,sqlserver,OK,MSG-195,MSG-195,,,0,0
+07_single_row_functions/setup_oracle.sql,oracle,OK,,,,,0,0
+07_single_row_functions/setup_sqlserver.sql,sqlserver,OK,,,,,0,0

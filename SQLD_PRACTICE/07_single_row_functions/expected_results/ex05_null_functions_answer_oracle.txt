@@ -1,0 +1,34 @@
+-- 실행 결과: 07_single_row_functions/answers/ex05_null_functions_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 관리자 사번 문자, 없으면 TOP
+
+View created.
+
+View created.
+
+07-ex05-G1: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|MGR_TXT
+CLARK|7839
+KING|TOP
+MILLER|7782
+
+3 rows selected.
+
+== [G2] COALESCE(comm, mgr, 0)
+
+View created.
+
+View created.
+
+07-ex05-G2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|V
+ALLEN|300
+KING|0
+SMITH|7902
+
+3 rows selected.

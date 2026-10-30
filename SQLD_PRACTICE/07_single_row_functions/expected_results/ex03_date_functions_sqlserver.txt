@@ -1,0 +1,46 @@
+-- 실행 결과: 07_single_row_functions/examples/ex03_date_functions_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] DATEADD (DATE 형에 + 1 은 오류: Q7)
+plus1|plus1h
+-----|------
+2024-02-01|2024-01-31 01:00
+
+(1 rows affected)
+== [Q2] DATEDIFF(DAY, 시작, 끝)
+days_feb_2024|days_feb_2023
+-------------|-------------
+29|28
+
+(1 rows affected)
+== [Q3] DATEADD(MONTH) 와 DATEDIFF(MONTH): DATEDIFF 는 "경계를 넘은 횟수"
+am1|am12|dd_lastdays|dd_1day
+---|----|-----------|-------
+2024-02-29|2025-02-28|1|1
+
+(1 rows affected)
+== [Q4] EOMONTH / DATETRUNC(2022+) / 월초 계산
+last_d|trunc_mm|trunc_yy|first_day
+------|--------|--------|---------
+2024-02-29|2024-03-01|2024-01-01|2024-03-01
+
+(1 rows affected)
+== [Q5] YEAR / MONTH / DATEPART / DAY
+y|m|dd
+-|-|--
+2024|3|15
+
+(1 rows affected)
+== [Q6] 현재 시각: GETDATE(DATETIME), SYSDATETIME(DATETIME2)
+chk
+---
+GETDATE_OK
+
+(1 rows affected)
+== [Q8] DATETIME 형은 + 1 이 하루 덧셈으로 허용된다
+dt_plus1
+--------
+2024-02-01 00:00:00.000
+
+(1 rows affected)
+== [Q7] DATE 형 + 1 -> 오류 (피연산자 형식 충돌)
+Msg 206, Level 16, State 2, Server a70f428a7f8a, Line 2
+Operand type clash: date is incompatible with int

@@ -1,0 +1,35 @@
+-- 실행 결과: 07_single_row_functions/answers/ex06_case_decode_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 급여 등급별 인원
+
+View created.
+
+View created.
+
+07-ex06-G1: CHECK_PASS (4행)
+
+PL/SQL procedure successfully completed.
+
+GRADE|CNT
+A|3
+B|3
+C|6
+D|2
+
+4 rows selected.
+
+== [G2] 부서별 CLERK·SALESMAN 수
+
+View created.
+
+View created.
+
+07-ex06-G2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+DEPTNO|CLERK_CNT|SALESMAN_CNT
+10|1|0
+20|2|0
+30|1|4
+
+3 rows selected.

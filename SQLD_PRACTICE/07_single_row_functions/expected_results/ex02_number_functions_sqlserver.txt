@@ -1,0 +1,31 @@
+-- 실행 결과: 07_single_row_functions/examples/ex02_number_functions_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] ROUND(x, n) / 버림은 ROUND(x, n, 1) (TRUNC 없음)
+r1|r2|r3|r4|t1|t2|t3
+--|--|--|--|--|--|--
+15.200|20.000|16.0|-16.0|15.70|15.00|-15.00
+
+(1 rows affected)
+== [Q2] CEILING / FLOOR
+c1|c2|f1|f2
+--|--|--|--
+16|-15|15|-16
+
+(1 rows affected)
+== [Q3] % 연산자와 나눗셈: 정수 / 정수 = 정수
+m1|m2|m3|div|real_div|real_div2
+--|--|--|---|--------|---------
+3|-3|3|3|3.500000|3.500000
+
+(1 rows affected)
+== [Q4] ABS / SIGN / POWER / SQRT
+a|s1|s2|p|q
+-|--|--|-|-
+3.5|-1.0|0|1024|4.0
+
+(1 rows affected)
+== [Q5] 0 으로 나누기 -> 오류
+Msg 8134, Level 16, State 1, Server a70f428a7f8a, Line 2
+Divide by zero error encountered.
+== [Q6] MOD / TRUNC 는 없는 함수
+Msg 195, Level 15, State 10, Server a70f428a7f8a, Line 2
+'MOD' is not a recognized built-in function name.

@@ -1,0 +1,7 @@
+-- 실행 결과: 07_single_row_functions/setup_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+07 uses 00_common EMP and 05_where_conditions W_CODE
+w_code_rows
+-----------
+5
+
+(1 rows affected)

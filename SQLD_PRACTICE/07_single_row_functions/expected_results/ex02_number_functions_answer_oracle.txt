@@ -1,0 +1,34 @@
+-- 실행 결과: 07_single_row_functions/answers/ex02_number_functions_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 10번 부서 보너스 100 단위 버림
+
+View created.
+
+View created.
+
+07-ex02-G1: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|BONUS
+CLARK|200
+KING|500
+MILLER|100
+
+3 rows selected.
+
+== [G2] 사번 / 7 의 몫과 나머지
+
+View created.
+
+View created.
+
+07-ex02-G2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+EMPNO|Q|R
+7782|1111|5
+7839|1119|6
+7934|1133|3
+
+3 rows selected.

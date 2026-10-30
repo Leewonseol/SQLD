@@ -1,0 +1,34 @@
+-- 실행 결과: 07_single_row_functions/answers/ex04_conversion_functions_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 입사일 'YYYY년 MM월'
+
+View created.
+
+View created.
+
+07-ex04-G1: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|HIRE_YM
+CLARK|1981년 06월
+KING|1981년 11월
+MILLER|1982년 01월
+
+3 rows selected.
+
+== [G2] '3,000' 이상 급여
+
+View created.
+
+View created.
+
+07-ex04-G2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+ENAME
+FORD
+KING
+SCOTT
+
+3 rows selected.

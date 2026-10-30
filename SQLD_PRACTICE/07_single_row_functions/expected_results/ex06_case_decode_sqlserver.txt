@@ -1,0 +1,55 @@
+-- 실행 결과: 07_single_row_functions/examples/ex06_case_decode_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] 단순 CASE 와 검색 CASE
+ename|deptno|simple_case|searched_case
+-----|------|-----------|-------------
+SMITH|20|RES|LOW
+ALLEN|30|ETC|MID
+KING|10|ACC|HIGH
+FORD|20|RES|HIGH
+
+(4 rows affected)
+== [Q2] 첫 번째 참인 WHEN
+ename|sal|wrong_order
+-----|---|-----------
+SMITH|800.00|NULL
+KING|5000.00|1000+
+
+(2 rows affected)
+== [Q3] ELSE 생략
+ename|has_comm
+-----|--------
+ALLEN|Y
+WARD|Y
+MARTIN|Y
+BLAKE|NULL
+TURNER|NULL
+JAMES|NULL
+
+(6 rows affected)
+== [Q4] 단순 CASE 와 NULL
+ename|comm|simple_null|searched_null
+-----|----|-----------|-------------
+ALLEN|300.00|not matched|value
+BLAKE|NULL|not matched|NULL!
+
+(2 rows affected)
+== [Q6] IIF(조건, 참, 거짓) / CHOOSE(인덱스, 값1, 값2, ...)
+ename|job_code|dname_choose
+-----|--------|------------
+ALLEN|S|SAL
+WARD|S|SAL
+MARTIN|S|SAL
+BLAKE|X|SAL
+TURNER|S|SAL
+JAMES|C|SAL
+
+(6 rows affected)
+== [Q7] CASE 결과 자료형 불일치 -> 문자를 INT 로 바꾸다 실패
+
+-
+0
+Msg 245, Level 16, State 1, Server a70f428a7f8a, Line 2
+Conversion failed when converting the varchar value 'big' to data type int.
+== [Q5] DECODE 는 없는 함수
+Msg 195, Level 15, State 10, Server a70f428a7f8a, Line 2
+'DECODE' is not a recognized built-in function name.

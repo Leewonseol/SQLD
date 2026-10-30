@@ -1,0 +1,19 @@
+-- 실행 결과: 07_single_row_functions/examples/ex07_regex_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q0] REGEXP_LIKE -> 2022 에서는 오류
+Msg 195, Level 15, State 10, Server a70f428a7f8a, Line 2
+'REGEXP_LIKE' is not a recognized built-in function name.
+== [Q1] LIKE 패턴으로 대체: 숫자가 아닌 글자가 하나도 없는 값
+id|code
+--|----
+1|001
+2|01
+3|1
+4|10
+
+(4 rows affected)
+== [Q2] 일부 기능 대체: PATINDEX (첫 숫자 위치), 끝 4자리 마스킹
+first_digit_pos|masked
+---------------|------
+3|010-1234-****
+
+(1 rows affected)

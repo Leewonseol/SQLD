@@ -1,0 +1,42 @@
+-- 실행 결과: 07_single_row_functions/examples/ex03_date_functions_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] DATE + 숫자 = 일 단위 덧셈. 1/24 = 1시간
+
+PLUS1|PLUS1H
+2024-02-01|2024-01-31 01:00
+
+1 row selected.
+
+== [Q2] DATE - DATE = 일 수(숫자)
+
+DAYS_FEB_2024|DAYS_FEB_2023
+29|28
+
+1 row selected.
+
+== [Q3] ADD_MONTHS: 말일은 말일로. MONTHS_BETWEEN: 실수 개월 수
+
+AM1|AM12|MB_LASTDAYS|MB_1DAY
+2024-02-29|2025-02-28|1|.0323
+
+1 row selected.
+
+== [Q4] LAST_DAY / TRUNC(날짜, 단위) / ROUND(날짜, 단위)
+
+LAST_D|TRUNC_MM|TRUNC_YY|ROUND_MM
+2024-02-29|2024-03-01|2024-01-01|2024-04-01
+
+1 row selected.
+
+== [Q5] EXTRACT 와 TO_CHAR 로 부분 추출
+
+Y|M|DD
+2024|3|15
+
+1 row selected.
+
+== [Q6] 현재 시각 함수: SYSDATE(DATE), SYSTIMESTAMP (값은 실행 시점마다 다르므로 자료형만 확인)
+
+CHK
+SYSDATE_OK
+
+1 row selected.

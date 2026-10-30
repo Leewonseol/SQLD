@@ -1,0 +1,37 @@
+-- =====================================================================
+-- H. 정답 및 검증 | 07_single_row_functions ex05_null_functions | SQL Server
+-- 사용법: ans 뷰 본문을 자기 답으로 바꿔 실행하면 lab_check 가 CHECK_PASS / CHECK_FAIL 을 출력한다.
+-- 이 파일은 tools/gen_answers.py 가 tools/answer_specs 에서 생성했다. 문제 원문은 ../exercises/ex05_null_functions.md
+-- =====================================================================
+USE SQLD_LAB;
+GO
+
+PRINT N'== [G1] 관리자 사번 문자, 없으면 TOP';
+-- SQL Server 에서 CAST(mgr AS VARCHAR(2)) 처럼 짧게 잡으면 변환 오류(Msg 8115 계열)가 난다. ISNULL 결과 길이는 첫 인수 길이를 따른다.
+GO
+CREATE OR ALTER VIEW ans07_05_g1 (ename, mgr_txt) AS
+SELECT ename, ISNULL(CAST(mgr AS VARCHAR(10)), 'TOP') FROM emp WHERE deptno = 10;
+GO
+CREATE OR ALTER VIEW exp07_05_g1 (ename, mgr_txt) AS
+SELECT * FROM (VALUES (N'CLARK', N'7839'),
+       (N'KING', N'TOP'),
+       (N'MILLER', N'7782')) v(ename, mgr_txt);
+GO
+EXEC lab_check N'07-ex05-G1', N'ans07_05_g1', N'exp07_05_g1';
+SELECT * FROM ans07_05_g1 ORDER BY 1, 2;
+GO
+
+PRINT N'== [G2] COALESCE(comm, mgr, 0)';
+-- KING 은 comm·mgr 모두 NULL → 0. SMITH 는 comm NULL → mgr 7902. 의미가 다른 값(커미션과 사번)을 섞은 '나쁜 예'이기도 하다.
+GO
+CREATE OR ALTER VIEW ans07_05_g2 (ename, v) AS
+SELECT ename, COALESCE(comm, mgr, 0) FROM emp WHERE ename IN ('KING', 'SMITH', 'ALLEN');
+GO
+CREATE OR ALTER VIEW exp07_05_g2 (ename, v) AS
+SELECT * FROM (VALUES (N'ALLEN', 300),
+       (N'KING', 0),
+       (N'SMITH', 7902)) v(ename, v);
+GO
+EXEC lab_check N'07-ex05-G2', N'ans07_05_g2', N'exp07_05_g2';
+SELECT * FROM ans07_05_g2 ORDER BY 1, 2;
+GO

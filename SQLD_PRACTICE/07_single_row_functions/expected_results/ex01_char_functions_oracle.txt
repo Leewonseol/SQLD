@@ -1,0 +1,56 @@
+-- 실행 결과: 07_single_row_functions/examples/ex01_char_functions_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] 대소문자: LOWER / UPPER / INITCAP
+
+LO|UP|INI
+sql developer|SQL DEVELOPER|Sql Developer
+
+1 row selected.
+
+== [Q2] 길이: LENGTH 는 뒤 공백도 센다. LENGTHB 는 바이트(AL32UTF8 한글 3바이트)
+
+LEN_TRAILING|LEN_KO|LENB_KO|LEN_EMPTY
+4|3|9|(null)
+
+1 row selected.
+
+== [Q3] SUBSTR(문자열, 시작, 길이). 시작이 음수면 뒤에서부터
+
+S1|S2|S3
+Dev|per|Developer
+
+1 row selected.
+
+== [Q4] INSTR(문자열, 찾을값, 시작, n번째)
+
+I1|I2|I3
+2|14|0
+
+1 row selected.
+
+== [Q5] TRIM 계열: 지정 문자 제거
+
+L|R|B|LEAD|SP
+ABxx|xxAB|AB|ABxx|[AB]
+
+1 row selected.
+
+== [Q6] LPAD / RPAD
+
+LP|RP|CUT
+007|AB***|ABC
+
+1 row selected.
+
+== [Q7] REPLACE / TRANSLATE (글자 단위 대응 치환)
+
+REP|REP_DEL|TR
+20240315|AA|2o24/o3/15
+
+1 row selected.
+
+== [Q8] 결합과 문자 코드: CONCAT(인수 2개), ||, ASCII, CHR
+
+C3|PIPES|ASC_A|CHR_66
+ABC|ABC|65|B
+
+1 row selected.

@@ -1,0 +1,64 @@
+-- 실행 결과: 07_single_row_functions/examples/ex06_case_decode_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] 단순 CASE (값 비교) 와 검색 CASE (조건)
+
+ENAME|DEPTNO|SIMPLE_CASE|SEARCHED_CASE
+SMITH|20|RES|LOW
+ALLEN|30|ETC|MID
+KING|10|ACC|HIGH
+FORD|20|RES|HIGH
+
+4 rows selected.
+
+== [Q2] 첫 번째로 참인 WHEN 에서 멈춘다 (순서 함정): 5000 은 첫 WHEN(>= 1000) 에서 끝
+
+ENAME|SAL|WRONG_ORDER
+SMITH|800|(null)
+KING|5000|1000+
+
+2 rows selected.
+
+== [Q3] ELSE 생략 -> 해당 없으면 NULL
+
+ENAME|HAS_COMM
+ALLEN|Y
+WARD|Y
+MARTIN|Y
+BLAKE|(null)
+TURNER|(null)
+JAMES|(null)
+
+6 rows selected.
+
+== [Q4] 단순 CASE 로는 NULL 을 찾지 못한다 (CASE comm WHEN NULL ... 은 comm = NULL 비교)
+
+ENAME|COMM|SIMPLE_NULL|SEARCHED_NULL
+ALLEN|300|not matched|value
+BLAKE|(null)|not matched|NULL!
+
+2 rows selected.
+
+== [Q5] DECODE 는 NULL 과 NULL 을 같다고 본다 (CASE 와 다른 점)
+
+ENAME|COMM|DECODE_NULL
+ALLEN|300|value
+BLAKE|(null)|NULL!
+
+2 rows selected.
+
+== [Q6] DECODE(값, 비교1, 결과1, 비교2, 결과2, 기본값)
+
+ENAME|JOB_CODE
+ALLEN|S
+WARD|S
+MARTIN|S
+BLAKE|X
+TURNER|S
+JAMES|C
+
+6 rows selected.
+
+== [Q7] CASE 결과의 자료형은 통일되어야 한다 -> 오류
+SELECT CASE WHEN sal > 1000 THEN 'big' ELSE 0 END FROM emp
+                                            *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected CHAR got NUMBER

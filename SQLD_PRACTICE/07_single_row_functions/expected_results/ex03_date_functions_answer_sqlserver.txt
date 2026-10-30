@@ -1,0 +1,18 @@
+-- 실행 결과: 07_single_row_functions/answers/ex03_date_functions_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 10번 부서 근속 개월 수(2024-03-31 기준)
+07-ex03-G1: CHECK_PASS (3행)
+ename|months
+-----|------
+CLARK|513
+KING|508
+MILLER|506
+
+(3 rows affected)
+== [G2] 2024년 2월 말일과 다음 날
+07-ex03-G2: CHECK_PASS (1행)
+last_day|next_day
+--------|--------
+2024-02-29|2024-03-01
+
+(1 rows affected)

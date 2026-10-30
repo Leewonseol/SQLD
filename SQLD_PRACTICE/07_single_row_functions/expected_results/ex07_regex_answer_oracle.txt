@@ -1,0 +1,37 @@
+-- 실행 결과: 07_single_row_functions/answers/ex07_regex_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 모음 2개 이상 이름
+
+View created.
+
+View created.
+
+07-ex07-G1: CHECK_PASS (8행)
+
+PL/SQL procedure successfully completed.
+
+ENAME
+ADAMS
+ALLEN
+BLAKE
+JAMES
+JONES
+MARTIN
+MILLER
+TURNER
+
+8 rows selected.
+
+== [G2] 전화번호 가운데 덩어리
+
+View created.
+
+View created.
+
+07-ex07-G2: CHECK_PASS (1행)
+
+PL/SQL procedure successfully completed.
+
+MID
+1234
+
+1 row selected.

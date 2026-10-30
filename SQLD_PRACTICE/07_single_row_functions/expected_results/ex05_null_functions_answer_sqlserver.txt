@@ -1,0 +1,20 @@
+-- 실행 결과: 07_single_row_functions/answers/ex05_null_functions_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 관리자 사번 문자, 없으면 TOP
+07-ex05-G1: CHECK_PASS (3행)
+ename|mgr_txt
+-----|-------
+CLARK|7839
+KING|TOP
+MILLER|7782
+
+(3 rows affected)
+== [G2] COALESCE(comm, mgr, 0)
+07-ex05-G2: CHECK_PASS (3행)
+ename|v
+-----|-
+ALLEN|300.00
+KING|.00
+SMITH|7902.00
+
+(3 rows affected)

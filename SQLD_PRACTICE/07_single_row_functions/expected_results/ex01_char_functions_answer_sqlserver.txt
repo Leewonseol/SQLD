@@ -1,0 +1,22 @@
+-- 실행 결과: 07_single_row_functions/answers/ex01_char_functions_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 10번 부서 이름 첫 글자 대문자·길이
+07-ex01-G1: CHECK_PASS (3행)
+name_cap|name_len
+--------|--------
+Clark|5
+King|4
+Miller|6
+
+(3 rows affected)
+== [G2] 20번 부서 이름의 A 위치
+07-ex01-G2: CHECK_PASS (5행)
+ename|pos_a
+-----|-----
+ADAMS|1
+FORD|0
+JONES|0
+SCOTT|0
+SMITH|0
+
+(5 rows affected)
