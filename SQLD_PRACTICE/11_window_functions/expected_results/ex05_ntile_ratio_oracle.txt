@@ -1,0 +1,50 @@
+-- 실행 결과: 11_window_functions/examples/ex05_ntile_ratio_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] PDF: 14명을 3그룹 -> 5, 5, 4 (나누어떨어지지 않으면 앞 그룹이 1명씩 더 많다)
+
+GRP|CNT
+1|5
+2|5
+3|4
+
+3 rows selected.
+
+== [Q2] PDF: NTILE(2) OVER (ORDER BY SAL)
+
+ENAME|SAL|DEPTNO|GROUP_NO
+SMITH|800|20|1
+JAMES|950|30|1
+ADAMS|1100|20|1
+WARD|1250|30|1
+MARTIN|1250|30|1
+MILLER|1300|10|1
+TURNER|1500|30|1
+ALLEN|1600|30|2
+CLARK|2450|10|2
+BLAKE|2850|30|2
+JONES|2975|20|2
+SCOTT|3000|20|2
+FORD|3000|20|2
+KING|5000|10|2
+
+14 rows selected.
+
+== [Q3] PERCENT_RANK = (RANK-1)/(행수-1), CUME_DIST = (현재 값 이하 행 수)/행수
+
+ENAME|SAL|RNK|PCT_RANK|CUME
+JAMES|950|1|0|.167
+MARTIN|1250|2|.2|.5
+WARD|1250|2|.2|.5
+TURNER|1500|4|.6|.667
+ALLEN|1600|5|.8|.833
+BLAKE|2850|6|1|1
+
+6 rows selected.
+
+== [Q4] RATIO_TO_REPORT(Oracle 전용): 합계 대비 비율
+
+ENAME|SAL|RATIO|SAME_BY_SUM
+KING|5000|.571|.571
+CLARK|2450|.28|.28
+MILLER|1300|.149|.149
+
+3 rows selected.

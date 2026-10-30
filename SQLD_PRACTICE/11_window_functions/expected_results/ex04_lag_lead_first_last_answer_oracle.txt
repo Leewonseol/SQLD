@@ -1,0 +1,37 @@
+-- 실행 결과: 11_window_functions/answers/ex04_lag_lead_first_last_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 직전 입사자와 급여 차이
+
+View created.
+
+View created.
+
+11-ex04-G1: CHECK_PASS (6행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|DIFF
+ALLEN|0
+BLAKE|1600
+JAMES|-300
+MARTIN|-250
+TURNER|-1350
+WARD|-350
+
+6 rows selected.
+
+== [G2] 부서별 최저 급여자(LAST_VALUE)
+
+View created.
+
+View created.
+
+11-ex04-G2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+DEPTNO|MIN_NAME
+10|MILLER
+20|SMITH
+30|JAMES
+
+3 rows selected.

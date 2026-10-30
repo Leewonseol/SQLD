@@ -241,3 +241,29 @@ file,engine,status,errors_found,errors_expected,unexpected,missing,check_pass,ch
 10_grouping_extensions/examples/ex05_pivot_unpivot_sqlserver.sql,sqlserver,OK,,,,,0,0
 10_grouping_extensions/setup_oracle.sql,oracle,OK,,,,,0,0
 10_grouping_extensions/setup_sqlserver.sql,sqlserver,OK,,,,,0,0
+11_window_functions/answers/ex01_window_basics_answer_oracle.sql,oracle,OK,,,,,2,0
+11_window_functions/answers/ex01_window_basics_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+11_window_functions/answers/ex02_rows_range_answer_oracle.sql,oracle,OK,,,,,2,0
+11_window_functions/answers/ex02_rows_range_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+11_window_functions/answers/ex03_rank_functions_answer_oracle.sql,oracle,OK,,,,,2,0
+11_window_functions/answers/ex03_rank_functions_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+11_window_functions/answers/ex04_lag_lead_first_last_answer_oracle.sql,oracle,OK,,,,,2,0
+11_window_functions/answers/ex04_lag_lead_first_last_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+11_window_functions/answers/ex05_ntile_ratio_answer_oracle.sql,oracle,OK,,,,,2,0
+11_window_functions/answers/ex05_ntile_ratio_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+11_window_functions/answers/ex06_group_by_vs_window_answer_oracle.sql,oracle,OK,,,,,2,0
+11_window_functions/answers/ex06_group_by_vs_window_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+11_window_functions/examples/ex01_window_basics_oracle.sql,oracle,OK,ORA-00937,ORA-00937,,,0,0
+11_window_functions/examples/ex01_window_basics_sqlserver.sql,sqlserver,OK,MSG-8120,MSG-8120,,,0,0
+11_window_functions/examples/ex02_rows_range_oracle.sql,oracle,OK,,,,,0,0
+11_window_functions/examples/ex02_rows_range_sqlserver.sql,sqlserver,OK,MSG-4194,MSG-4194,,,0,0
+11_window_functions/examples/ex03_rank_functions_oracle.sql,oracle,OK,ORA-30483 ORA-30485,ORA-30483 ORA-30485,,,0,0
+11_window_functions/examples/ex03_rank_functions_sqlserver.sql,sqlserver,OK,MSG-4108 MSG-4112,MSG-4108 MSG-4112,,,0,0
+11_window_functions/examples/ex04_lag_lead_first_last_oracle.sql,oracle,OK,,,,,0,0
+11_window_functions/examples/ex04_lag_lead_first_last_sqlserver.sql,sqlserver,OK,,,,,0,0
+11_window_functions/examples/ex05_ntile_ratio_oracle.sql,oracle,OK,,,,,0,0
+11_window_functions/examples/ex05_ntile_ratio_sqlserver.sql,sqlserver,OK,MSG-195,MSG-195,,,0,0
+11_window_functions/examples/ex06_group_by_vs_window_oracle.sql,oracle,OK,,,,,0,0
+11_window_functions/examples/ex06_group_by_vs_window_sqlserver.sql,sqlserver,OK,,,,,0,0
+11_window_functions/setup_oracle.sql,oracle,OK,,,,,0,0
+11_window_functions/setup_sqlserver.sql,sqlserver,OK,,,,,0,0

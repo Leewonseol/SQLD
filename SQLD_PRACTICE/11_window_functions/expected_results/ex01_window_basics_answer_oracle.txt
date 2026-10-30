@@ -1,0 +1,42 @@
+-- 실행 결과: 11_window_functions/answers/ex01_window_basics_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 책 가격 비율(%)
+
+View created.
+
+View created.
+
+11-ex01-G1: CHECK_PASS (8행)
+
+PL/SQL procedure successfully completed.
+
+BOOK_NAME|PCT
+1984|12.9
+나미야 잡화점의 기적|14.2
+데미안|11.5
+멋진 신세계|12.5
+어린 왕자|8.4
+참을 수 없는 존재의 가벼움|10.5
+창문 넘어 도망친 100세 노인|14.6
+천개의 찬란한 태양|15.3
+
+8 rows selected.
+
+== [G2] 30번 부서 입사일 순 누적 급여
+
+View created.
+
+View created.
+
+11-ex01-G2: CHECK_PASS (6행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|CUM_SAL
+ALLEN|1600
+BLAKE|5700
+JAMES|9400
+MARTIN|8450
+TURNER|7200
+WARD|2850
+
+6 rows selected.

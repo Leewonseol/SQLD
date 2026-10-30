@@ -1,0 +1,34 @@
+-- 실행 결과: 11_window_functions/answers/ex03_rank_functions_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 부서별 DENSE_RANK 2위
+
+View created.
+
+View created.
+
+11-ex03-G1: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+DEPTNO|ENAME|SAL
+10|CLARK|2450
+20|JONES|2975
+30|ALLEN|1600
+
+3 rows selected.
+
+== [G2] 전체 4~6위(ROW_NUMBER)
+
+View created.
+
+View created.
+
+11-ex03-G2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+RN|ENAME
+4|JONES
+5|BLAKE
+6|CLARK
+
+3 rows selected.

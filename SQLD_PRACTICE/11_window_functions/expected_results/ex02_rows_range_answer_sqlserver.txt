@@ -1,0 +1,25 @@
+-- 실행 결과: 11_window_functions/answers/ex02_rows_range_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 20번 부서 3행 이동 합(ROWS)
+11-ex02-G1: CHECK_PASS (5행)
+ename|mov_sum
+-----|-------
+ADAMS|7100.00
+FORD|6775.00
+JONES|3775.00
+SCOTT|8975.00
+SMITH|800.00
+
+(5 rows affected)
+== [G2] 30번 부서 급여순 RANGE 누적
+11-ex02-G2: CHECK_PASS (6행)
+ename|cum_sal
+-----|-------
+ALLEN|6550.00
+BLAKE|9400.00
+JAMES|950.00
+MARTIN|3450.00
+TURNER|4950.00
+WARD|3450.00
+
+(6 rows affected)

@@ -1,0 +1,37 @@
+-- 실행 결과: 11_window_functions/answers/ex06_group_by_vs_window_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 부서 평균보다 많은 급여(윈도우)
+
+View created.
+
+View created.
+
+11-ex06-G1: CHECK_PASS (6행)
+
+PL/SQL procedure successfully completed.
+
+DEPTNO|ENAME|SAL
+10|KING|5000
+20|FORD|3000
+20|JONES|2975
+20|SCOTT|3000
+30|ALLEN|1600
+30|BLAKE|2850
+
+6 rows selected.
+
+== [G2] 부서 합계와 전체 대비 비율
+
+View created.
+
+View created.
+
+11-ex06-G2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+DEPTNO|DEPT_SUM|PCT
+10|8750|30.1
+20|10875|37.5
+30|9400|32.4
+
+3 rows selected.

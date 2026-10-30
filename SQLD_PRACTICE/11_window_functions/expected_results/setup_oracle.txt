@@ -1,0 +1,22 @@
+-- 실행 결과: 11_window_functions/setup_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+Commit complete.

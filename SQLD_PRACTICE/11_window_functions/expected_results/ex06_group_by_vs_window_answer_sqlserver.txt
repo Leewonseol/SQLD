@@ -1,0 +1,23 @@
+-- 실행 결과: 11_window_functions/answers/ex06_group_by_vs_window_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 부서 평균보다 많은 급여(윈도우)
+11-ex06-G1: CHECK_PASS (6행)
+deptno|ename|sal
+------|-----|---
+10|KING|5000.00
+20|FORD|3000.00
+20|JONES|2975.00
+20|SCOTT|3000.00
+30|ALLEN|1600.00
+30|BLAKE|2850.00
+
+(6 rows affected)
+== [G2] 부서 합계와 전체 대비 비율
+11-ex06-G2: CHECK_PASS (3행)
+deptno|dept_sum|pct
+------|--------|---
+10|8750.00|30.100000
+20|10875.00|37.500000
+30|9400.00|32.400000
+
+(3 rows affected)

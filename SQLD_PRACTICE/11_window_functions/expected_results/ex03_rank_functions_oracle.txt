@@ -1,0 +1,68 @@
+-- 실행 결과: 11_window_functions/examples/ex03_rank_functions_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] 동점 처리 차이: 급여 내림차순 (SCOTT·FORD 3000 동점)
+
+ENAME|SAL|RNK|DRNK|RN
+KING|5000|1|1|1
+FORD|3000|2|2|2
+SCOTT|3000|2|2|3
+JONES|2975|4|3|4
+BLAKE|2850|5|4|5
+CLARK|2450|6|5|6
+
+6 rows selected.
+
+== [Q2] PARTITION BY: 부서 안에서 순위
+
+DEPTNO|ENAME|SAL|DEPT_RNK
+10|KING|5000|1
+10|CLARK|2450|2
+10|MILLER|1300|3
+20|FORD|3000|1
+20|SCOTT|3000|1
+20|JONES|2975|3
+20|ADAMS|1100|4
+20|SMITH|800|5
+30|BLAKE|2850|1
+30|ALLEN|1600|2
+30|TURNER|1500|3
+30|MARTIN|1250|4
+30|WARD|1250|4
+30|JAMES|950|6
+
+14 rows selected.
+
+== [Q3] 윈도우 함수는 WHERE 에서 쓸 수 없다 (WHERE 가 SELECT 보다 먼저) -> 오류
+SELECT ename FROM emp WHERE RANK() OVER (ORDER BY sal DESC) <= 3
+                            *
+ERROR at line 1:
+ORA-30483: window  functions are not allowed here
+
+== [Q4] 부서별 TOP 2: 인라인 뷰에서 순위를 만든 뒤 바깥 WHERE 로 거른다 (RANK 는 동점 모두 포함)
+
+DEPTNO|ENAME|SAL|RNK
+10|KING|5000|1
+10|CLARK|2450|2
+20|FORD|3000|1
+20|SCOTT|3000|1
+30|BLAKE|2850|1
+30|ALLEN|1600|2
+
+6 rows selected.
+
+== [Q5] ROW_NUMBER 로 부서별 정확히 2명: 동점 중 누가 남는지는 2차 정렬 키가 정한다
+
+DEPTNO|ENAME|SAL|RN
+10|KING|5000|1
+10|CLARK|2450|2
+20|SCOTT|3000|1
+20|FORD|3000|2
+30|BLAKE|2850|1
+30|ALLEN|1600|2
+
+6 rows selected.
+
+== [Q6] 순위 함수에 ORDER BY 가 없으면 오류
+SELECT ename, RANK() OVER (PARTITION BY deptno) FROM emp
+              *
+ERROR at line 1:
+ORA-30485: missing ORDER BY expression in the window specification

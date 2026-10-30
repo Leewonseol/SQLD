@@ -1,0 +1,23 @@
+-- 실행 결과: 11_window_functions/answers/ex04_lag_lead_first_last_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 직전 입사자와 급여 차이
+11-ex04-G1: CHECK_PASS (6행)
+ename|diff
+-----|----
+ALLEN|.00
+BLAKE|1600.00
+JAMES|-300.00
+MARTIN|-250.00
+TURNER|-1350.00
+WARD|-350.00
+
+(6 rows affected)
+== [G2] 부서별 최저 급여자(LAST_VALUE)
+11-ex04-G2: CHECK_PASS (3행)
+deptno|min_name
+------|--------
+10|MILLER
+20|SMITH
+30|JAMES
+
+(3 rows affected)

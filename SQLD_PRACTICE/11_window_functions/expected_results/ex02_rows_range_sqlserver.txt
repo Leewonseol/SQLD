@@ -1,0 +1,66 @@
+-- 실행 결과: 11_window_functions/examples/ex02_rows_range_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] 기본 프레임(RANGE)
+empno|ename|sal|total_sal
+-----|-----|---|---------
+7369|SMITH|800.00|800.00
+7900|JAMES|950.00|1750.00
+7876|ADAMS|1100.00|2850.00
+7521|WARD|1250.00|5350.00
+7654|MARTIN|1250.00|5350.00
+7934|MILLER|1300.00|6650.00
+
+(6 rows affected)
+== [Q2] ROWS 전체
+empno|ename|sal|total_sal
+-----|-----|---|---------
+7369|SMITH|800.00|6650.00
+7900|JAMES|950.00|6650.00
+7876|ADAMS|1100.00|6650.00
+7521|WARD|1250.00|6650.00
+7654|MARTIN|1250.00|6650.00
+7934|MILLER|1300.00|6650.00
+
+(6 rows affected)
+== [Q3] ROWS UNBOUNDED PRECEDING AND 1 FOLLOWING
+empno|ename|sal|total_sal
+-----|-----|---|---------
+7369|SMITH|800.00|1750.00
+7900|JAMES|950.00|2850.00
+7876|ADAMS|1100.00|4100.00
+7521|WARD|1250.00|5350.00
+7654|MARTIN|1250.00|6650.00
+7934|MILLER|1300.00|6650.00
+
+(6 rows affected)
+== [Q4] ROWS 누적
+empno|ename|sal|total_sal
+-----|-----|---|---------
+7369|SMITH|800.00|800.00
+7900|JAMES|950.00|1750.00
+7876|ADAMS|1100.00|2850.00
+7521|WARD|1250.00|4100.00
+7654|MARTIN|1250.00|5350.00
+7934|MILLER|1300.00|6650.00
+
+(6 rows affected)
+== [Q5a] ROWS 1 PRECEDING ~ 1 FOLLOWING
+empno|ename|sal|rows_pm1
+-----|-----|---|--------
+7369|SMITH|800.00|1750.00
+7900|JAMES|950.00|2850.00
+7876|ADAMS|1100.00|3300.00
+7521|WARD|1250.00|3600.00
+7654|MARTIN|1250.00|3800.00
+7934|MILLER|1300.00|2550.00
+
+(6 rows affected)
+== [Q5b] RANGE 150 PRECEDING -> SQL Server 미지원(오류)
+Msg 4194, Level 16, State 1, Server a70f428a7f8a, Line 2
+RANGE is only supported with UNBOUNDED and CURRENT ROW window frame delimiters.
+== [Q6] OVER ()
+ename|sal|no_order
+-----|---|--------
+SMITH|800.00|1750.00
+JAMES|950.00|1750.00
+
+(2 rows affected)

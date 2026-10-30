@@ -1,0 +1,20 @@
+-- 실행 결과: 11_window_functions/answers/ex03_rank_functions_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 부서별 DENSE_RANK 2위
+11-ex03-G1: CHECK_PASS (3행)
+deptno|ename|sal
+------|-----|---
+10|CLARK|2450.00
+20|JONES|2975.00
+30|ALLEN|1600.00
+
+(3 rows affected)
+== [G2] 전체 4~6위(ROW_NUMBER)
+11-ex03-G2: CHECK_PASS (3행)
+rn|ename
+--|-----
+4|JONES
+5|BLAKE
+6|CLARK
+
+(3 rows affected)

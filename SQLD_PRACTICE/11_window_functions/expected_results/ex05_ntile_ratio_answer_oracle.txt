@@ -1,0 +1,35 @@
+-- 실행 결과: 11_window_functions/answers/ex05_ntile_ratio_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 급여 4분위 요약
+
+View created.
+
+View created.
+
+11-ex05-G1: CHECK_PASS (4행)
+
+PL/SQL procedure successfully completed.
+
+Q|CNT|MIN_SAL|MAX_SAL
+1|4|800|1250
+2|4|1250|1600
+3|3|2450|2975
+4|3|3000|5000
+
+4 rows selected.
+
+== [G2] 30번 부서 CUME_DIST <= 0.5
+
+View created.
+
+View created.
+
+11-ex05-G2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+ENAME
+JAMES
+MARTIN
+WARD
+
+3 rows selected.

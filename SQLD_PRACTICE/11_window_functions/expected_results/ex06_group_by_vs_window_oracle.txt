@@ -1,0 +1,45 @@
+-- 실행 결과: 11_window_functions/examples/ex06_group_by_vs_window_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] GROUP BY: 그룹마다 1행 -> 3행. 개별 사원 컬럼은 볼 수 없다
+
+DEPTNO|DEPT_SUM
+10|8750
+20|10875
+30|9400
+
+3 rows selected.
+
+== [Q2] 윈도우: 행 수 유지(14행) + 그룹 값을 각 행에 붙인다
+
+DEPTNO|ENAME|SAL|DEPT_SUM|PCT
+10|KING|5000|8750|57.1
+10|CLARK|2450|8750|28
+10|MILLER|1300|8750|14.9
+20|FORD|3000|10875|27.6
+20|SCOTT|3000|10875|27.6
+20|JONES|2975|10875|27.4
+20|ADAMS|1100|10875|10.1
+20|SMITH|800|10875|7.4
+30|BLAKE|2850|9400|30.3
+30|ALLEN|1600|9400|17
+30|TURNER|1500|9400|16
+30|MARTIN|1250|9400|13.3
+30|WARD|1250|9400|13.3
+30|JAMES|950|9400|10.1
+
+14 rows selected.
+
+== [Q3] 윈도우 함수는 GROUP BY 결과 위에서도 동작한다 (처리 순서: GROUP BY -> SELECT 의 윈도우)
+
+DEPTNO|DEPT_SUM|GRAND_TOTAL|RNK
+10|8750|29025|3
+20|10875|29025|1
+30|9400|29025|2
+
+3 rows selected.
+
+== [Q4] 행 수 비교
+
+GROUP_ROWS|WINDOW_ROWS|WINDOW_DISTINCT_ROWS
+3|14|3
+
+1 row selected.
