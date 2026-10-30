@@ -1,0 +1,30 @@
+-- 실행 결과: 08_subqueries/answers/ex02_multi_row_any_all_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 30번 부서 모두보다 적은 급여
+
+View created.
+
+View created.
+
+08-ex02-G1: CHECK_PASS (1행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|SAL
+SMITH|800
+
+1 row selected.
+
+== [G2] 최고 급여자(>= ALL)
+
+View created.
+
+View created.
+
+08-ex02-G2: CHECK_PASS (1행)
+
+PL/SQL procedure successfully completed.
+
+ENAME
+KING
+
+1 row selected.

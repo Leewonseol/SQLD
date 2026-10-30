@@ -1,0 +1,33 @@
+-- 실행 결과: 08_subqueries/examples/ex01_single_row_subquery_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] PDF 예: 평균 급여보다 많이 받는 사원
+
+EMPNO|ENAME|SAL
+7839|KING|5000
+7788|SCOTT|3000
+7902|FORD|3000
+7566|JONES|2975
+7698|BLAKE|2850
+7782|CLARK|2450
+
+6 rows selected.
+
+== [Q2] PDF 예 구조: 강감찬과 같은 팀 선수 (04단원 PLAYER)
+
+PLAYER_NAME|POSITION|BACK_NO
+강감찬|GK|1
+을지문|DF|4
+
+2 rows selected.
+
+== [Q3] 서브쿼리가 2행 이상을 돌려주면 단일행 연산자에서 오류
+SELECT ename FROM emp WHERE sal = (SELECT sal FROM emp WHERE deptno = 10)
+                                   *
+ERROR at line 1:
+ORA-01427: single-row subquery returns more than one row
+
+== [Q4] 서브쿼리가 0행이면 결과는 NULL -> 비교가 UNKNOWN -> 0행 (오류 아님)
+
+CNT
+0
+
+1 row selected.

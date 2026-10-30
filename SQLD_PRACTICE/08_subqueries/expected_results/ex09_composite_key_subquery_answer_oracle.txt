@@ -1,0 +1,36 @@
+-- 실행 결과: 08_subqueries/answers/ex09_composite_key_subquery_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 행 금액과 주문 합계
+
+View created.
+
+View created.
+
+08-ex09-G1: CHECK_PASS (5행)
+
+PL/SQL procedure successfully completed.
+
+ORDER_ID|PRODUCT_ID|LINE_AMT|ORDER_TOTAL
+1|10|2000|7000
+1|20|5000|7000
+2|10|3000|5500
+2|30|2500|5500
+3|20|10000|10000
+
+5 rows selected.
+
+== [G2] 주문별 최대 금액 품목
+
+View created.
+
+View created.
+
+08-ex09-G2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+ORDER_ID|PRODUCT_ID
+1|20
+2|10
+3|20
+
+3 rows selected.

@@ -1,0 +1,22 @@
+-- 실행 결과: 08_subqueries/answers/ex10_view_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 20번 부서 사원·부서명 뷰
+08-ex10-G1: CHECK_PASS (5행)
+ename|dname
+-----|-----
+ADAMS|RESEARCH
+FORD|RESEARCH
+JONES|RESEARCH
+SCOTT|RESEARCH
+SMITH|RESEARCH
+
+(5 rows affected)
+== [G2] 3명 이상 부서 요약 뷰
+08-ex10-G2: CHECK_PASS (3행)
+deptno|cnt|avg_sal
+------|---|-------
+10|3|2917.000000
+20|5|2175.000000
+30|6|1567.000000
+
+(3 rows affected)

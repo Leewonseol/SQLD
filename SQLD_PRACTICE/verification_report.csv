@@ -162,3 +162,46 @@ file,engine,status,errors_found,errors_expected,unexpected,missing,check_pass,ch
 07_single_row_functions/examples/ex07_regex_sqlserver.sql,sqlserver,OK,MSG-195,MSG-195,,,0,0
 07_single_row_functions/setup_oracle.sql,oracle,OK,,,,,0,0
 07_single_row_functions/setup_sqlserver.sql,sqlserver,OK,,,,,0,0
+08_subqueries/answers/ex01_single_row_subquery_answer_oracle.sql,oracle,OK,,,,,2,0
+08_subqueries/answers/ex01_single_row_subquery_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+08_subqueries/answers/ex02_multi_row_any_all_answer_oracle.sql,oracle,OK,,,,,2,0
+08_subqueries/answers/ex02_multi_row_any_all_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+08_subqueries/answers/ex03_multi_column_subquery_answer_oracle.sql,oracle,OK,,,,,2,0
+08_subqueries/answers/ex03_multi_column_subquery_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+08_subqueries/answers/ex04_correlated_subquery_answer_oracle.sql,oracle,OK,,,,,2,0
+08_subqueries/answers/ex04_correlated_subquery_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+08_subqueries/answers/ex05_exists_not_exists_answer_oracle.sql,oracle,OK,,,,,2,0
+08_subqueries/answers/ex05_exists_not_exists_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+08_subqueries/answers/ex06_scalar_subquery_answer_oracle.sql,oracle,OK,,,,,2,0
+08_subqueries/answers/ex06_scalar_subquery_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+08_subqueries/answers/ex07_inline_view_answer_oracle.sql,oracle,OK,,,,,2,0
+08_subqueries/answers/ex07_inline_view_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+08_subqueries/answers/ex08_having_update_subquery_answer_oracle.sql,oracle,OK,,,,,2,0
+08_subqueries/answers/ex08_having_update_subquery_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+08_subqueries/answers/ex09_composite_key_subquery_answer_oracle.sql,oracle,OK,,,,,2,0
+08_subqueries/answers/ex09_composite_key_subquery_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+08_subqueries/answers/ex10_view_answer_oracle.sql,oracle,OK,,,,,2,0
+08_subqueries/answers/ex10_view_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+08_subqueries/examples/ex01_single_row_subquery_oracle.sql,oracle,OK,ORA-01427,ORA-01427,,,0,0
+08_subqueries/examples/ex01_single_row_subquery_sqlserver.sql,sqlserver,OK,MSG-512,MSG-512,,,0,0
+08_subqueries/examples/ex02_multi_row_any_all_oracle.sql,oracle,OK,,,,,0,0
+08_subqueries/examples/ex02_multi_row_any_all_sqlserver.sql,sqlserver,OK,MSG-102,MSG-102,,,0,0
+08_subqueries/examples/ex03_multi_column_subquery_oracle.sql,oracle,OK,ORA-01796,ORA-01796,,,0,0
+08_subqueries/examples/ex03_multi_column_subquery_sqlserver.sql,sqlserver,OK,MSG-4145,MSG-4145,,,0,0
+08_subqueries/examples/ex04_correlated_subquery_oracle.sql,oracle,OK,,,,,0,0
+08_subqueries/examples/ex04_correlated_subquery_sqlserver.sql,sqlserver,OK,,,,,0,0
+08_subqueries/examples/ex05_exists_not_exists_oracle.sql,oracle,OK,,,,,0,0
+08_subqueries/examples/ex05_exists_not_exists_sqlserver.sql,sqlserver,OK,,,,,0,0
+08_subqueries/examples/ex06_scalar_subquery_oracle.sql,oracle,OK,ORA-00913 ORA-01427,ORA-00913 ORA-01427,,,0,0
+08_subqueries/examples/ex06_scalar_subquery_sqlserver.sql,sqlserver,OK,MSG-116 MSG-512,MSG-116 MSG-512,,,0,0
+08_subqueries/examples/ex07_inline_view_oracle.sql,oracle,OK,,,,,0,0
+08_subqueries/examples/ex07_inline_view_sqlserver.sql,sqlserver,OK,MSG-102,MSG-102,,,0,0
+08_subqueries/examples/ex08_having_update_subquery_oracle.sql,oracle,OK,,,,,0,0
+08_subqueries/examples/ex08_having_update_subquery_oracle23ai.sql,oracle23ai,OK,,,,,0,0
+08_subqueries/examples/ex08_having_update_subquery_sqlserver.sql,sqlserver,OK,,,,,0,0
+08_subqueries/examples/ex09_composite_key_subquery_oracle.sql,oracle,OK,ORA-01427,ORA-01427,,,0,0
+08_subqueries/examples/ex09_composite_key_subquery_sqlserver.sql,sqlserver,OK,MSG-512,MSG-512,,,0,0
+08_subqueries/examples/ex10_view_oracle.sql,oracle,OK,ORA-01402 ORA-42399,ORA-01402 ORA-42399,,,0,0
+08_subqueries/examples/ex10_view_sqlserver.sql,sqlserver,OK,MSG-550,MSG-550,,,0,0
+08_subqueries/setup_oracle.sql,oracle,OK,,,,,0,0
+08_subqueries/setup_sqlserver.sql,sqlserver,OK,,,,,0,0

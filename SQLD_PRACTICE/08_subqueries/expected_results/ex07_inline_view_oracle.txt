@@ -1,0 +1,38 @@
+-- 실행 결과: 08_subqueries/examples/ex07_inline_view_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] 인라인 뷰가 만드는 중간 결과: 작가별 평균 가격 (PDF 실행 원리 (1))
+
+ARTIST_ID|AVG_PRICE
+1|1225000
+2|470000
+3|750000
+4|640000
+5|650000
+10|150000
+
+6 rows selected.
+
+== [Q2] PDF 예: 작가별 평균 가격보다 비싼 그림 (인라인 뷰 p2 와 조인)
+
+ARTIST_ID|NAME|PRICE|AVG_PRICE
+1|밤의 도시|1350000|1225000
+5|밤비|920000|650000
+
+2 rows selected.
+
+== [Q3] 인라인 뷰의 컬럼은 바깥 쿼리 어느 절에서나 쓸 수 있다 (중첩 서브쿼리와 다른 점): SELECT·ORDER BY 에서 avg_price 사용
+
+NAME|CNT|AVG_PRICE
+이지현|2|1225000
+박성진|1|750000
+정하나|2|650000
+백에서|1|640000
+황현석|1|470000
+
+5 rows selected.
+
+== [Q4] Oracle 은 단독 인라인 뷰에 별칭이 없어도 된다
+
+CNT
+5
+
+1 row selected.

@@ -1,0 +1,50 @@
+-- 실행 결과: 08_subqueries/examples/ex10_view_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] 뷰 생성: 실제 데이터는 저장하지 않고 정의(쿼리)만 저장한다
+
+View created.
+
+EMPNO|ENAME|SAL|DEPTNO
+7369|SMITH|800|20
+7566|JONES|2975|20
+7788|SCOTT|3000|20
+7876|ADAMS|1100|20
+7902|FORD|3000|20
+
+5 rows selected.
+
+== [Q2] 기본 테이블이 바뀌면 뷰 결과도 바로 바뀐다 (실험 후 ROLLBACK)
+
+1 row updated.
+
+ENAME|SAL
+SMITH|801
+
+1 row selected.
+
+Rollback complete.
+
+== [Q3] WITH CHECK OPTION: 뷰 조건(deptno = 20)을 벗어나게 만드는 변경을 막는다
+
+View created.
+
+UPDATE v_emp20_chk SET deptno = 30 WHERE empno = 7369
+       *
+ERROR at line 1:
+ORA-01402: view WITH CHECK OPTION where-clause violation
+
+== [Q4] WITH READ ONLY (Oracle): 뷰를 통한 DML 금지
+
+View created.
+
+UPDATE v_emp20_ro SET ename = 'X' WHERE empno = 7369
+                      *
+ERROR at line 1:
+ORA-42399: cannot perform a DML operation on a read-only view
+
+== [Q5] 정리
+
+View dropped.
+
+View dropped.
+
+View dropped.

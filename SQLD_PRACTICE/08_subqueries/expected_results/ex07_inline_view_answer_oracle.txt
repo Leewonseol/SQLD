@@ -1,0 +1,36 @@
+-- 실행 결과: 08_subqueries/answers/ex07_inline_view_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 작가별 최고가 작품
+
+View created.
+
+View created.
+
+08-ex07-G1: CHECK_PASS (5행)
+
+PL/SQL procedure successfully completed.
+
+ARTIST|PAINTING
+박성진|Pop!
+백에서|너
+이지현|밤의 도시
+정하나|밤비
+황현석|파도
+
+5 rows selected.
+
+== [G2] 가격 상위 3개 그림
+
+View created.
+
+View created.
+
+08-ex07-G2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+ID|NAME|PRICE
+101|숲과나|1100000
+102|밤의 도시|1350000
+106|밤비|920000
+
+3 rows selected.

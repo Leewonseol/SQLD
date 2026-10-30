@@ -1,0 +1,59 @@
+-- 실행 결과: 08_subqueries/examples/ex02_multi_row_any_all_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] IN: 10번 부서 사원들의 직무와 같은 직무
+
+ENAME|JOB
+ADAMS|CLERK
+JAMES|CLERK
+MILLER|CLERK
+SMITH|CLERK
+BLAKE|MANAGER
+CLARK|MANAGER
+JONES|MANAGER
+KING|PRESIDENT
+
+8 rows selected.
+
+== [Q2] PDF 예: > ANY = 최솟값보다 크면 참 (10번 부서 최소 1300)
+
+ENAME|SAL
+TURNER|1500
+ALLEN|1600
+CLARK|2450
+BLAKE|2850
+JONES|2975
+FORD|3000
+SCOTT|3000
+KING|5000
+
+8 rows selected.
+
+== [Q3] > ALL = 최댓값보다 커야 참 (30번 부서 최대 2850)
+
+ENAME|SAL
+JONES|2975
+FORD|3000
+SCOTT|3000
+KING|5000
+
+4 rows selected.
+
+== [Q4] < ANY = 최댓값보다 작으면 참, < ALL = 최솟값보다 작아야 참 (리터럴 목록: Oracle 허용)
+
+LT_ANY|LT_ALL
+11|2
+
+1 row selected.
+
+== [Q5] 빈 집합: ALL 은 항상 참(14행), ANY 는 항상 거짓(0행)
+
+ALL_EMPTY|ANY_EMPTY
+14|0
+
+1 row selected.
+
+== [Q6] = ANY 는 IN 과 같고, <> ALL 은 NOT IN 과 같다 (NULL 함정도 같다)
+
+EQ_ANY|NE_ALL
+6|0
+
+1 row selected.

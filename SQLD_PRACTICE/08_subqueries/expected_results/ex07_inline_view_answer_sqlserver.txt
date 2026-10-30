@@ -1,0 +1,22 @@
+-- 실행 결과: 08_subqueries/answers/ex07_inline_view_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 작가별 최고가 작품
+08-ex07-G1: CHECK_PASS (5행)
+artist|painting
+------|--------
+박성진|Pop!
+백에서|너
+이지현|밤의 도시
+정하나|밤비
+황현석|파도
+
+(5 rows affected)
+== [G2] 가격 상위 3개 그림
+08-ex07-G2: CHECK_PASS (3행)
+id|name|price
+--|----|-----
+101|숲과나|1100000
+102|밤의 도시|1350000
+106|밤비|920000
+
+(3 rows affected)

@@ -1,0 +1,22 @@
+-- 실행 결과: 08_subqueries/answers/ex09_composite_key_subquery_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 행 금액과 주문 합계
+08-ex09-G1: CHECK_PASS (5행)
+order_id|product_id|line_amt|order_total
+--------|----------|--------|-----------
+1|10|2000.00|7000.00
+1|20|5000.00|7000.00
+2|10|3000.00|5500.00
+2|30|2500.00|5500.00
+3|20|10000.00|10000.00
+
+(5 rows affected)
+== [G2] 주문별 최대 금액 품목
+08-ex09-G2: CHECK_PASS (3행)
+order_id|product_id
+--------|----------
+1|20
+2|10
+3|20
+
+(3 rows affected)

@@ -1,0 +1,56 @@
+-- 실행 결과: 08_subqueries/examples/ex06_scalar_subquery_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] PDF 예: 각 그림의 작가 이름을 스칼라 서브쿼리로 (108 여행은 작가 10번이 없어 NULL)
+
+ID|NAME|PRICE|ARTIST_NAME
+101|숲과나|1100000|이지현
+102|밤의 도시|1350000|이지현
+103|파도|470000|황현석
+104|Pop!|750000|박성진
+105|너|640000|백에서
+106|밤비|920000|정하나
+107|기억|380000|정하나
+108|여행|150000|(null)
+
+8 rows selected.
+
+== [Q2] PDF: "스칼라 서브쿼리는 OUTER JOIN 결과와 같다" -> LEFT JOIN
+
+ID|NAME|PRICE|ARTIST_NAME
+101|숲과나|1100000|이지현
+102|밤의 도시|1350000|이지현
+103|파도|470000|황현석
+104|Pop!|750000|박성진
+105|너|640000|백에서
+106|밤비|920000|정하나
+107|기억|380000|정하나
+108|여행|150000|(null)
+
+8 rows selected.
+
+== [Q3] 두 결과가 같은지 집합 연산으로 검증 (차집합 0행이면 같음)
+
+DIFF_ROWS
+0
+
+1 row selected.
+
+== [Q4] PDF 예: 사원 정보와 전체 급여 합계를 한 행에 (집계를 스칼라 값으로)
+
+EMPNO|ENAME|DEPTNO|SAL|TOTAL_SAL
+7782|CLARK|10|2450|29025
+7839|KING|10|5000|29025
+7934|MILLER|10|1300|29025
+
+3 rows selected.
+
+== [Q5] 스칼라 서브쿼리가 2행 이상을 돌려주면 오류
+SELECT d.dname, (SELECT e.ename FROM emp e WHERE e.deptno = d.deptno) AS ename FROM dept d
+                 *
+ERROR at line 1:
+ORA-01427: single-row subquery returns more than one row
+
+== [Q6] 스칼라 서브쿼리가 2개 컬럼을 돌려주면 오류
+SELECT d.dname, (SELECT MIN(e.sal), MAX(e.sal) FROM emp e WHERE e.deptno = d.deptno) AS x FROM dept d
+                 *
+ERROR at line 1:
+ORA-00913: too many values

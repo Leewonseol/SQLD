@@ -1,0 +1,36 @@
+-- 실행 결과: 08_subqueries/answers/ex06_scalar_subquery_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 10번 부서 사원별 부서 평균
+
+View created.
+
+View created.
+
+08-ex06-G1: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|DEPT_AVG
+CLARK|2916.67
+KING|2916.67
+MILLER|2916.67
+
+3 rows selected.
+
+== [G2] 작가별 작품 수
+
+View created.
+
+View created.
+
+08-ex06-G2: CHECK_PASS (5행)
+
+PL/SQL procedure successfully completed.
+
+NAME|CNT
+박성진|1
+백에서|1
+이지현|2
+정하나|2
+황현석|1
+
+5 rows selected.

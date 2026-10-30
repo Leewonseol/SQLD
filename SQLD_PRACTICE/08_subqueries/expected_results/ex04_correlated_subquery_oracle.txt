@@ -1,0 +1,48 @@
+-- 실행 결과: 08_subqueries/examples/ex04_correlated_subquery_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] 비연관: 서브쿼리가 바깥 쿼리 컬럼을 참조하지 않는다 -> 한 번 계산해 모든 행에 같은 값
+
+ENAME|DEPTNO|SAL
+KING|10|5000
+CLARK|10|2450
+FORD|20|3000
+SCOTT|20|3000
+JONES|20|2975
+BLAKE|30|2850
+
+6 rows selected.
+
+== [Q2] 연관: 서브쿼리가 바깥 행의 deptno 를 참조 -> 행마다 '자기 부서 평균'과 비교
+
+ENAME|DEPTNO|SAL
+KING|10|5000
+FORD|20|3000
+SCOTT|20|3000
+JONES|20|2975
+BLAKE|30|2850
+ALLEN|30|1600
+
+6 rows selected.
+
+== [Q3] 같은 결과를 인라인 뷰 + 조인으로
+
+ENAME|DEPTNO|SAL
+KING|10|5000
+SCOTT|20|3000
+FORD|20|3000
+JONES|20|2975
+BLAKE|30|2850
+ALLEN|30|1600
+
+6 rows selected.
+
+== [Q4] 연관 조건의 별칭을 빠뜨리면: x.deptno = deptno 는 서브쿼리 자기 컬럼끼리 비교(항상 참) -> 비연관과 같아짐
+
+ENAME|DEPTNO|SAL
+KING|10|5000
+CLARK|10|2450
+FORD|20|3000
+SCOTT|20|3000
+JONES|20|2975
+BLAKE|30|2850
+
+6 rows selected.

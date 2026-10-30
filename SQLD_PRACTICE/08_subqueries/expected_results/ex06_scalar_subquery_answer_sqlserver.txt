@@ -1,0 +1,22 @@
+-- 실행 결과: 08_subqueries/answers/ex06_scalar_subquery_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 10번 부서 사원별 부서 평균
+08-ex06-G1: CHECK_PASS (3행)
+ename|dept_avg
+-----|--------
+CLARK|2916.670000
+KING|2916.670000
+MILLER|2916.670000
+
+(3 rows affected)
+== [G2] 작가별 작품 수
+08-ex06-G2: CHECK_PASS (5행)
+name|cnt
+----|---
+박성진|1
+백에서|1
+이지현|2
+정하나|2
+황현석|1
+
+(5 rows affected)

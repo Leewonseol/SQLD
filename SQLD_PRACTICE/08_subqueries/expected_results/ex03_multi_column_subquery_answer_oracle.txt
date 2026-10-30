@@ -1,0 +1,38 @@
+-- 실행 결과: 08_subqueries/answers/ex03_multi_column_subquery_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 직무별 최저 급여자
+
+View created.
+
+View created.
+
+08-ex03-G1: CHECK_PASS (7행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|JOB|SAL
+CLARK|MANAGER|2450
+FORD|ANALYST|3000
+KING|PRESIDENT|5000
+MARTIN|SALESMAN|1250
+SCOTT|ANALYST|3000
+SMITH|CLERK|800
+WARD|SALESMAN|1250
+
+7 rows selected.
+
+== [G2] 부서별 최초 입사자
+
+View created.
+
+View created.
+
+08-ex03-G2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+DEPTNO|ENAME
+10|CLARK
+20|SMITH
+30|ALLEN
+
+3 rows selected.

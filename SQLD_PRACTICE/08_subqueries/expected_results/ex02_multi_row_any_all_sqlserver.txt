@@ -1,0 +1,57 @@
+-- 실행 결과: 08_subqueries/examples/ex02_multi_row_any_all_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] IN
+ename|job
+-----|---
+ADAMS|CLERK
+JAMES|CLERK
+MILLER|CLERK
+SMITH|CLERK
+BLAKE|MANAGER
+CLARK|MANAGER
+JONES|MANAGER
+KING|PRESIDENT
+
+(8 rows affected)
+== [Q2] > ANY
+ename|sal
+-----|---
+TURNER|1500.00
+ALLEN|1600.00
+CLARK|2450.00
+BLAKE|2850.00
+JONES|2975.00
+FORD|3000.00
+SCOTT|3000.00
+KING|5000.00
+
+(8 rows affected)
+== [Q3] > ALL
+ename|sal
+-----|---
+JONES|2975.00
+FORD|3000.00
+SCOTT|3000.00
+KING|5000.00
+
+(4 rows affected)
+== [Q4] < ANY / < ALL (값 목록은 VALUES 서브쿼리로)
+lt_any|lt_all
+------|------
+11|2
+
+(1 rows affected)
+== [Q5] 빈 집합
+all_empty|any_empty
+---------|---------
+14|0
+
+(1 rows affected)
+== [Q6] = ANY / <> ALL
+eq_any|ne_all
+------|------
+6|0
+
+(1 rows affected)
+== [Q7] ANY 에 리터럴 목록 -> 구문 오류
+Msg 102, Level 15, State 1, Server a70f428a7f8a, Line 2
+Incorrect syntax near '1000'.

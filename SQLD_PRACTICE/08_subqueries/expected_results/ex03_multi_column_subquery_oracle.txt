@@ -1,0 +1,34 @@
+-- 실행 결과: 08_subqueries/examples/ex03_multi_column_subquery_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] PDF 예: 부서별 최대 급여자
+
+EMPNO|ENAME|SAL|DEPTNO
+7839|KING|5000|10
+7788|SCOTT|3000|20
+7902|FORD|3000|20
+7698|BLAKE|2850|30
+
+4 rows selected.
+
+== [Q2] 쌍 비교 vs 컬럼별 비교: (10,CLERK)·(20,ANALYST) 쌍과 같은 사원 / 부서 IN AND 직무 IN
+
+ENAME|DEPTNO|JOB
+SCOTT|20|ANALYST
+FORD|20|ANALYST
+MILLER|10|CLERK
+
+3 rows selected.
+
+ENAME|DEPTNO|JOB
+SMITH|20|CLERK
+SCOTT|20|ANALYST
+ADAMS|20|CLERK
+FORD|20|ANALYST
+MILLER|10|CLERK
+
+5 rows selected.
+
+== [Q3] 다중 컬럼 대소 비교 -> 오류 (PDF "두 값을 동시에 묶어서 대소비교할 수 없으니")
+SELECT ename FROM emp WHERE (deptno, sal) > (SELECT 10, 1000 FROM dual)
+                                          *
+ERROR at line 1:
+ORA-01796: this operator cannot be used with lists

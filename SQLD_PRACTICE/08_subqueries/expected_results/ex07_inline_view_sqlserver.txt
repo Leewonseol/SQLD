@@ -1,0 +1,32 @@
+-- 실행 결과: 08_subqueries/examples/ex07_inline_view_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] 작가별 평균 가격 (INT 평균은 정수)
+artist_id|avg_price
+---------|---------
+1|1225000
+2|470000
+3|750000
+4|640000
+5|650000
+10|150000
+
+(6 rows affected)
+== [Q2] 작가별 평균보다 비싼 그림
+artist_id|name|price|avg_price
+---------|----|-----|---------
+1|밤의 도시|1350000|1225000
+5|밤비|920000|650000
+
+(2 rows affected)
+== [Q3] 인라인 뷰 컬럼을 SELECT·ORDER BY 에서
+name|cnt|avg_price
+----|---|---------
+이지현|2|1225000
+박성진|1|750000
+정하나|2|650000
+백에서|1|640000
+황현석|1|470000
+
+(5 rows affected)
+== [Q4] 별칭 없는 파생 테이블 -> 오류
+Msg 102, Level 15, State 1, Server a70f428a7f8a, Line 2
+Incorrect syntax near ';'.

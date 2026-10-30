@@ -1,0 +1,46 @@
+-- 실행 결과: 08_subqueries/examples/ex05_exists_not_exists_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] EXISTS: 사원이 한 명이라도 있는 부서 (서브쿼리가 1행이라도 내면 참, SELECT 목록 내용은 무관)
+deptno|dname
+------|-----
+10|ACCOUNTING
+20|RESEARCH
+30|SALES
+
+(3 rows affected)
+== [Q2] NOT EXISTS: 사원이 없는 부서 (PDF: 차집합)
+deptno|dname
+------|-----
+40|OPERATIONS
+
+(1 rows affected)
+== [Q3] EXISTS 안의 SELECT NULL 이나 SELECT 1/0 도 평가하지 않는다
+cnt
+---
+3
+
+(1 rows affected)
+== [Q4] 부하가 없는 사원: NOT IN (SELECT mgr ...) -> mgr 에 NULL(KING) 이 있어 0행
+not_in_cnt
+----------
+0
+
+(1 rows affected)
+== [Q5] NOT EXISTS 는 NULL 에 영향받지 않는다 -> 8행
+ename
+-----
+SMITH
+ALLEN
+WARD
+MARTIN
+TURNER
+ADAMS
+JAMES
+MILLER
+
+(8 rows affected)
+== [Q6] NOT IN 을 쓰려면 서브쿼리에서 NULL 을 제거
+not_in_fixed
+------------
+8
+
+(1 rows affected)

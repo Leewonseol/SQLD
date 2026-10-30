@@ -1,0 +1,21 @@
+-- 실행 결과: 08_subqueries/answers/ex08_having_update_subquery_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 30번 부서 comm 갱신 미리보기
+08-ex08-G1: CHECK_PASS (6행)
+ename|new_comm
+-----|--------
+ALLEN|200
+BLAKE|0
+JAMES|0
+MARTIN|0
+TURNER|0
+WARD|0
+
+(6 rows affected)
+== [G2] 평균 급여가 20번 부서보다 낮은 부서
+08-ex08-G2: CHECK_PASS (1행)
+deptno
+------
+30
+
+(1 rows affected)

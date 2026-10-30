@@ -1,0 +1,58 @@
+-- 실행 결과: 08_subqueries/setup_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+Table created.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+Commit complete.

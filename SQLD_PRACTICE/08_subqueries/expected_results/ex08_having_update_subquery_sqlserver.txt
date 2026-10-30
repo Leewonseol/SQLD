@@ -1,0 +1,50 @@
+-- 실행 결과: 08_subqueries/examples/ex08_having_update_subquery_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] HAVING 서브쿼리
+deptno|avg_sal
+------|-------
+10|2916.670000
+20|2175.000000
+
+(2 rows affected)
+== [Q2] 실험용 복사본
+
+(6 rows affected)
+== [Q3] WHERE 없는 SET 서브쿼리 -> 짝 없는 행이 NULL
+
+(6 rows affected)
+empno|ename|comm
+-----|-----|----
+7499|ALLEN|200.00
+7521|WARD|NULL
+7654|MARTIN|NULL
+7698|BLAKE|NULL
+7844|TURNER|NULL
+7900|JAMES|NULL
+
+(6 rows affected)
+== [Q4] WHERE EXISTS
+
+(1 rows affected)
+empno|ename|comm
+-----|-----|----
+7499|ALLEN|200.00
+7521|WARD|500.00
+7654|MARTIN|1400.00
+7698|BLAKE|NULL
+7844|TURNER|.00
+7900|JAMES|NULL
+
+(6 rows affected)
+== [Q5] SQL Server 식 UPDATE ... FROM JOIN (짝 있는 행만 갱신)
+
+(1 rows affected)
+empno|ename|comm
+-----|-----|----
+7499|ALLEN|200.00
+7521|WARD|500.00
+7654|MARTIN|1400.00
+7698|BLAKE|NULL
+7844|TURNER|.00
+7900|JAMES|NULL
+
+(6 rows affected)

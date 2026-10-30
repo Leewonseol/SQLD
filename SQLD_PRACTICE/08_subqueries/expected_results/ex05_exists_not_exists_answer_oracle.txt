@@ -1,0 +1,31 @@
+-- 실행 결과: 08_subqueries/answers/ex05_exists_not_exists_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 주문 없는 고객
+
+View created.
+
+View created.
+
+08-ex05-G1: CHECK_PASS (1행)
+
+PL/SQL procedure successfully completed.
+
+CUST_ID
+C04
+
+1 row selected.
+
+== [G2] SALESMAN 이 없는 (사원 있는) 부서
+
+View created.
+
+View created.
+
+08-ex05-G2: CHECK_PASS (2행)
+
+PL/SQL procedure successfully completed.
+
+DEPTNO
+10
+20
+
+2 rows selected.

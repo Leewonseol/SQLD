@@ -1,0 +1,47 @@
+-- 실행 결과: 08_subqueries/examples/ex06_scalar_subquery_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] 스칼라 서브쿼리
+id|name|price|artist_name
+--|----|-----|-----------
+101|숲과나|1100000|이지현
+102|밤의 도시|1350000|이지현
+103|파도|470000|황현석
+104|Pop!|750000|박성진
+105|너|640000|백에서
+106|밤비|920000|정하나
+107|기억|380000|정하나
+108|여행|150000|NULL
+
+(8 rows affected)
+== [Q2] LEFT JOIN
+id|name|price|artist_name
+--|----|-----|-----------
+101|숲과나|1100000|이지현
+102|밤의 도시|1350000|이지현
+103|파도|470000|황현석
+104|Pop!|750000|박성진
+105|너|640000|백에서
+106|밤비|920000|정하나
+107|기억|380000|정하나
+108|여행|150000|NULL
+
+(8 rows affected)
+== [Q3] 두 결과 비교
+diff_rows
+---------
+0
+
+(1 rows affected)
+== [Q4] 전체 급여 합계를 한 행에
+empno|ename|deptno|sal|total_sal
+-----|-----|------|---|---------
+7782|CLARK|10|2450.00|29025.00
+7839|KING|10|5000.00|29025.00
+7934|MILLER|10|1300.00|29025.00
+
+(3 rows affected)
+== [Q5] 스칼라 서브쿼리 2행 이상 -> 오류
+Msg 512, Level 16, State 1, Server a70f428a7f8a, Line 2
+Subquery returned more than 1 value. This is not permitted when the subquery follows =, !=, <, <= , >, >= or when the subquery is used as an expression.
+== [Q6] 스칼라 서브쿼리 2개 컬럼 -> 오류
+Msg 116, Level 16, State 1, Server a70f428a7f8a, Line 2
+Only one expression can be specified in the select list when the subquery is not introduced with EXISTS.

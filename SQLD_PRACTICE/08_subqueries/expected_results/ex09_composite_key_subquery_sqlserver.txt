@@ -1,0 +1,24 @@
+-- 실행 결과: 08_subqueries/examples/ex09_composite_key_subquery_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] 두 키 모두 비교
+order_id|product_id|quantity|price|total_amount
+--------|----------|--------|-----|------------
+1|10|2|1000.00|2000.00
+1|20|1|5000.00|5000.00
+2|10|3|1000.00|3000.00
+2|30|1|2500.00|2500.00
+3|20|2|5000.00|10000.00
+
+(5 rows affected)
+== [Q2] 키 하나만 비교
+order_id|product_id|order_total
+--------|----------|-----------
+1|10|7000.00
+1|20|7000.00
+2|10|5500.00
+2|30|5500.00
+3|20|10000.00
+
+(5 rows affected)
+== [Q3] 키 하나 + 집계 없음 -> 오류
+Msg 512, Level 16, State 1, Server a70f428a7f8a, Line 2
+Subquery returned more than 1 value. This is not permitted when the subquery follows =, !=, <, <= , >, >= or when the subquery is used as an expression.

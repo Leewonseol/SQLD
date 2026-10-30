@@ -134,6 +134,9 @@ def collect(targets):
     return sorted(set(files), key=key)
 
 
+_ORA23_READY = []
+
+
 def execute(f: Path):
     eng = engine_of(f)
     sql = f.read_text(encoding="utf-8")
@@ -141,6 +144,10 @@ def execute(f: Path):
         out = run_oracle(sql, ENV("ORA_CONTAINER", "sqld_ora"),
                          ENV("ORA_CONNECT", "sqld_lab/SqldLab2026@localhost/XEPDB1"))
     elif eng == "oracle23ai":
+        if "@requires: 00_common" in sql and not _ORA23_READY:
+            run_oracle((ROOT / "00_common" / "setup_oracle.sql").read_text(encoding="utf-8"),
+                       ENV("ORA23_CONTAINER", "sqld_ora23"), ENV("ORA23_CONNECT", "sqld_lab/SqldLab2026@localhost/FREEPDB1"))
+            _ORA23_READY.append(True)
         out = run_oracle(sql, ENV("ORA23_CONTAINER", "sqld_ora23"),
                          ENV("ORA23_CONNECT", "sqld_lab/SqldLab2026@localhost/FREEPDB1"))
     else:

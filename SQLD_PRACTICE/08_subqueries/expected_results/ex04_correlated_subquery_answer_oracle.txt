@@ -1,0 +1,39 @@
+-- 실행 결과: 08_subqueries/answers/ex04_correlated_subquery_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 자기 직무 평균보다 적은 급여
+
+View created.
+
+View created.
+
+08-ex04-G1: CHECK_PASS (5행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|JOB|SAL
+CLARK|MANAGER|2450
+JAMES|CLERK|950
+MARTIN|SALESMAN|1250
+SMITH|CLERK|800
+WARD|SALESMAN|1250
+
+5 rows selected.
+
+== [G2] 부서별 상위 2명(연관 서브쿼리)
+
+View created.
+
+View created.
+
+08-ex04-G2: CHECK_PASS (6행)
+
+PL/SQL procedure successfully completed.
+
+DEPTNO|ENAME
+10|CLARK
+10|KING
+20|FORD
+20|SCOTT
+30|ALLEN
+30|BLAKE
+
+6 rows selected.

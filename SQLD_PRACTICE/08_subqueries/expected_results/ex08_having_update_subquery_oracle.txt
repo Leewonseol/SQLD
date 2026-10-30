@@ -1,0 +1,91 @@
+-- 실행 결과: 08_subqueries/examples/ex08_having_update_subquery_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] HAVING 서브쿼리: 평균 급여가 전체 평균보다 높은 부서
+
+DEPTNO|AVG_SAL
+20|2175
+10|2916.67
+
+2 rows selected.
+
+== [Q1b] (검증 환경 주의) 21c XE 21.3 에서는 위 Q1 결과가 ORDER BY deptno 와 다른 순서로 나왔다.
+실행 계획에 집계 서브쿼리 제거 변환(VW_WIF_1)이 보인다. 이 변환을 끄면 정렬이 맞다. 23ai 계열에서는 정상(ex08_..._oracle23ai.sql).
+
+DEPTNO|AVG_SAL
+10|2916.67
+20|2175
+
+2 rows selected.
+
+Explained.
+
+PLAN_TABLE_OUTPUT
+Plan hash value: 3994140971
+
+------------------------------------------
+| Id  | Operation             | Name     |
+------------------------------------------
+|   0 | SELECT STATEMENT      |          |
+|   1 |  SORT ORDER BY        |          |
+|   2 |   VIEW                | VW_WIF_1 |
+|   3 |    WINDOW BUFFER      |          |
+|   4 |     HASH GROUP BY     |          |
+|   5 |      TABLE ACCESS FULL| EMP      |
+------------------------------------------
+
+12 rows selected.
+
+== [Q2] UPDATE SET 서브쿼리 실험용 복사본 (emp 의 원본은 건드리지 않는다)
+
+PL/SQL procedure successfully completed.
+
+Table created.
+
+== [Q3] PDF 의 주의: WHERE 없이 SET comm = (서브쿼리) -> 짝이 없는 행의 comm 이 NULL 로 덮인다
+
+6 rows updated.
+
+EMPNO|ENAME|COMM
+7499|ALLEN|200
+7521|WARD|(null)
+7654|MARTIN|(null)
+7698|BLAKE|(null)
+7844|TURNER|(null)
+7900|JAMES|(null)
+
+6 rows selected.
+
+Rollback complete.
+
+== [Q4] 해결: 짝이 있는 행만 갱신 (WHERE EXISTS)
+
+1 row updated.
+
+EMPNO|ENAME|COMM
+7499|ALLEN|200
+7521|WARD|500
+7654|MARTIN|1400
+7698|BLAKE|(null)
+7844|TURNER|0
+7900|JAMES|(null)
+
+6 rows selected.
+
+Rollback complete.
+
+== [Q5] 다른 해결: NVL 로 원래 값 유지
+
+6 rows updated.
+
+EMPNO|ENAME|COMM
+7499|ALLEN|200
+7521|WARD|500
+7654|MARTIN|1400
+7698|BLAKE|(null)
+7844|TURNER|0
+7900|JAMES|(null)
+
+6 rows selected.
+
+Rollback complete.
+
+PL/SQL procedure successfully completed.

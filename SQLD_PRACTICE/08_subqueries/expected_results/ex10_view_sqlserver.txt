@@ -1,0 +1,24 @@
+-- 실행 결과: 08_subqueries/examples/ex10_view_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] 뷰 생성
+empno|ename|sal|deptno
+-----|-----|---|------
+7369|SMITH|800.00|20
+7566|JONES|2975.00|20
+7788|SCOTT|3000.00|20
+7876|ADAMS|1100.00|20
+7902|FORD|3000.00|20
+
+(5 rows affected)
+== [Q2] 기본 테이블 변경이 뷰에 바로 반영
+
+(1 rows affected)
+ename|sal
+-----|---
+SMITH|801.00
+
+(1 rows affected)
+== [Q3] WITH CHECK OPTION
+Msg 550, Level 16, State 1, Server a70f428a7f8a, Line 2
+The attempted insert or update failed because the target view either specifies WITH CHECK OPTION or spans a view that specifies WITH CHECK OPTION and one or more rows resulting from the operation did not qualify under the CHECK OPTION constraint.
+The statement has been terminated.
+== [Q5] 정리

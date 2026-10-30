@@ -1,0 +1,36 @@
+-- 실행 결과: 08_subqueries/answers/ex01_single_row_subquery_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 가장 늦게 입사한 사원과 같은 부서
+
+View created.
+
+View created.
+
+08-ex01-G1: CHECK_PASS (5행)
+
+PL/SQL procedure successfully completed.
+
+ENAME
+ADAMS
+FORD
+JONES
+SCOTT
+SMITH
+
+5 rows selected.
+
+== [G2] SMITH 와 같은 직무, 급여가 더 많은 사원
+
+View created.
+
+View created.
+
+08-ex01-G2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|SAL
+ADAMS|1100
+JAMES|950
+MILLER|1300
+
+3 rows selected.

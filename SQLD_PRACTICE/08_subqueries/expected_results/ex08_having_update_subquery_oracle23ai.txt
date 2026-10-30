@@ -1,0 +1,13 @@
+-- 실행 결과: 08_subqueries/examples/ex08_having_update_subquery_oracle23ai.sql | 엔진: oracle23ai | 실행기: tools/run_labs.py
+== [Q1] HAVING 서브쿼리 + ORDER BY deptno (21c XE 21.3 에서 정렬이 어긋났던 쿼리)
+DEPTNO|AVG_SAL
+10|2916.67
+20|2175
+
+2 rows selected.
+
+BANNER_FULL
+Oracle AI Database 26ai Free Release 23.26.3.0.0 - Develop, Learn, and Run for Free
+Version 23.26.3.0.0
+
+1 row selected.
