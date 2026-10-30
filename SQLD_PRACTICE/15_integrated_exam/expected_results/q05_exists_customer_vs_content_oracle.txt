@@ -1,0 +1,65 @@
+-- 실행 결과: 15_integrated_exam/examples/q05_exists_customer_vs_content_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [보기 ①]
+
+View created.
+
+CUST_ID
+C4
+
+1 row selected.
+
+== [보기 ②]
+
+View created.
+
+CUST_ID
+C1
+C2
+C4
+
+3 rows selected.
+
+== [보기 ③]
+
+View created.
+
+CUST_ID
+C4
+
+1 row selected.
+
+== [보기 ④]
+
+View created.
+
+CUST_ID
+C1
+C2
+
+2 rows selected.
+
+View created.
+
+== [비교] 각 보기의 결과가 요구 결과와 같은가 (MATCH / DIFF)
+
+CHOICE|ROWS_CNT|VERDICT
+①|1|DIFF
+②|3|MATCH
+③|1|DIFF
+④|2|DIFF
+
+4 rows selected.
+
+15-Q5-answer-2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+View dropped.
+
+View dropped.
+
+View dropped.
+
+View dropped.
+
+View dropped.

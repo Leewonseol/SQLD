@@ -1,0 +1,72 @@
+-- 실행 결과: 15_integrated_exam/examples/q03_left_join_where_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [보기 ①]
+
+View created.
+
+CUST_ID|MOVIE_CNT
+C1|1
+C2|1
+
+2 rows selected.
+
+== [보기 ②]
+
+View created.
+
+CUST_ID|MOVIE_CNT
+C1|1
+C2|1
+C3|0
+C4|0
+
+4 rows selected.
+
+== [보기 ③]
+
+View created.
+
+CUST_ID|MOVIE_CNT
+C1|3
+C2|1
+C3|1
+C4|0
+
+4 rows selected.
+
+== [보기 ④]
+
+View created.
+
+CUST_ID|MOVIE_CNT
+C1|1
+C2|1
+C3|1
+C4|1
+
+4 rows selected.
+
+View created.
+
+== [비교] 각 보기의 결과가 요구 결과와 같은가 (MATCH / DIFF)
+
+CHOICE|ROWS_CNT|VERDICT
+①|2|DIFF
+②|4|MATCH
+③|4|DIFF
+④|4|DIFF
+
+4 rows selected.
+
+15-Q3-answer-2: CHECK_PASS (4행)
+
+PL/SQL procedure successfully completed.
+
+View dropped.
+
+View dropped.
+
+View dropped.
+
+View dropped.
+
+View dropped.

@@ -1,0 +1,62 @@
+-- 실행 결과: 15_integrated_exam/examples/q08_null_aggregate_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [보기 ①]
+
+View created.
+
+AVG_AMT
+5600
+
+1 row selected.
+
+== [보기 ②]
+
+View created.
+
+AVG_AMT
+5600
+
+1 row selected.
+
+== [보기 ③]
+
+View created.
+
+AVG_AMT
+7000
+
+1 row selected.
+
+== [보기 ④]
+
+View created.
+
+AVG_AMT
+8333.33333
+
+1 row selected.
+
+View created.
+
+== [비교] 각 보기의 결과가 요구 결과와 같은가 (MATCH / DIFF)
+
+CHOICE|ROWS_CNT|VERDICT
+①|1|DIFF
+②|1|DIFF
+③|1|MATCH
+④|1|DIFF
+
+4 rows selected.
+
+15-Q8-answer-3: CHECK_PASS (1행)
+
+PL/SQL procedure successfully completed.
+
+View dropped.
+
+View dropped.
+
+View dropped.
+
+View dropped.
+
+View dropped.

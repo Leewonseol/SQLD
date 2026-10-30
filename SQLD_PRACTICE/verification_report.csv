@@ -355,3 +355,21 @@ file,engine,status,errors_found,errors_expected,unexpected,missing,check_pass,ch
 14_transactions_permissions/examples/ex03_grant_revoke_sqlserver.sql,sqlserver,OK,MSG-229 MSG-4611,MSG-229 MSG-4611,,,0,0
 14_transactions_permissions/setup_oracle.sql,oracle,OK,,,,,0,0
 14_transactions_permissions/setup_sqlserver.sql,sqlserver,OK,,,,,0,0
+15_integrated_exam/examples/q01_missing_pk_join_oracle.sql,oracle,OK,,,,,1,0
+15_integrated_exam/examples/q01_missing_pk_join_sqlserver.sql,sqlserver,OK,,,,,1,0
+15_integrated_exam/examples/q02_one_to_many_double_count_oracle.sql,oracle,OK,,,,,1,0
+15_integrated_exam/examples/q02_one_to_many_double_count_sqlserver.sql,sqlserver,OK,,,,,1,0
+15_integrated_exam/examples/q03_left_join_where_oracle.sql,oracle,OK,,,,,1,0
+15_integrated_exam/examples/q03_left_join_where_sqlserver.sql,sqlserver,OK,,,,,1,0
+15_integrated_exam/examples/q04_on_vs_where_filter_oracle.sql,oracle,OK,,,,,1,0
+15_integrated_exam/examples/q04_on_vs_where_filter_sqlserver.sql,sqlserver,OK,,,,,1,0
+15_integrated_exam/examples/q05_exists_customer_vs_content_oracle.sql,oracle,OK,,,,,1,0
+15_integrated_exam/examples/q05_exists_customer_vs_content_sqlserver.sql,sqlserver,OK,,,,,1,0
+15_integrated_exam/examples/q06_not_in_null_oracle.sql,oracle,OK,,,,,1,0
+15_integrated_exam/examples/q06_not_in_null_sqlserver.sql,sqlserver,OK,,,,,1,0
+15_integrated_exam/examples/q07_group_by_vs_window_oracle.sql,oracle,OK,,,,,1,0
+15_integrated_exam/examples/q07_group_by_vs_window_sqlserver.sql,sqlserver,OK,,,,,1,0
+15_integrated_exam/examples/q08_null_aggregate_oracle.sql,oracle,OK,,,,,1,0
+15_integrated_exam/examples/q08_null_aggregate_sqlserver.sql,sqlserver,OK,,,,,1,0
+15_integrated_exam/setup_oracle.sql,oracle,OK,,,,,0,0
+15_integrated_exam/setup_sqlserver.sql,sqlserver,OK,,,,,0,0

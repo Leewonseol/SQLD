@@ -1,0 +1,57 @@
+-- 실행 결과: 15_integrated_exam/examples/q06_not_in_null_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [보기 ①]
+
+View created.
+
+no rows selected
+
+== [보기 ②]
+
+View created.
+
+CUST_ID
+C4
+
+1 row selected.
+
+== [보기 ③]
+
+View created.
+
+CUST_ID
+C2
+C4
+
+2 rows selected.
+
+== [보기 ④]
+
+View created.
+
+no rows selected
+
+View created.
+
+== [비교] 각 보기의 결과가 요구 결과와 같은가 (MATCH / DIFF)
+
+CHOICE|ROWS_CNT|VERDICT
+①|0|DIFF
+②|1|MATCH
+③|2|DIFF
+④|0|DIFF
+
+4 rows selected.
+
+15-Q6-answer-2: CHECK_PASS (1행)
+
+PL/SQL procedure successfully completed.
+
+View dropped.
+
+View dropped.
+
+View dropped.
+
+View dropped.
+
+View dropped.

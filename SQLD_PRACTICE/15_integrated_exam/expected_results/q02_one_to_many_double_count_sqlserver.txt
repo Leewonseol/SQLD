@@ -1,0 +1,49 @@
+-- 실행 결과: 15_integrated_exam/examples/q02_one_to_many_double_count_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [보기 ①]
+cust_id|pay_sum|watch_cnt
+-------|-------|---------
+C1|60000|6
+C2|0|1
+C3|5000|1
+C4|0|0
+
+(4 rows affected)
+== [보기 ②]
+cust_id|pay_sum|watch_cnt
+-------|-------|---------
+C1|10000|2
+C2|0|1
+C3|5000|1
+C4|0|0
+
+(4 rows affected)
+== [보기 ③]
+cust_id|pay_sum|watch_cnt
+-------|-------|---------
+C1|20000|3
+C2|0|1
+C3|5000|1
+C4|0|0
+
+(4 rows affected)
+== [보기 ④]
+cust_id|pay_sum|watch_cnt
+-------|-------|---------
+C1|60000|6
+C2|0|1
+C3|5000|1
+C4|0|1
+
+(4 rows affected)
+== [비교] 각 보기의 결과가 요구 결과와 같은가 (MATCH / DIFF)
+choice|rows_cnt|verdict
+------|--------|-------
+①|4|DIFF
+②|4|DIFF
+③|4|MATCH
+④|4|DIFF
+
+(4 rows affected)
+Warning: Null value is eliminated by an aggregate or other SET operation.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+15-Q2-answer-3: CHECK_PASS (4행)

@@ -1,0 +1,38 @@
+-- 실행 결과: 15_integrated_exam/examples/q05_exists_customer_vs_content_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [보기 ①]
+cust_id
+-------
+C4
+
+(1 rows affected)
+== [보기 ②]
+cust_id
+-------
+C1
+C2
+C4
+
+(3 rows affected)
+== [보기 ③]
+cust_id
+-------
+C4
+
+(1 rows affected)
+== [보기 ④]
+cust_id
+-------
+C1
+C2
+
+(2 rows affected)
+== [비교] 각 보기의 결과가 요구 결과와 같은가 (MATCH / DIFF)
+choice|rows_cnt|verdict
+------|--------|-------
+①|1|DIFF
+②|3|MATCH
+③|1|DIFF
+④|2|DIFF
+
+(4 rows affected)
+15-Q5-answer-2: CHECK_PASS (3행)

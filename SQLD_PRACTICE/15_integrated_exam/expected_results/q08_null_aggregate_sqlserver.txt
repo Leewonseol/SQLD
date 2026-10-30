@@ -1,0 +1,37 @@
+-- 실행 결과: 15_integrated_exam/examples/q08_null_aggregate_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [보기 ①]
+avg_amt
+-------
+5600
+
+(1 rows affected)
+== [보기 ②]
+avg_amt
+-------
+5600
+
+(1 rows affected)
+== [보기 ③]
+avg_amt
+-------
+7000
+
+(1 rows affected)
+== [보기 ④]
+avg_amt
+-------
+8333
+
+(1 rows affected)
+== [비교] 각 보기의 결과가 요구 결과와 같은가 (MATCH / DIFF)
+choice|rows_cnt|verdict
+------|--------|-------
+①|1|DIFF
+②|1|DIFF
+③|1|MATCH
+④|1|DIFF
+
+(4 rows affected)
+Warning: Null value is eliminated by an aggregate or other SET operation.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+15-Q8-answer-3: CHECK_PASS (1행)

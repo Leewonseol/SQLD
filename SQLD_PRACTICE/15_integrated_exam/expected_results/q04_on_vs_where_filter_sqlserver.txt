@@ -1,0 +1,42 @@
+-- 실행 결과: 15_integrated_exam/examples/q04_on_vs_where_filter_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [보기 ①]
+cust_id|wish_cnt
+-------|--------
+C1|0
+C2|2
+C3|0
+C4|0
+
+(4 rows affected)
+== [보기 ②]
+cust_id|wish_cnt
+-------|--------
+C2|2
+C3|0
+
+(2 rows affected)
+== [보기 ③]
+cust_id|wish_cnt
+-------|--------
+C2|2
+
+(1 rows affected)
+== [보기 ④]
+cust_id|wish_cnt
+-------|--------
+C2|2
+C3|1
+
+(2 rows affected)
+== [비교] 각 보기의 결과가 요구 결과와 같은가 (MATCH / DIFF)
+choice|rows_cnt|verdict
+------|--------|-------
+①|4|DIFF
+②|2|MATCH
+③|1|DIFF
+④|2|DIFF
+
+(4 rows affected)
+Warning: Null value is eliminated by an aggregate or other SET operation.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+15-Q4-answer-2: CHECK_PASS (2행)

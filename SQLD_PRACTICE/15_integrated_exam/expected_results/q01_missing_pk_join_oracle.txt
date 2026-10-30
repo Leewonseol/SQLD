@@ -1,0 +1,70 @@
+-- 실행 결과: 15_integrated_exam/examples/q01_missing_pk_join_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [보기 ①]
+
+View created.
+
+GENRE|CNT
+DOCU|1
+EDU|4
+MOVIE|2
+
+3 rows selected.
+
+== [보기 ②]
+
+View created.
+
+GENRE|CNT
+DOCU|1
+EDU|2
+MOVIE|2
+
+3 rows selected.
+
+== [보기 ③]
+
+View created.
+
+GENRE|CNT
+DOCU|1
+EDU|1
+MOVIE|1
+
+3 rows selected.
+
+== [보기 ④]
+
+View created.
+
+GENRE|CNT
+DOCU|1
+EDU|4
+MOVIE|2
+
+3 rows selected.
+
+View created.
+
+== [비교] 각 보기의 결과가 요구 결과와 같은가 (MATCH / DIFF)
+
+CHOICE|ROWS_CNT|VERDICT
+①|3|DIFF
+②|3|MATCH
+③|3|DIFF
+④|3|DIFF
+
+4 rows selected.
+
+15-Q1-answer-2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+View dropped.
+
+View dropped.
+
+View dropped.
+
+View dropped.
+
+View dropped.

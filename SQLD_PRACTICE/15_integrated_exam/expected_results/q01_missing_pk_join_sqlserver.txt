@@ -1,0 +1,43 @@
+-- 실행 결과: 15_integrated_exam/examples/q01_missing_pk_join_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [보기 ①]
+genre|cnt
+-----|---
+DOCU|1
+EDU|4
+MOVIE|2
+
+(3 rows affected)
+== [보기 ②]
+genre|cnt
+-----|---
+DOCU|1
+EDU|2
+MOVIE|2
+
+(3 rows affected)
+== [보기 ③]
+genre|cnt
+-----|---
+DOCU|1
+EDU|1
+MOVIE|1
+
+(3 rows affected)
+== [보기 ④]
+genre|cnt
+-----|---
+DOCU|1
+EDU|4
+MOVIE|2
+
+(3 rows affected)
+== [비교] 각 보기의 결과가 요구 결과와 같은가 (MATCH / DIFF)
+choice|rows_cnt|verdict
+------|--------|-------
+①|3|DIFF
+②|3|MATCH
+③|3|DIFF
+④|3|DIFF
+
+(4 rows affected)
+15-Q1-answer-2: CHECK_PASS (3행)
