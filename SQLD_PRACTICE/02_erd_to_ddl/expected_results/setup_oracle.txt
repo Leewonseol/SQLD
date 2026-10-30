@@ -1,0 +1,2 @@
+-- 실행 결과: 02_erd_to_ddl/setup_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+02 examples are self-contained (tables L02_*)

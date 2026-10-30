@@ -1,0 +1,68 @@
+-- 실행 결과: 02_erd_to_ddl/examples/ex02_datatype_mapping_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+== [Q1] VARCHAR2(n) 의 기본 길이 단위는 바이트(NLS_LENGTH_SEMANTICS=BYTE): 한글 4자(12바이트)는 VARCHAR2(10) 에 들어가지 않는다
+
+Table created.
+
+INSERT INTO l02_types (b) VALUES ('가나다라')
+                                  *
+ERROR at line 1:
+ORA-12899: value too large for column "SQLD_LAB"."L02_TYPES"."B" (actual: 12, maximum: 10)
+
+1 row created.
+
+C|CHARS|BYTES
+가나다라|4|12
+
+1 row selected.
+
+== [Q2] CHAR 는 뒤를 공백으로 채운다. CHAR 끼리 비교할 때는 뒤 공백을 무시한다
+
+1 row created.
+
+PADDED|LEN
+[AB   ]|5
+
+1 row selected.
+
+EQ_CHAR
+1
+
+1 row selected.
+
+== [Q3] NUMBER(5,2): 정수 3자리 + 소수 2자리. 소수는 반올림, 정수부가 넘치면 오류
+
+1 row created.
+
+NUM
+123.46
+
+1 row selected.
+
+INSERT INTO l02_types (num) VALUES (1234.5)
+                                    *
+ERROR at line 1:
+ORA-01438: value larger than specified precision allowed for this column
+
+== [Q4] DATE 는 초 단위 시각을 포함한다
+
+1 row created.
+
+DT
+2024-03-15 13:45:10
+
+1 row selected.
+
+== [Q5] 빈 문자열은 NULL 로 저장된다
+
+1 row created.
+
+ALL_ROWS|NON_NULL_C
+5|1
+
+1 row selected.
+
+Rollback complete.
+
+PL/SQL procedure successfully completed.

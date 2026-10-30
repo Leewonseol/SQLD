@@ -1,0 +1,61 @@
+-- 실행 결과: 02_erd_to_ddl/examples/ex01_library_ddl_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+(2 rows affected)
+
+(2 rows affected)
+
+(1 rows affected)
+
+(2 rows affected)
+
+(1 rows affected)
+== [T1] 규칙별 위반 INSERT
+Msg 2627, Level 14, State 1, Server a70f428a7f8a, Line 2
+Violation of UNIQUE KEY constraint 'uq_l02_member_phone'. Cannot insert duplicate key in object 'dbo.l02_member'. The duplicate key value is (010-1).
+The statement has been terminated.
+Msg 515, Level 16, State 2, Server a70f428a7f8a, Line 1
+Cannot insert the value NULL into column 'grade_cd', table 'SQLD_LAB.dbo.l02_member'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+Msg 547, Level 16, State 1, Server a70f428a7f8a, Line 1
+The INSERT statement conflicted with the FOREIGN KEY constraint "fk_l02_loan_copy". The conflict occurred in database "SQLD_LAB", table "dbo.l02_copy".
+The statement has been terminated.
+Msg 547, Level 16, State 1, Server a70f428a7f8a, Line 1
+The INSERT statement conflicted with the CHECK constraint "ck_l02_loan_dt". The conflict occurred in database "SQLD_LAB", table "dbo.l02_loan".
+The statement has been terminated.
+Msg 547, Level 16, State 1, Server a70f428a7f8a, Line 1
+The INSERT statement conflicted with the CHECK constraint "ck_l02_member_rec". The conflict occurred in database "SQLD_LAB", table "dbo.l02_member".
+The statement has been terminated.
+
+(1 rows affected)
+Msg 2627, Level 14, State 1, Server a70f428a7f8a, Line 1
+Violation of UNIQUE KEY constraint 'uq_l02_card_member'. Cannot insert duplicate key in object 'dbo.l02_card'. The duplicate key value is (1).
+The statement has been terminated.
+== [T2] 정상 데이터
+members|loans|cards
+-------|-----|-----
+2|1|1
+
+(1 rows affected)
+== [T3] 제약조건 목록
+table_name|type_desc|cnt
+----------|---------|---
+l02_author|PRIMARY_KEY_CONSTRAINT|1
+l02_book|PRIMARY_KEY_CONSTRAINT|1
+l02_card|FOREIGN_KEY_CONSTRAINT|1
+l02_card|PRIMARY_KEY_CONSTRAINT|1
+l02_card|UNIQUE_CONSTRAINT|1
+l02_copy|CHECK_CONSTRAINT|1
+l02_copy|FOREIGN_KEY_CONSTRAINT|1
+l02_copy|PRIMARY_KEY_CONSTRAINT|1
+l02_grade|CHECK_CONSTRAINT|1
+l02_grade|PRIMARY_KEY_CONSTRAINT|1
+l02_loan|CHECK_CONSTRAINT|1
+l02_loan|FOREIGN_KEY_CONSTRAINT|2
+l02_loan|PRIMARY_KEY_CONSTRAINT|1
+l02_member|CHECK_CONSTRAINT|1
+l02_member|FOREIGN_KEY_CONSTRAINT|2
+l02_member|PRIMARY_KEY_CONSTRAINT|1
+l02_member|UNIQUE_CONSTRAINT|1
+l02_writing|FOREIGN_KEY_CONSTRAINT|2
+l02_writing|PRIMARY_KEY_CONSTRAINT|1
+
+(19 rows affected)

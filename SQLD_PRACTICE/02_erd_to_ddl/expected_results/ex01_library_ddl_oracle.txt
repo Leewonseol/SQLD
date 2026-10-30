@@ -1,0 +1,120 @@
+-- 실행 결과: 02_erd_to_ddl/examples/ex01_library_ddl_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+Table created.
+
+Table created.
+
+Table created.
+
+Table created.
+
+Table created.
+
+Table created.
+
+Table created.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+Commit complete.
+
+== [T1] 규칙별 위반 INSERT 가 모두 거부되는지 검증 (R1 UNIQUE, R2 NOT NULL, R3 FK, R5 CHECK, R8 CHECK, R9 UNIQUE)
+INSERT INTO l02_member VALUES (3, '다', '010-1', 'N', NULL)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SQLD_LAB.UQ_L02_MEMBER_PHONE) violated
+
+INSERT INTO l02_member VALUES (4, '라', '010-4', NULL, NULL)
+                                                 *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SQLD_LAB"."L02_MEMBER"."GRADE_CD")
+
+INSERT INTO l02_loan VALUES (2, 1, '9780000000001', 9, DATE '2024-03-01', NULL)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SQLD_LAB.FK_L02_LOAN_COPY) violated - parent key not found
+
+INSERT INTO l02_loan VALUES (3, 2, '9780000000001', 2, DATE '2024-03-05', DATE '2024-03-01')
+*
+ERROR at line 1:
+ORA-02290: check constraint (SQLD_LAB.CK_L02_LOAN_DT) violated
+
+INSERT INTO l02_member VALUES (5, '마', '010-5', 'N', 5)
+*
+ERROR at line 1:
+ORA-02290: check constraint (SQLD_LAB.CK_L02_MEMBER_REC) violated
+
+1 row created.
+
+INSERT INTO l02_card VALUES (11, 1)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SQLD_LAB.UQ_L02_CARD_MEMBER) violated
+
+== [T2] 정상 데이터는 남아 있다
+
+MEMBERS|LOANS|CARDS
+2|1|1
+
+1 row selected.
+
+== [T3] 제약조건 목록 (데이터 사전): 유형 P=PK, R=FK, U=UNIQUE, C=CHECK/NOT NULL
+
+TABLE_NAME|CONSTRAINT_TYPE|CNT
+L02_AUTHOR|C|1
+L02_AUTHOR|P|1
+L02_BOOK|C|1
+L02_BOOK|P|1
+L02_CARD|C|1
+L02_CARD|P|1
+L02_CARD|R|1
+L02_CARD|U|1
+L02_COPY|C|1
+L02_COPY|P|1
+L02_COPY|R|1
+L02_GRADE|C|3
+L02_GRADE|P|1
+L02_LOAN|C|5
+L02_LOAN|P|1
+L02_LOAN|R|2
+L02_MEMBER|C|3
+L02_MEMBER|P|1
+L02_MEMBER|R|2
+L02_MEMBER|U|1
+L02_WRITING|P|1
+L02_WRITING|R|2
+
+22 rows selected.
+
+Rollback complete.

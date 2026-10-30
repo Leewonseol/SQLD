@@ -15,6 +15,12 @@ file,engine,status,errors_found,errors_expected,unexpected,missing,check_pass,ch
 01_modeling/examples/ex06_unenforceable_rules_sqlserver.sql,sqlserver,OK,MSG-1046 MSG-50006 MSG-547,MSG-1046 MSG-50006 MSG-547,,,0,0
 01_modeling/setup_oracle.sql,oracle,OK,,,,,0,0
 01_modeling/setup_sqlserver.sql,sqlserver,OK,,,,,0,0
+02_erd_to_ddl/examples/ex01_library_ddl_oracle.sql,oracle,OK,ORA-00001 ORA-01400 ORA-02290 ORA-02291,ORA-00001 ORA-01400 ORA-02290 ORA-02291,,,0,0
+02_erd_to_ddl/examples/ex01_library_ddl_sqlserver.sql,sqlserver,OK,MSG-2627 MSG-515 MSG-547,MSG-2627 MSG-515 MSG-547,,,0,0
+02_erd_to_ddl/examples/ex02_datatype_mapping_oracle.sql,oracle,OK,ORA-01438 ORA-12899,ORA-01438 ORA-12899,,,0,0
+02_erd_to_ddl/examples/ex02_datatype_mapping_sqlserver.sql,sqlserver,OK,MSG-8115,MSG-8115,,,0,0
+02_erd_to_ddl/setup_oracle.sql,oracle,OK,,,,,0,0
+02_erd_to_ddl/setup_sqlserver.sql,sqlserver,OK,,,,,0,0
 04_select_from_join/answers/ex02_clause_order_answer_oracle.sql,oracle,OK,,,,,2,0
 04_select_from_join/answers/ex02_clause_order_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
 04_select_from_join/answers/ex02_clause_order_oracle.sql,oracle,OK,,,,,2,0
