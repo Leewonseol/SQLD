@@ -1,0 +1,109 @@
+-- 실행 결과: 01_modeling/examples/ex02_cardinality_optionality_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+Table created.
+
+Table created.
+
+Table created.
+
+Table created.
+
+Table created.
+
+Table created.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+Commit complete.
+
+== [Q1] 1:N 자식 쪽 필수: 등급 없는 회원 -> NOT NULL 위반 / 없는 등급 -> FK 위반
+INSERT INTO m01_member VALUES (3, '다', NULL)
+                                        *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SQLD_LAB"."M01_MEMBER"."GRADE_CD")
+
+INSERT INTO m01_member VALUES (3, '다', 'X')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SQLD_LAB.FK_M01_MEMBER_GRADE) violated - parent key not found
+
+== [Q2] 1:N 부모 쪽 선택: 회원이 없는 등급 'V' 는 존재할 수 있다
+
+GRADE_CD|MEMBERS
+N|2
+V|0
+
+2 rows selected.
+
+== [Q3] 1:1 : 같은 회원에게 카드 두 번째 -> UNIQUE 위반 / 회원 없는 카드 -> NOT NULL 위반
+
+1 row created.
+
+INSERT INTO m01_card VALUES (101, 1)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SQLD_LAB.UQ_M01_CARD_MEMBER) violated
+
+INSERT INTO m01_card VALUES (102, NULL)
+                                  *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SQLD_LAB"."M01_CARD"."MEMBER_ID")
+
+== [Q4] M:N : 한 도서에 저자 2명, 같은 (도서, 저자) 쌍 중복은 PK 위반
+
+1 row created.
+
+1 row created.
+
+INSERT INTO m01_writing VALUES ('9780000000001', 10)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SQLD_LAB.PK_M01_WRITING) violated
+
+WRITING_ROWS
+2
+
+1 row selected.
+
+== [Q5] 부모 쪽 필수(R10: 도서는 소장본이 최소 1권)는 막지 못한다 -> 소장본 없는 도서가 들어간다
+
+1 row created.
+
+ISBN|COPIES
+9780000000001|2
+9780000000002|0
+
+2 rows selected.
+
+Rollback complete.

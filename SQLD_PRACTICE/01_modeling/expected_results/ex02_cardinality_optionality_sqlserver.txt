@@ -1,0 +1,53 @@
+-- 실행 결과: 01_modeling/examples/ex02_cardinality_optionality_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+(2 rows affected)
+
+(2 rows affected)
+
+(1 rows affected)
+
+(2 rows affected)
+
+(2 rows affected)
+== [Q1] 자식 쪽 필수
+Msg 515, Level 16, State 2, Server a70f428a7f8a, Line 2
+Cannot insert the value NULL into column 'grade_cd', table 'SQLD_LAB.dbo.m01_member'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+Msg 547, Level 16, State 1, Server a70f428a7f8a, Line 1
+The INSERT statement conflicted with the FOREIGN KEY constraint "fk_m01_member_grade". The conflict occurred in database "SQLD_LAB", table "dbo.m01_grade", column 'grade_cd'.
+The statement has been terminated.
+== [Q2] 부모 쪽 선택
+grade_cd|members
+--------|-------
+N|2
+V|0
+
+(2 rows affected)
+== [Q3] 1:1
+
+(1 rows affected)
+Msg 2627, Level 14, State 1, Server a70f428a7f8a, Line 2
+Violation of UNIQUE KEY constraint 'uq_m01_card_member'. Cannot insert duplicate key in object 'dbo.m01_card'. The duplicate key value is (1).
+The statement has been terminated.
+Msg 515, Level 16, State 2, Server a70f428a7f8a, Line 1
+Cannot insert the value NULL into column 'member_id', table 'SQLD_LAB.dbo.m01_card'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+== [Q4] M:N
+
+(2 rows affected)
+Msg 2627, Level 14, State 1, Server a70f428a7f8a, Line 1
+Violation of PRIMARY KEY constraint 'pk_m01_writing'. Cannot insert duplicate key in object 'dbo.m01_writing'. The duplicate key value is (9780000000001, 10).
+The statement has been terminated.
+writing_rows
+------------
+2
+
+(1 rows affected)
+== [Q5] 부모 쪽 필수는 막지 못한다
+
+(1 rows affected)
+isbn|copies
+----|------
+9780000000001|2
+9780000000002|0
+
+(2 rows affected)

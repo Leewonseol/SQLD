@@ -1,0 +1,26 @@
+-- 실행 결과: 01_modeling/examples/ex06_unenforceable_rules_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] R5 CHECK
+Msg 547, Level 16, State 1, Server a70f428a7f8a, Line 2
+The INSERT statement conflicted with the CHECK constraint "ck_m01_loan6_dt". The conflict occurred in database "SQLD_LAB", table "dbo.m01_loan6".
+The statement has been terminated.
+== [Q2] CHECK 안에 서브쿼리 -> 오류
+Msg 1046, Level 15, State 1, Server a70f428a7f8a, Line 2
+Subqueries are not allowed in this context. Only scalar expressions are allowed.
+== [Q3] 제약만으로는 4번째 대출이 들어간다
+
+(4 rows affected)
+member_id|open_loans
+---------|----------
+7|4
+
+(1 rows affected)
+== [Q4] 대안: AFTER 트리거
+
+(3 rows affected)
+Msg 50006, Level 16, State 1, Server a70f428a7f8a, Procedure trg_m01_loan6_max3, Line 5
+R6 위반: 미반납 대출은 회원당 최대 3권
+member_id|open_loans
+---------|----------
+8|3
+
+(1 rows affected)

@@ -1,0 +1,29 @@
+-- 실행 결과: 01_modeling/examples/ex05_self_relationship_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] 자기참조 FK
+
+(3 rows affected)
+Msg 547, Level 16, State 1, Server a70f428a7f8a, Line 2
+The INSERT statement conflicted with the FOREIGN KEY SAME TABLE constraint "fk_m01_mem_rec". The conflict occurred in database "SQLD_LAB", table "dbo.m01_mem", column 'member_id'.
+The statement has been terminated.
+== [Q2] 자기 자신 추천 금지 CHECK
+Msg 547, Level 16, State 1, Server a70f428a7f8a, Line 1
+The INSERT statement conflicted with the CHECK constraint "ck_m01_mem_not_self". The conflict occurred in database "SQLD_LAB", table "dbo.m01_mem".
+The statement has been terminated.
+== [Q3] 여러 행에 걸친 순환은 막지 못한다
+
+(1 rows affected)
+member_id|recommender_id
+---------|--------------
+1|3
+2|1
+3|2
+
+(3 rows affected)
+== [Q4] 순환 탐지(재귀 CTE, 경로에 이미 있으면 멈춤)
+member_id|lvl|path
+---------|---|----
+1|1|/1/
+3|2|/1/3/
+2|3|/1/3/2/
+
+(3 rows affected)

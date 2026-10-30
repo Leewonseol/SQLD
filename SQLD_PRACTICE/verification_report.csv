@@ -1,6 +1,20 @@
 file,engine,status,errors_found,errors_expected,unexpected,missing,check_pass,check_fail
 00_common/setup_oracle.sql,oracle,OK,,,,,1,0
 00_common/setup_sqlserver.sql,sqlserver,OK,,,,,1,0
+01_modeling/answers/ex02_cardinality_optionality_answer_oracle.sql,oracle,OK,ORA-00001 ORA-01400 ORA-02291,ORA-00001 ORA-01400 ORA-02291,,,1,0
+01_modeling/answers/ex02_cardinality_optionality_answer_sqlserver.sql,sqlserver,OK,MSG-2627 MSG-515 MSG-547,MSG-2627 MSG-515 MSG-547,,,1,0
+01_modeling/examples/ex02_cardinality_optionality_oracle.sql,oracle,OK,ORA-00001 ORA-01400 ORA-02291,ORA-00001 ORA-01400 ORA-02291,,,0,0
+01_modeling/examples/ex02_cardinality_optionality_sqlserver.sql,sqlserver,OK,MSG-2627 MSG-515 MSG-547,MSG-2627 MSG-515 MSG-547,,,0,0
+01_modeling/examples/ex03_identifying_relationship_oracle.sql,oracle,OK,ORA-01400,ORA-01400,,,0,0
+01_modeling/examples/ex03_identifying_relationship_sqlserver.sql,sqlserver,OK,MSG-515,MSG-515,,,0,0
+01_modeling/examples/ex04_keys_oracle.sql,oracle,OK,ORA-00001 ORA-01400,ORA-00001 ORA-01400,,,0,0
+01_modeling/examples/ex04_keys_sqlserver.sql,sqlserver,OK,MSG-2627 MSG-515,MSG-2627 MSG-515,,,0,0
+01_modeling/examples/ex05_self_relationship_oracle.sql,oracle,OK,ORA-02290 ORA-02291,ORA-02290 ORA-02291,,,0,0
+01_modeling/examples/ex05_self_relationship_sqlserver.sql,sqlserver,OK,MSG-547,MSG-547,,,0,0
+01_modeling/examples/ex06_unenforceable_rules_oracle.sql,oracle,OK,ORA-02251 ORA-02290 ORA-04088 ORA-06512 ORA-20006,ORA-02251 ORA-02290 ORA-04088 ORA-06512 ORA-20006,,,0,0
+01_modeling/examples/ex06_unenforceable_rules_sqlserver.sql,sqlserver,OK,MSG-1046 MSG-50006 MSG-547,MSG-1046 MSG-50006 MSG-547,,,0,0
+01_modeling/setup_oracle.sql,oracle,OK,,,,,0,0
+01_modeling/setup_sqlserver.sql,sqlserver,OK,,,,,0,0
 04_select_from_join/answers/ex02_clause_order_answer_oracle.sql,oracle,OK,,,,,2,0
 04_select_from_join/answers/ex02_clause_order_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
 04_select_from_join/answers/ex02_clause_order_oracle.sql,oracle,OK,,,,,2,0

@@ -1,0 +1,62 @@
+-- 실행 결과: 01_modeling/answers/ex02_cardinality_optionality_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+Table created.
+
+Table created.
+
+Table created.
+
+Table created.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+Commit complete.
+
+== G2 거부되어야 할 INSERT 3건 (진료과 없는 의사 / 없는 환자의 예약 / 같은 예약 두 번째 처방전)
+INSERT INTO m01_g_doctor VALUES (11, '의사B', NULL)
+                                              *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SQLD_LAB"."M01_G_DOCTOR"."DEPT_CD")
+
+INSERT INTO m01_g_appt VALUES (101, 999, 10, DATE '2024-05-02', '예약')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SQLD_LAB.SYS_C008795) violated - parent key not found
+
+INSERT INTO m01_g_presc VALUES (1001, 100)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SQLD_LAB.SYS_C008799) violated
+
+== 규칙 6: 같은 의사·같은 일시 두 번째 예약도 거부
+INSERT INTO m01_g_appt VALUES (102, 1, 10, DATE '2024-05-01', '예약')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SQLD_LAB.UQ_M01_G_APPT_SLOT) violated
+
+View created.
+
+View created.
+
+01-ex02-G2: CHECK_PASS (1행)
+
+PL/SQL procedure successfully completed.

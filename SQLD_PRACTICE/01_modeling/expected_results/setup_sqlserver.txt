@@ -1,0 +1,2 @@
+-- 실행 결과: 01_modeling/setup_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+01 examples are self-contained (tables m01_*)

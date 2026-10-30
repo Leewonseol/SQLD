@@ -1,0 +1,37 @@
+-- 실행 결과: 01_modeling/examples/ex04_keys_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+(4 rows affected)
+== [Q1] 유일성 검사
+attr|dup_groups
+----|----------
+stu_no|0
+email|0
+name|1
+birth|1
+name+birth|0
+stu_no+name|0
+
+(6 rows affected)
+== [Q2] PK 와 대체키(UNIQUE) 지정 (SQL Server 는 PK 컬럼이 미리 NOT NULL 이어야 한다)
+== [Q3] PK·대체키 위반
+Msg 515, Level 16, State 2, Server a70f428a7f8a, Line 2
+Cannot insert the value NULL into column 'stu_no', table 'SQLD_LAB.dbo.m01_student'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+Msg 2627, Level 14, State 1, Server a70f428a7f8a, Line 1
+Violation of UNIQUE KEY constraint 'uq_m01_student_email'. Cannot insert duplicate key in object 'dbo.m01_student'. The duplicate key value is (a@u.ac).
+The statement has been terminated.
+
+(1 rows affected)
+rows_now
+--------
+5
+
+(1 rows affected)
+== [Q4] 인조 식별자: IDENTITY
+
+(2 rows affected)
+order_id|cust|ordered
+--------|----|-------
+1|kim|2024-01-01
+2|kim|2024-01-01
+
+(2 rows affected)

@@ -1,0 +1,23 @@
+-- 실행 결과: 01_modeling/answers/ex02_cardinality_optionality_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+Msg 515, Level 16, State 2, Server a70f428a7f8a, Line 2
+Cannot insert the value NULL into column 'dept_cd', table 'SQLD_LAB.dbo.m01_g_doctor'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+Msg 547, Level 16, State 1, Server a70f428a7f8a, Line 1
+The INSERT statement conflicted with the FOREIGN KEY constraint "FK__m01_g_app__patie__7CF981FA". The conflict occurred in database "SQLD_LAB", table "dbo.m01_g_patient", column 'patient_id'.
+The statement has been terminated.
+Msg 2627, Level 14, State 1, Server a70f428a7f8a, Line 1
+Violation of UNIQUE KEY constraint 'UQ__m01_g_pr__E43EE997B3840A6B'. Cannot insert duplicate key in object 'dbo.m01_g_presc'. The duplicate key value is (100).
+The statement has been terminated.
+Msg 2627, Level 14, State 1, Server a70f428a7f8a, Line 1
+Violation of UNIQUE KEY constraint 'uq_m01_g_appt_slot'. Cannot insert duplicate key in object 'dbo.m01_g_appt'. The duplicate key value is (10, 2024-05-01 00:00:00).
+The statement has been terminated.
+01-ex02-G2: CHECK_PASS (1행)

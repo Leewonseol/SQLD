@@ -1,0 +1,75 @@
+-- 실행 결과: 01_modeling/examples/ex04_keys_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+Commit complete.
+
+== [Q1] 유일성 검사: 각 속성(조합)에 중복 값이 있는가 (dup_groups 0 이면 현재 데이터에서 유일)
+
+ATTR|DUP_GROUPS
+stu_no|0
+email|0
+name|1
+birth|1
+name+birth|0
+stu_no+name|0
+
+6 rows selected.
+
+== [Q2] 결정: 후보키 = {stu_no}, {email} (유일 + 최소). {stu_no, name} 은 유일하지만 최소가 아니다 = 슈퍼키
+{name, birth} 는 지금은 유일하지만 업무상 동명이인·같은 생일이 가능 -> 키가 아니다(데이터가 아니라 규칙으로 판단)
+
+Table altered.
+
+Table altered.
+
+== [Q3] 기본키는 NULL·중복 불가, 대체키(UNIQUE)는 중복 불가·NULL 허용(Oracle)
+INSERT INTO m01_student VALUES (NULL, 'e@u.ac', '최다섯', DATE '2004-01-01', 'DB')
+                                *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SQLD_LAB"."M01_STUDENT"."STU_NO")
+
+INSERT INTO m01_student VALUES ('S005', 'a@u.ac', '최다섯', DATE '2004-01-01', 'DB')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SQLD_LAB.UQ_M01_STUDENT_EMAIL) violated
+
+1 row created.
+
+ROWS_NOW
+5
+
+1 row selected.
+
+Rollback complete.
+
+== [Q4] 인조 식별자: 업무 의미가 없는 일련번호. Oracle 12c+ IDENTITY 컬럼
+
+PL/SQL procedure successfully completed.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+ORDER_ID|CUST|ORDERED
+1|kim|2024-01-01
+2|kim|2024-01-01
+
+2 rows selected.
+
+(본질 식별자 (cust, ordered) 로는 같은 날 두 번 주문을 구별할 수 없어 인조 식별자를 쓴 예)
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
