@@ -1,0 +1,23 @@
+-- 실행 결과: 10_grouping_extensions/answers/ex02_grouping_function_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 부서 소계 행만
+10-ex02-G1: CHECK_PASS (3행)
+deptno|cnt
+------|---
+10|3
+20|5
+30|6
+
+(3 rows affected)
+== [G2] 소계·총계·실제 NULL 라벨
+10-ex02-G2: CHECK_PASS (6행)
+species|label|s
+-------|-----|-
+NULL|총계|9
+A|NULL값|3
+A|x|1
+A|소계|4
+B|y|5
+B|소계|5
+
+(6 rows affected)

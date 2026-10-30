@@ -1,0 +1,75 @@
+-- 실행 결과: 09_set_operations/examples/ex01_union_intersect_minus_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] UNION
+job
+---
+ANALYST
+CLERK
+MANAGER
+PRESIDENT
+
+(4 rows affected)
+== [Q2] UNION ALL
+job
+---
+ANALYST
+ANALYST
+CLERK
+CLERK
+CLERK
+MANAGER
+MANAGER
+PRESIDENT
+
+(8 rows affected)
+== [Q3] INTERSECT
+job
+---
+CLERK
+MANAGER
+
+(2 rows affected)
+== [Q4] EXCEPT: A - B, B - A
+job
+---
+PRESIDENT
+
+(1 rows affected)
+job
+---
+ANALYST
+
+(1 rows affected)
+== [Q5] NULL 끼리 같은 값
+v
+-
+NULL
+2
+
+(2 rows affected)
+v
+-
+NULL
+1
+2
+3
+
+(4 rows affected)
+== [Q6] MINUS: 오류가 나지 않는다! MINUS 를 s_a 의 별칭으로 해석해 SELECT 두 개가 따로 실행된다 (조용한 함정)
+v
+-
+1
+2
+2
+NULL
+
+(4 rows affected)
+v
+-
+2
+3
+NULL
+
+(3 rows affected)
+== [Q7] INTERSECT ALL -> 오류
+Msg 324, Level 15, State 1, Server a70f428a7f8a, Line 2
+The 'ALL' version of the INTERSECT operator is not supported.

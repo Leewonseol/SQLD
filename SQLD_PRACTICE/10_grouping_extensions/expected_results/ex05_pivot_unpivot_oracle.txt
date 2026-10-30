@@ -1,0 +1,49 @@
+-- 실행 결과: 10_grouping_extensions/examples/ex05_pivot_unpivot_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] PIVOT: 직무별 행, 부서별 열 (급여 합계). 원본에서 쓰지 않은 컬럼은 인라인 뷰로 미리 제거
+
+JOB|D10|D20|D30
+ANALYST|(null)|6000|(null)
+CLERK|1300|1900|950
+MANAGER|2450|2975|2850
+PRESIDENT|5000|(null)|(null)
+SALESMAN|(null)|(null)|5600
+
+5 rows selected.
+
+== [Q2] 같은 결과를 CASE + 집계로 (모든 DBMS 공통 방식)
+
+JOB|D10|D20|D30
+ANALYST|(null)|6000|(null)
+CLERK|1300|1900|950
+MANAGER|2450|2975|2850
+PRESIDENT|5000|(null)|(null)
+SALESMAN|(null)|(null)|5600
+
+5 rows selected.
+
+== [Q3] 함정: 인라인 뷰 없이 테이블 전체로 PIVOT 하면 남은 모든 컬럼(empno, ename …)이 그룹 기준이 된다
+
+ROWS_WITHOUT_INLINE_VIEW
+14
+
+1 row selected.
+
+== [Q4] UNPIVOT: 열을 행으로. NULL 값 칸은 기본적으로 빠진다 (INCLUDE NULLS 로 포함)
+
+JOB|DEPT|TOTAL
+ANALYST|20|6000
+CLERK|10|1300
+CLERK|20|1900
+CLERK|30|950
+MANAGER|10|2450
+MANAGER|20|2975
+MANAGER|30|2850
+PRESIDENT|10|5000
+SALESMAN|30|5600
+
+9 rows selected.
+
+INCLUDE_NULLS_ROWS
+15
+
+1 row selected.

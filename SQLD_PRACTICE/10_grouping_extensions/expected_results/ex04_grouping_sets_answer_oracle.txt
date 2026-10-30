@@ -1,0 +1,37 @@
+-- 실행 결과: 10_grouping_extensions/answers/ex04_grouping_sets_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 부서·입사연도 소계 + 총계
+
+View created.
+
+View created.
+
+10-ex04-G1: CHECK_PASS (8행)
+
+PL/SQL procedure successfully completed.
+
+DEPTNO|HIRE_YEAR|CNT
+10|(null)|3
+20|(null)|5
+30|(null)|6
+(null)|1980|1
+(null)|1981|10
+(null)|1982|1
+(null)|1987|2
+(null)|(null)|14
+
+8 rows selected.
+
+== [G2] GROUPING SETS((deptno, job), deptno) 행 수
+
+View created.
+
+View created.
+
+10-ex04-G2: CHECK_PASS (1행)
+
+PL/SQL procedure successfully completed.
+
+CNT
+12
+
+1 row selected.

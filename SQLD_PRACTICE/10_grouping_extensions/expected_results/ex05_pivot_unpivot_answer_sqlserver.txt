@@ -1,0 +1,24 @@
+-- 실행 결과: 10_grouping_extensions/answers/ex05_pivot_unpivot_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 부서별 직무 인원 PIVOT
+10-ex05-G1: CHECK_PASS (3행)
+deptno|clerk|manager|salesman
+------|-----|-------|--------
+10|1|1|0
+20|2|1|0
+30|1|1|4
+
+(3 rows affected)
+== [G2] UNPIVOT 0 초과 칸
+10-ex05-G2: CHECK_PASS (7행)
+deptno|job|cnt
+------|---|---
+10|CLERK|1
+10|MANAGER|1
+20|CLERK|2
+20|MANAGER|1
+30|CLERK|1
+30|MANAGER|1
+30|SALESMAN|4
+
+(7 rows affected)

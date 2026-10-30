@@ -1,0 +1,41 @@
+-- 실행 결과: 10_grouping_extensions/examples/ex03_cube_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] CUBE(DNAME, JOB) 18행
+dname|job|Total Empl|Total Sal
+-----|---|----------|---------
+ACCOUNTING|CLERK|1|1300.00
+ACCOUNTING|MANAGER|1|2450.00
+ACCOUNTING|PRESIDENT|1|5000.00
+ACCOUNTING|NULL|3|8750.00
+RESEARCH|ANALYST|2|6000.00
+RESEARCH|CLERK|2|1900.00
+RESEARCH|MANAGER|1|2975.00
+RESEARCH|NULL|5|10875.00
+SALES|CLERK|1|950.00
+SALES|MANAGER|1|2850.00
+SALES|SALESMAN|4|5600.00
+SALES|NULL|6|9400.00
+NULL|ANALYST|2|6000.00
+NULL|CLERK|4|4150.00
+NULL|MANAGER|3|8275.00
+NULL|PRESIDENT|1|5000.00
+NULL|SALESMAN|4|5600.00
+NULL|NULL|14|29025.00
+
+(18 rows affected)
+== [Q2] CUBE 인수 순서 바꿔도 같은 행 집합
+diff_rows
+---------
+0
+
+(1 rows affected)
+== [Q3] 3개 인수 CUBE 의 그룹 조합 수와 행 수
+cube_sets
+---------
+8
+
+(1 rows affected)
+cube3_rows
+----------
+52
+
+(1 rows affected)

@@ -1,0 +1,50 @@
+-- 실행 결과: 10_grouping_extensions/examples/ex04_grouping_sets_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] GROUPING SETS (DNAME, JOB) 8행
+dname|job|Total Empl|Total Sal
+-----|---|----------|---------
+ACCOUNTING|NULL|3|8750.00
+RESEARCH|NULL|5|10875.00
+SALES|NULL|6|9400.00
+NULL|ANALYST|2|6000.00
+NULL|CLERK|4|4150.00
+NULL|MANAGER|3|8275.00
+NULL|PRESIDENT|1|5000.00
+NULL|SALESMAN|4|5600.00
+
+(8 rows affected)
+== [Q2] () 로 총계 추가
+dname|job|cnt
+-----|---|---
+ACCOUNTING|NULL|3
+RESEARCH|NULL|5
+SALES|NULL|6
+NULL|ANALYST|2
+NULL|CLERK|4
+NULL|MANAGER|3
+NULL|PRESIDENT|1
+NULL|SALESMAN|4
+NULL|NULL|14
+
+(9 rows affected)
+== [Q3] PDF 표기 GROUPING SETS (A, B, NULL) -> SQL Server 는 오류
+Msg 164, Level 15, State 1, Server a70f428a7f8a, Line 2
+Each GROUP BY expression must contain at least one column that is not an outer reference.
+== [Q4] UNION ALL 대체
+dname|job|Total Empl|Total Sal
+-----|---|----------|---------
+NULL|ANALYST|2|6000.00
+NULL|CLERK|4|4150.00
+NULL|MANAGER|3|8275.00
+NULL|PRESIDENT|1|5000.00
+NULL|SALESMAN|4|5600.00
+ACCOUNTING|NULL|3|8750.00
+RESEARCH|NULL|5|10875.00
+SALES|NULL|6|9400.00
+
+(8 rows affected)
+== [Q5] ROLLUP·CUBE 와 GROUPING SETS 동치
+rollup_rows|gs_rollup_rows|cube_rows|gs_cube_rows
+-----------|--------------|---------|------------
+13|13|18|18
+
+(1 rows affected)

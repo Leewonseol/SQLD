@@ -1,0 +1,36 @@
+-- 실행 결과: 09_set_operations/examples/ex03_set_vs_join_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] INTERSECT ≈ EXISTS (단, 중복 제거와 NULL 처리가 다르다)
+v
+-
+NULL
+2
+
+(2 rows affected)
+v
+-
+2
+
+(1 rows affected)
+== [Q2] EXCEPT ≈ NOT EXISTS (NULL 행에서 결과가 갈린다)
+v
+-
+1
+
+(1 rows affected)
+v
+-
+NULL
+1
+
+(2 rows affected)
+== [Q3] UNION ALL 로 FULL OUTER JOIN 흉내 (04단원 ex10 의 UNION 방식과 비교)
+a_v|b_v
+---|---
+NULL|NULL
+NULL|NULL
+NULL|3
+1|NULL
+2|2
+2|2
+
+(6 rows affected)

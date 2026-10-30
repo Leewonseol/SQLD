@@ -1,0 +1,65 @@
+-- 실행 결과: 10_grouping_extensions/examples/ex04_grouping_sets_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] PDF 재현: GROUPING SETS (DNAME, JOB) = DNAME 소계 3 + JOB 소계 5 = 8행 (총계 없음)
+
+DNAME|JOB|Total Empl|Total Sal
+ACCOUNTING|(null)|3|8750
+RESEARCH|(null)|5|10875
+SALES|(null)|6|9400
+(null)|ANALYST|2|6000
+(null)|CLERK|4|4150
+(null)|MANAGER|3|8275
+(null)|PRESIDENT|1|5000
+(null)|SALESMAN|4|5600
+
+8 rows selected.
+
+== [Q2] 총계를 추가: () 표기 -> 9행
+
+DNAME|JOB|CNT
+ACCOUNTING|(null)|3
+RESEARCH|(null)|5
+SALES|(null)|6
+(null)|ANALYST|2
+(null)|CLERK|4
+(null)|MANAGER|3
+(null)|PRESIDENT|1
+(null)|SALESMAN|4
+(null)|(null)|14
+
+9 rows selected.
+
+== [Q3] PDF 의 다른 표기 GROUPING SETS (A, B, NULL): Oracle 은 허용 (SQL Server 는 오류 -> sqlserver 파일 Q3)
+
+DNAME|JOB|CNT
+ACCOUNTING|(null)|3
+RESEARCH|(null)|5
+SALES|(null)|6
+(null)|ANALYST|2
+(null)|CLERK|4
+(null)|MANAGER|3
+(null)|PRESIDENT|1
+(null)|SALESMAN|4
+(null)|(null)|14
+
+9 rows selected.
+
+== [Q4] PDF: UNION ALL 로 대체 가능 — 두 번째 SELECT 의 NULL AS DNAME 은 NULL 만 써도 된다
+
+DNAME|JOB|Total Empl|Total Sal
+ACCOUNTING|(null)|3|8750
+RESEARCH|(null)|5|10875
+SALES|(null)|6|9400
+(null)|ANALYST|2|6000
+(null)|CLERK|4|4150
+(null)|MANAGER|3|8275
+(null)|PRESIDENT|1|5000
+(null)|SALESMAN|4|5600
+
+8 rows selected.
+
+== [Q5] 동치 관계: ROLLUP(a, b) = GROUPING SETS ((a, b), (a), ()), CUBE(a, b) = GROUPING SETS ((a, b), (a), (b), ())
+
+ROLLUP_ROWS|GS_ROLLUP_ROWS|CUBE_ROWS|GS_CUBE_ROWS
+13|13|18|18
+
+1 row selected.

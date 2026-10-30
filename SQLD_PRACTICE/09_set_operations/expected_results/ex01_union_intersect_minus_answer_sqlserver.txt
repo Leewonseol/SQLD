@@ -1,0 +1,16 @@
+-- 실행 결과: 09_set_operations/answers/ex01_union_intersect_minus_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 사원이 없는 부서
+09-ex01-G1: CHECK_PASS (1행)
+deptno
+------
+40
+
+(1 rows affected)
+== [G2] 1981 입사 직무 + 3000 이상 직무 (UNION ALL 행 수)
+09-ex01-G2: CHECK_PASS (1행)
+cnt
+---
+13
+
+(1 rows affected)

@@ -1,0 +1,20 @@
+-- 실행 결과: 10_grouping_extensions/answers/ex03_cube_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] CUBE 의 직무 소계만
+10-ex03-G1: CHECK_PASS (5행)
+job|cnt
+---|---
+ANALYST|2
+CLERK|4
+MANAGER|3
+PRESIDENT|1
+SALESMAN|4
+
+(5 rows affected)
+== [G2] CUBE(deptno, job) 행 수
+10-ex03-G2: CHECK_PASS (1행)
+cnt
+---
+18
+
+(1 rows affected)

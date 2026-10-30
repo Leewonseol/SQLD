@@ -1,0 +1,41 @@
+-- 실행 결과: 10_grouping_extensions/examples/ex05_pivot_unpivot_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] PIVOT
+job|d10|d20|d30
+---|---|---|---
+ANALYST|NULL|6000.00|NULL
+CLERK|1300.00|1900.00|950.00
+MANAGER|2450.00|2975.00|2850.00
+PRESIDENT|5000.00|NULL|NULL
+SALESMAN|NULL|NULL|5600.00
+
+(5 rows affected)
+== [Q2] CASE + 집계
+job|d10|d20|d30
+---|---|---|---
+ANALYST|NULL|6000.00|NULL
+CLERK|1300.00|1900.00|950.00
+MANAGER|2450.00|2975.00|2850.00
+PRESIDENT|5000.00|NULL|NULL
+SALESMAN|NULL|NULL|5600.00
+
+(5 rows affected)
+== [Q3] 원본 테이블 전체로 PIVOT 하면 남은 컬럼이 모두 그룹 기준
+rows_without_derived_table
+--------------------------
+14
+
+(1 rows affected)
+== [Q4] UNPIVOT (SQL Server 는 NULL 칸을 항상 제외, INCLUDE NULLS 없음)
+job|dept|total
+---|----|-----
+ANALYST|d20|6000.00
+CLERK|d10|1300.00
+CLERK|d20|1900.00
+CLERK|d30|950.00
+MANAGER|d10|2450.00
+MANAGER|d20|2975.00
+MANAGER|d30|2850.00
+PRESIDENT|d10|5000.00
+SALESMAN|d30|5600.00
+
+(9 rows affected)

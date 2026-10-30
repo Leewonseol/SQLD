@@ -1,0 +1,34 @@
+-- 실행 결과: 09_set_operations/answers/ex02_set_operation_rules_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 사원명·부서명 한 열 + 출처
+
+View created.
+
+View created.
+
+09-ex02-G1: CHECK_PASS (4행)
+
+PL/SQL procedure successfully completed.
+
+NAME|SRC
+ACCOUNTING|D
+CLARK|E
+KING|E
+MILLER|E
+
+4 rows selected.
+
+== [G2] 숫자와 문자를 문자로 통일한 집합
+
+View created.
+
+View created.
+
+09-ex02-G2: CHECK_PASS (2행)
+
+PL/SQL procedure successfully completed.
+
+V
+10
+ACCOUNTING
+
+2 rows selected.

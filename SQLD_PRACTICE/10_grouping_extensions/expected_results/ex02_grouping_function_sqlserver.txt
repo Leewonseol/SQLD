@@ -1,0 +1,55 @@
+-- 실행 결과: 10_grouping_extensions/examples/ex02_grouping_function_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] CASE GROUPING(...)
+dname|job|Total Empl|Total Sal
+-----|---|----------|---------
+ACCOUNTING|CLERK|1|1300.00
+ACCOUNTING|MANAGER|1|2450.00
+ACCOUNTING|PRESIDENT|1|5000.00
+ACCOUNTING|All Jobs|3|8750.00
+RESEARCH|ANALYST|2|6000.00
+RESEARCH|CLERK|2|1900.00
+RESEARCH|MANAGER|1|2975.00
+RESEARCH|All Jobs|5|10875.00
+SALES|CLERK|1|950.00
+SALES|MANAGER|1|2850.00
+SALES|SALESMAN|4|5600.00
+SALES|All Jobs|6|9400.00
+All Departments|All Jobs|14|29025.00
+
+(13 rows affected)
+== [Q2] ISNULL 로 이름 붙이기의 함정
+species|breed_isnull|s
+-------|------------|-
+NULL|??|9
+A|??|3
+A|??|4
+A|x|1
+B|??|5
+B|y|5
+
+(6 rows affected)
+== [Q3] GROUPING 으로 구별
+species|breed|g_sp|g_br|label|s
+-------|-----|----|----|-----|-
+A|NULL|0|0|(NULL|3
+A|x|0|0|x|1
+A|NULL|0|1|소계|4
+B|y|0|0|y|5
+B|NULL|0|1|소계|5
+NULL|NULL|1|1|총계|9
+
+(6 rows affected)
+== [Q4] GROUPING_ID
+species|breed|gid|s
+-------|-----|---|-
+A|NULL|0|3
+A|x|0|1
+B|y|0|5
+A|NULL|1|4
+B|NULL|1|5
+NULL|NULL|2|3
+NULL|x|2|1
+NULL|y|2|5
+NULL|NULL|3|9
+
+(9 rows affected)

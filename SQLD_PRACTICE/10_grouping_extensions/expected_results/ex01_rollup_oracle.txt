@@ -1,0 +1,58 @@
+-- 실행 결과: 10_grouping_extensions/examples/ex01_rollup_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] PDF E-29 데이터 재현: ROLLUP(DNAME, JOB) = (DNAME,JOB) 9 + DNAME 소계 3 + 총계 1 = 13행
+
+DNAME|JOB|Total Empl|Total Sal
+ACCOUNTING|CLERK|1|1300
+ACCOUNTING|MANAGER|1|2450
+ACCOUNTING|PRESIDENT|1|5000
+ACCOUNTING|(null)|3|8750
+RESEARCH|ANALYST|2|6000
+RESEARCH|CLERK|2|1900
+RESEARCH|MANAGER|1|2975
+RESEARCH|(null)|5|10875
+SALES|CLERK|1|950
+SALES|MANAGER|1|2850
+SALES|SALESMAN|4|5600
+SALES|(null)|6|9400
+(null)|(null)|14|29025
+
+13 rows selected.
+
+== [Q2] PDF E-28 구조(학습용 가상 데이터): ROLLUP(species, breed) -> 소계 기준 = species
+
+SPECIES_L|BREED_L|AVG_AGE|CNT
+강아지|말티즈|6|2
+강아지|푸들|6.5|2
+강아지|합계|6.25|4
+고양이|샴|3.5|2
+고양이|페르시안|5|1
+고양이|합계|4|3
+토끼|미니렉스|2|1
+토끼|합계|2|1
+합계|합계|4.88|8
+
+9 rows selected.
+
+== [Q3] 인수 순서를 바꾸면 ROLLUP(breed, species) -> 소계 기준 = breed. 행 집합 자체가 달라진다
+
+SPECIES_L|BREED_L|AVG_AGE|CNT
+강아지|말티즈|6|2
+합계|말티즈|6|2
+토끼|미니렉스|2|1
+합계|미니렉스|2|1
+고양이|샴|3.5|2
+합계|샴|3.5|2
+고양이|페르시안|5|1
+합계|페르시안|5|1
+강아지|푸들|6.5|2
+합계|푸들|6.5|2
+합계|합계|4.88|8
+
+11 rows selected.
+
+== [Q4] ROLLUP(A, B) = (A,B) 그룹 UNION ALL (A) 그룹 UNION ALL 전체 — 집합 차이 0행이면 같다
+
+DIFF_ROWS
+0
+
+1 row selected.

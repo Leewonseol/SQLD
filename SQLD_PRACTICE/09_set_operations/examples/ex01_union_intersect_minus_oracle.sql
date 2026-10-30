@@ -1,0 +1,23 @@
+-- ex01 UNION·UNION ALL·INTERSECT·MINUS (PDF E-27 집합 연산자 도식)  | Oracle
+-- A = 10번 부서 직무 {CLERK, MANAGER, PRESIDENT}, B = 20번 부서 직무 (중복 있음: CLERK×2, ANALYST×2, MANAGER)
+PROMPT == [Q1] UNION: 합집합, 중복 제거
+SELECT job FROM emp WHERE deptno = 10 UNION SELECT job FROM emp WHERE deptno = 20 ORDER BY 1;
+
+PROMPT == [Q2] UNION ALL: 중복 유지 (3 + 5 = 8행)
+SELECT job FROM emp WHERE deptno = 10 UNION ALL SELECT job FROM emp WHERE deptno = 20 ORDER BY 1;
+
+PROMPT == [Q3] INTERSECT: 교집합
+SELECT job FROM emp WHERE deptno = 10 INTERSECT SELECT job FROM emp WHERE deptno = 20 ORDER BY 1;
+
+PROMPT == [Q4] MINUS: 차집합 A - B, B - A (순서가 결과를 바꾼다)
+SELECT job FROM emp WHERE deptno = 10 MINUS SELECT job FROM emp WHERE deptno = 20 ORDER BY 1;
+SELECT job FROM emp WHERE deptno = 20 MINUS SELECT job FROM emp WHERE deptno = 10 ORDER BY 1;
+
+PROMPT == [Q5] 집합 연산은 NULL 끼리를 같은 값으로 본다 (JOIN·= 비교와 다름)
+SELECT v FROM s_a INTERSECT SELECT v FROM s_b ORDER BY 1;
+SELECT v FROM s_a UNION SELECT v FROM s_b ORDER BY 1;
+
+PROMPT == [Q6] (21c 이상 전용) EXCEPT 와 INTERSECT ALL / MINUS ALL. 19c 에서는 구문 오류 -- 기준 버전(19c) 미지원
+SELECT v FROM s_a EXCEPT SELECT v FROM s_b ORDER BY 1;
+SELECT v FROM s_a INTERSECT ALL SELECT v FROM s_c ORDER BY 1;
+SELECT v FROM s_a MINUS ALL SELECT v FROM s_c ORDER BY 1;

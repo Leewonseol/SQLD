@@ -1,0 +1,52 @@
+-- 실행 결과: 09_set_operations/examples/ex02_set_operation_rules_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] 결과 컬럼명은 첫 번째 SELECT 의 이름
+
+FIRST_NAME|SAL
+SMITH|800
+ACCOUNTING|10
+
+2 rows selected.
+
+== [Q2] ORDER BY 는 맨 끝에 한 번. 첫 SELECT 의 이름이나 위치 번호로
+
+NM|SAL
+ACCOUNTING|10
+CLARK|2450
+KING|5000
+MILLER|1300
+OPERATIONS|40
+RESEARCH|20
+SALES|30
+
+7 rows selected.
+
+== [Q3] 두 번째 SELECT 의 별칭으로 정렬 -> 오류
+SELECT ename AS nm FROM emp WHERE deptno = 10 UNION ALL SELECT dname AS dn FROM dept ORDER BY dn
+                                                                                              *
+ERROR at line 1:
+ORA-00904: "DN": invalid identifier
+
+== [Q4] 컬럼 수가 다르면 오류
+SELECT ename, sal FROM emp UNION SELECT dname FROM dept
+*
+ERROR at line 1:
+ORA-01789: query block has incorrect number of result columns
+
+== [Q5] 자료형이 호환되지 않으면 오류 (문자 vs 숫자)
+SELECT ename FROM emp UNION SELECT deptno FROM dept
+       *
+ERROR at line 1:
+ORA-01790: expression must have same datatype as corresponding expression
+
+== [Q6] 연산자 우선순위: Oracle 은 모든 집합 연산자가 같은 우선순위 -> 왼쪽부터: (A UNION B) INTERSECT C
+
+V
+2
+
+1 row selected.
+
+== [Q7] 각 SELECT 안에는 ORDER BY 를 둘 수 없다 (괄호로 감싼 인라인 뷰 안이라면 가능)
+SELECT ename FROM emp WHERE deptno = 10 ORDER BY ename UNION SELECT dname FROM dept
+                                                       *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended

@@ -1,0 +1,38 @@
+-- 실행 결과: 09_set_operations/examples/ex03_set_vs_join_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] INTERSECT ≈ EXISTS (단, 중복 제거와 NULL 처리가 다르다)
+
+V
+2
+(null)
+
+2 rows selected.
+
+V
+2
+
+1 row selected.
+
+== [Q2] MINUS ≈ NOT EXISTS (NULL 행에서 결과가 갈린다)
+
+V
+1
+
+1 row selected.
+
+V
+1
+(null)
+
+2 rows selected.
+
+== [Q3] UNION ALL 로 FULL OUTER JOIN 흉내 (04단원 ex10 의 UNION 방식과 비교)
+
+A_V|B_V
+1|(null)
+2|2
+2|2
+(null)|3
+(null)|(null)
+(null)|(null)
+
+6 rows selected.

@@ -1,0 +1,79 @@
+-- 실행 결과: 09_set_operations/examples/ex01_union_intersect_minus_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] UNION: 합집합, 중복 제거
+
+JOB
+ANALYST
+CLERK
+MANAGER
+PRESIDENT
+
+4 rows selected.
+
+== [Q2] UNION ALL: 중복 유지 (3 + 5 = 8행)
+
+JOB
+ANALYST
+ANALYST
+CLERK
+CLERK
+CLERK
+MANAGER
+MANAGER
+PRESIDENT
+
+8 rows selected.
+
+== [Q3] INTERSECT: 교집합
+
+JOB
+CLERK
+MANAGER
+
+2 rows selected.
+
+== [Q4] MINUS: 차집합 A - B, B - A (순서가 결과를 바꾼다)
+
+JOB
+PRESIDENT
+
+1 row selected.
+
+JOB
+ANALYST
+
+1 row selected.
+
+== [Q5] 집합 연산은 NULL 끼리를 같은 값으로 본다 (JOIN·= 비교와 다름)
+
+V
+2
+(null)
+
+2 rows selected.
+
+V
+1
+2
+3
+(null)
+
+4 rows selected.
+
+== [Q6] (21c 이상 전용) EXCEPT 와 INTERSECT ALL / MINUS ALL. 19c 에서는 구문 오류 -- 기준 버전(19c) 미지원
+
+V
+1
+
+1 row selected.
+
+V
+2
+
+1 row selected.
+
+V
+1
+2
+(null)
+
+3 rows selected.

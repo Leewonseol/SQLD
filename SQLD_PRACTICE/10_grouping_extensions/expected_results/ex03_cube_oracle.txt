@@ -1,0 +1,43 @@
+-- 실행 결과: 10_grouping_extensions/examples/ex03_cube_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] PDF 재현: CUBE(DNAME, JOB) = (DNAME,JOB) 9 + DNAME 3 + JOB 5 + 총계 1 = 18행
+
+DNAME|JOB|Total Empl|Total Sal
+ACCOUNTING|CLERK|1|1300
+ACCOUNTING|MANAGER|1|2450
+ACCOUNTING|PRESIDENT|1|5000
+ACCOUNTING|(null)|3|8750
+RESEARCH|ANALYST|2|6000
+RESEARCH|CLERK|2|1900
+RESEARCH|MANAGER|1|2975
+RESEARCH|(null)|5|10875
+SALES|CLERK|1|950
+SALES|MANAGER|1|2850
+SALES|SALESMAN|4|5600
+SALES|(null)|6|9400
+(null)|ANALYST|2|6000
+(null)|CLERK|4|4150
+(null)|MANAGER|3|8275
+(null)|PRESIDENT|1|5000
+(null)|SALESMAN|4|5600
+(null)|(null)|14|29025
+
+18 rows selected.
+
+== [Q2] CUBE(JOB, DNAME) 과 행 집합이 같은가: 차집합 양방향 0행
+
+DIFF_ROWS
+0
+
+1 row selected.
+
+== [Q3] 인수 n개 CUBE 의 그룹 조합 수 = 2^n (ROLLUP 은 n+1)
+
+CUBE_SETS
+8
+
+1 row selected.
+
+CUBE3_ROWS
+52
+
+1 row selected.

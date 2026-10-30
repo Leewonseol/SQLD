@@ -1,0 +1,58 @@
+-- 실행 결과: 10_grouping_extensions/examples/ex02_grouping_function_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] PDF 쿼리: GROUPING(col) = 1 이면 그 컬럼이 집계되어(소계·총계로) 사라진 행
+
+DNAME|JOB|Total Empl|Total Sal
+ACCOUNTING|CLERK|1|1300
+ACCOUNTING|MANAGER|1|2450
+ACCOUNTING|PRESIDENT|1|5000
+ACCOUNTING|All Jobs|3|8750
+RESEARCH|ANALYST|2|6000
+RESEARCH|CLERK|2|1900
+RESEARCH|MANAGER|1|2975
+RESEARCH|All Jobs|5|10875
+SALES|CLERK|1|950
+SALES|MANAGER|1|2850
+SALES|SALESMAN|4|5600
+SALES|All Jobs|6|9400
+All Departments|All Jobs|14|29025
+
+13 rows selected.
+
+== [Q2] NVL 로 이름을 붙이면 '진짜 NULL 값 그룹'과 '소계'를 구별하지 못한다 (AH_NULL: A 에 breed NULL 행 있음)
+
+SPECIES|BREED_NVL|S
+A|x|1
+A|소계|3
+A|소계|4
+B|y|5
+B|소계|5
+(null)|소계|9
+
+6 rows selected.
+
+== [Q3] GROUPING 으로 구별: 실제 NULL 은 GROUPING = 0, 소계는 1
+
+SPECIES|BREED|G_SP|G_BR|LABEL|S
+A|x|0|0|x|1
+A|(null)|0|0|(NULL값)|3
+A|(null)|0|1|소계|4
+B|y|0|0|y|5
+B|(null)|0|1|소계|5
+(null)|(null)|1|1|총계|9
+
+6 rows selected.
+
+== [Q4] GROUPING_ID(a, b) = GROUPING(a)*2 + GROUPING(b) (비트 벡터)
+
+SPECIES|BREED|GID|S
+A|x|0|1
+A|(null)|0|3
+B|y|0|5
+A|(null)|1|4
+B|(null)|1|5
+(null)|x|2|1
+(null)|y|2|5
+(null)|(null)|2|3
+(null)|(null)|3|9
+
+9 rows selected.

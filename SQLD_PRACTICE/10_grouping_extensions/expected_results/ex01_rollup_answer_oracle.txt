@@ -1,0 +1,46 @@
+-- 실행 결과: 10_grouping_extensions/answers/ex01_rollup_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 부서·직무 인원 ROLLUP
+
+View created.
+
+View created.
+
+10-ex01-G1: CHECK_PASS (13행)
+
+PL/SQL procedure successfully completed.
+
+DEPTNO|JOB|CNT
+10|CLERK|1
+10|MANAGER|1
+10|PRESIDENT|1
+10|(null)|3
+20|ANALYST|2
+20|CLERK|2
+20|MANAGER|1
+20|(null)|5
+30|CLERK|1
+30|MANAGER|1
+30|SALESMAN|4
+30|(null)|6
+(null)|(null)|14
+
+13 rows selected.
+
+== [G2] 입사 연도별 급여 합계 + 총계
+
+View created.
+
+View created.
+
+10-ex01-G2: CHECK_PASS (5행)
+
+PL/SQL procedure successfully completed.
+
+HIRE_YEAR|TOTAL
+1980|800
+1981|22825
+1982|1300
+1987|4100
+(null)|29025
+
+5 rows selected.

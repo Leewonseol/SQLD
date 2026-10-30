@@ -1,0 +1,34 @@
+-- 실행 결과: 10_grouping_extensions/answers/ex03_cube_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] CUBE 의 직무 소계만
+
+View created.
+
+View created.
+
+10-ex03-G1: CHECK_PASS (5행)
+
+PL/SQL procedure successfully completed.
+
+JOB|CNT
+ANALYST|2
+CLERK|4
+MANAGER|3
+PRESIDENT|1
+SALESMAN|4
+
+5 rows selected.
+
+== [G2] CUBE(deptno, job) 행 수
+
+View created.
+
+View created.
+
+10-ex03-G2: CHECK_PASS (1행)
+
+PL/SQL procedure successfully completed.
+
+CNT
+18
+
+1 row selected.
