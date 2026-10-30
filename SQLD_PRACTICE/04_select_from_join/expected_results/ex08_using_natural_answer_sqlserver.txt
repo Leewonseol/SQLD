@@ -1,0 +1,22 @@
+-- 실행 결과: 04_select_from_join/answers/ex08_using_natural_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] DALLAS 근무 사원
+04-ex08-G1: CHECK_PASS (5행)
+ename
+-----
+ADAMS
+FORD
+JONES
+SCOTT
+SMITH
+
+(5 rows affected)
+== [G2] NJ_T1-NJ_T3 USING(no)
+04-ex08-G2: CHECK_PASS (3행)
+no|name|pos
+--|----|---
+1|A|정글
+1|A|탑
+2|B|미드
+
+(3 rows affected)

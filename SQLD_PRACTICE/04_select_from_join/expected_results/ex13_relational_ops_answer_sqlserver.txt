@@ -1,0 +1,18 @@
+-- 실행 결과: 04_select_from_join/answers/ex13_relational_ops_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] DB 수강 학생
+04-ex13-G1: CHECK_PASS (3행)
+student
+-------
+민수
+지영
+하늘
+
+(3 rows affected)
+== [G2] 필수 과목 중 하나라도 빠진 학생
+04-ex13-G2: CHECK_PASS (1행)
+student
+-------
+지영
+
+(1 rows affected)

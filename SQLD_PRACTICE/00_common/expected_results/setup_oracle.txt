@@ -1,0 +1,78 @@
+-- 실행 결과: 00_common/setup_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+Procedure created.
+
+Procedure created.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+Table created.
+
+Table created.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+Table altered.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+Commit complete.
+
+== 적재 확인
+
+EMP_CNT|SUM_SAL|DEPT_CNT|GRADE_CNT
+14|29025|4|5
+
+1 row selected.
+
+COMMON_DATA_CHECK
+CHECK_PASS
+
+1 row selected.

@@ -1,0 +1,48 @@
+-- 실행 결과: 04_select_from_join/examples/ex09_cross_join_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] CROSS JOIN = 3 x 3 = 9행. 조인 조건이 없으므로 NULL 도 그대로 조합된다
+
+X1|X2|X1|Y2
+a|12|a|4.8
+a|12|C|3.6
+a|12|b|1.2
+(null)|8|a|4.8
+(null)|8|C|3.6
+(null)|8|b|1.2
+b|3|a|4.8
+b|3|C|3.6
+b|3|b|1.2
+
+9 rows selected.
+
+== [Q2] Oracle 방식: FROM 에 테이블만 나열하고 WHERE 조인 조건이 없으면 카티션 곱
+
+CARTESIAN_ROWS
+9
+
+1 row selected.
+
+== [Q3] 비교: 같은 데이터에 x1 으로 EQUI JOIN -> a, b 2행 (NULL 과 'C' 는 짝이 없다)
+
+X1|X2|Y2
+a|12|4.8
+b|3|1.2
+
+2 rows selected.
+
+== [Q4] CROSS JOIN 에 ON -> 오류
+SELECT * FROM cj_t1 a CROSS JOIN cj_t2 b ON a.x1 = b.x1
+                                         *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+== [Q5] 문자 정렬 비교: x1 오름차순 (Oracle 기본 BINARY 정렬, NULL 은 마지막)
+
+X1
+C
+a
+a
+b
+b
+(null)
+
+6 rows selected.

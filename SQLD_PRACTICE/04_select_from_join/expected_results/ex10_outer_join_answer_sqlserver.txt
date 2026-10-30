@@ -1,0 +1,19 @@
+-- 실행 결과: 04_select_from_join/answers/ex10_outer_join_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 부서별 사원 수(0 포함)
+04-ex10-G1: CHECK_PASS (4행)
+deptno|dname|emp_cnt
+------|-----|-------
+10|ACCOUNTING|3
+20|RESEARCH|5
+30|SALES|6
+40|OPERATIONS|0
+
+(4 rows affected)
+== [G2] 출판사 매칭이 없는 책
+04-ex10-G2: CHECK_PASS (1행)
+book_id|book_name
+-------|---------
+b03|1984
+
+(1 rows affected)

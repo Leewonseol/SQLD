@@ -1,0 +1,43 @@
+-- 실행 결과: 04_select_from_join/examples/ex08_using_natural_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] NATURAL JOIN -> 구문 오류
+Msg 102, Level 15, State 1, Server a70f428a7f8a, Line 2
+Incorrect syntax near ';'.
+== [Q2] USING -> 구문 오류
+Msg 102, Level 15, State 1, Server a70f428a7f8a, Line 2
+Incorrect syntax near 'USING'.
+== [Q3] NATURAL JOIN nj_t1-nj_t2 대체: 같은 이름의 모든 컬럼을 ON 에 나열
+no|name
+--|----
+1|A
+
+(1 rows affected)
+== [Q4] NATURAL JOIN nj_t1-nj_t3 대체
+no|name|pos
+--|----|---
+1|A|정글
+1|A|탑
+2|B|미드
+
+(3 rows affected)
+== [Q5] USING (no) 대체
+no|t1_name|t2_name
+--|-------|-------
+1|A|A
+2|B|C
+
+(2 rows affected)
+== [Q6] ON 조인: SELECT * 이면 no 가 두 번
+no|name|no|name
+--|----|--|----
+1|A|1|A
+2|B|2|C
+
+(2 rows affected)
+== [Q7] EMP-DEPT NATURAL JOIN 대체 (deptno = 10)
+deptno|empno|ename|dname
+------|-----|-----|-----
+10|7782|CLARK|ACCOUNTING
+10|7839|KING|ACCOUNTING
+10|7934|MILLER|ACCOUNTING
+
+(3 rows affected)

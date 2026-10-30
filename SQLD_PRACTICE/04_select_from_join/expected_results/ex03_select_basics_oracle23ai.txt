@@ -1,0 +1,36 @@
+-- 실행 결과: 04_select_from_join/examples/ex03_select_basics_oracle23ai.sql | 엔진: oracle23ai | 실행기: tools/run_labs.py
+== [Q1] FROM 절 없는 SELECT (23ai 부터 허용)
+TWO
+2
+
+1 row selected.
+
+== [Q2] DROP TABLE IF EXISTS (23ai 부터 허용)
+
+Table dropped.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+Commit complete.
+
+== [Q3] GROUP BY 에 SELECT 별칭 사용 (23ai 부터 허용)
+D|S
+10|300
+20|300
+
+2 rows selected.
+
+== [Q4] 버전 확인
+BANNER_FULL
+Oracle AI Database 26ai Free Release 23.26.3.0.0 - Develop, Learn, and Run for Free
+Version 23.26.3.0.0
+
+1 row selected.
+
+Table dropped.

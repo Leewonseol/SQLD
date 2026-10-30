@@ -1,0 +1,19 @@
+-- 실행 결과: 00_common/setup_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+
+(4 rows affected)
+
+(14 rows affected)
+
+(5 rows affected)
+== 적재 확인
+emp_cnt|sum_sal|dept_cnt|grade_cnt
+-------|-------|--------|---------
+14|29025.00|4|5
+
+(1 rows affected)
+common_data_check
+-----------------
+CHECK_PASS
+
+(1 rows affected)

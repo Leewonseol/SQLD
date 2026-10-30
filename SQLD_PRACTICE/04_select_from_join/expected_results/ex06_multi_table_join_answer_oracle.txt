@@ -1,0 +1,34 @@
+-- 실행 결과: 04_select_from_join/answers/ex06_multi_table_join_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 팀별 경기장·선수 수
+
+View created.
+
+View created.
+
+04-ex06-G1: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+TEAM_NAME|STADIUM_NAME|PLAYER_CNT
+바다유나이티드|바다경기장|2
+숲시티|(null)|1
+하늘FC|하늘경기장|2
+
+3 rows selected.
+
+== [G2] 10번 부서 부서명·사원·등급
+
+View created.
+
+View created.
+
+04-ex06-G2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+DNAME|ENAME|GRADE
+ACCOUNTING|CLARK|4
+ACCOUNTING|KING|5
+ACCOUNTING|MILLER|2
+
+3 rows selected.

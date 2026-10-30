@@ -1,0 +1,21 @@
+-- 실행 결과: 04_select_from_join/answers/ex03_select_basics_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 30번 부서 총수령액
+04-ex03-G1: CHECK_PASS (6행)
+ename|total_pay
+-----|---------
+ALLEN|1900.00
+BLAKE|2850.00
+JAMES|950.00
+MARTIN|2650.00
+TURNER|1500.00
+WARD|1750.00
+
+(6 rows affected)
+== [G2] (부서, 직무) 조합 수
+04-ex03-G2: CHECK_PASS (1행)
+combo_cnt
+---------
+9
+
+(1 rows affected)

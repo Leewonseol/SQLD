@@ -1,0 +1,47 @@
+-- 실행 결과: 04_select_from_join/examples/ex04_equi_join_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] Oracle 방식: 조인 조건을 WHERE 에 (골키퍼만)
+
+선수명|등번호|팀명
+강감찬|1|하늘FC
+이순신|21|바다유나이티드
+김유신|31|숲시티
+
+3 rows selected.
+
+== [Q2] ANSI 방식: 조인 조건은 ON, 일반 조건은 WHERE
+
+선수명|등번호|팀명
+강감찬|1|하늘FC
+이순신|21|바다유나이티드
+김유신|31|숲시티
+
+3 rows selected.
+
+== [Q3] 전체 선수-팀 EQUI JOIN: team_id 가 NULL 인 선수(연개소)는 빠진다
+
+PLAYER_NAME|TEAM_ID|TEAM_NAME|REGION_NAME
+강감찬|K01|하늘FC|서울
+을지문|K01|하늘FC|서울
+이순신|K02|바다유나이티드|부산
+권율|K02|바다유나이티드|부산
+김유신|K03|숲시티|대전
+
+5 rows selected.
+
+== [Q4] 테이블 별칭을 준 뒤 원래 테이블명으로 참조 -> 오류 (PDF E-09)
+SELECT player.player_name, t.team_name FROM player p, team t WHERE p.team_id = t.team_id
+       *
+ERROR at line 1:
+ORA-00904: "PLAYER"."PLAYER_NAME": invalid identifier
+
+== [Q5] 양쪽에 같은 이름 컬럼(team_id)을 접두사 없이 SELECT -> 모호성 오류
+SELECT team_id FROM player p JOIN team t ON p.team_id = t.team_id
+       *
+ERROR at line 1:
+ORA-00918: column ambiguously defined
+
+== [Q6] INNER JOIN 에서 ON/USING 생략 -> 오류 (PDF E-14 "ANSI 표준에서는 USING/ON 필수")
+SELECT p.player_name FROM player p INNER JOIN team t
+                                                   *
+ERROR at line 1:
+ORA-00905: missing keyword

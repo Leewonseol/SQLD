@@ -1,0 +1,28 @@
+-- 실행 결과: 04_select_from_join/examples/ex02_clause_order_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] 작성 순서대로 쓴 쿼리
+deptno|cnt
+------|---
+30|5
+20|4
+10|3
+
+(3 rows affected)
+== [Q2] SELECT 절 별칭을 WHERE 에서 사용 -> 오류
+Msg 207, Level 16, State 1, Server a70f428a7f8a, Line 2
+Invalid column name 'annual'.
+== [Q3] SELECT 절 별칭을 ORDER BY 에서 사용 -> 가능
+ename|annual
+-----|------
+KING|60000.00
+FORD|36000.00
+SCOTT|36000.00
+JONES|35700.00
+BLAKE|34200.00
+
+(5 rows affected)
+== [Q4] HAVING 을 GROUP BY 앞에 작성 -> SQL Server 는 구문 오류
+Msg 156, Level 15, State 1, Server a70f428a7f8a, Line 2
+Incorrect syntax near the keyword 'GROUP'.
+== [Q5] GROUP BY 에 SELECT 별칭 사용 -> 오류
+Msg 207, Level 16, State 1, Server a70f428a7f8a, Line 2
+Invalid column name 'd'.

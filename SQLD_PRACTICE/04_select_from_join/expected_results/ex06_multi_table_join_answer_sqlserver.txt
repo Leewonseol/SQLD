@@ -1,0 +1,20 @@
+-- 실행 결과: 04_select_from_join/answers/ex06_multi_table_join_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 팀별 경기장·선수 수
+04-ex06-G1: CHECK_PASS (3행)
+team_name|stadium_name|player_cnt
+---------|------------|----------
+바다유나이티드|바다경기장|2
+숲시티|NULL|1
+하늘FC|하늘경기장|2
+
+(3 rows affected)
+== [G2] 10번 부서 부서명·사원·등급
+04-ex06-G2: CHECK_PASS (3행)
+dname|ename|grade
+-----|-----|-----
+ACCOUNTING|CLARK|4
+ACCOUNTING|KING|5
+ACCOUNTING|MILLER|2
+
+(3 rows affected)

@@ -1,0 +1,45 @@
+-- 실행 결과: 04_select_from_join/examples/ex10_outer_join_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] LEFT OUTER JOIN
+book_id|book_name|writer|publisher_id|publisher_name
+-------|---------|------|------------|--------------
+b01|데미안|헤르만 헤세|1|열린책들
+b02|어린왕자|앙투안 드 생텍쥐페리|2|민음사
+b03|1984|조지 오웰|8|NULL
+b04|나미야 잡화점의 기적|히가시노 게이고|3|현대문학
+
+(4 rows affected)
+== [Q3] RIGHT OUTER JOIN
+book_id|book_name|writer|publisher_id|publisher_name
+-------|---------|------|------------|--------------
+b01|데미안|헤르만 헤세|1|열린책들
+b02|어린왕자|앙투안 드 생텍쥐페리|2|민음사
+b04|나미야 잡화점의 기적|히가시노 게이고|3|현대문학
+NULL|NULL|NULL|NULL|한빛미디어
+
+(4 rows affected)
+== [Q6] FULL OUTER JOIN (NULLS LAST 가 없으므로 CASE 로 NULL 을 뒤로)
+book_id|book_name|writer|publisher_id|publisher_name
+-------|---------|------|------------|--------------
+b01|데미안|헤르만 헤세|1|열린책들
+b02|어린왕자|앙투안 드 생텍쥐페리|2|민음사
+b03|1984|조지 오웰|8|NULL
+b04|나미야 잡화점의 기적|히가시노 게이고|3|현대문학
+NULL|NULL|NULL|NULL|한빛미디어
+
+(5 rows affected)
+== [Q7] LEFT UNION RIGHT 로 FULL 흉내
+book_id|book_name|writer|publisher_id|publisher_name
+-------|---------|------|------------|--------------
+NULL|NULL|NULL|NULL|한빛미디어
+b01|데미안|헤르만 헤세|1|열린책들
+b02|어린왕자|앙투안 드 생텍쥐페리|2|민음사
+b03|1984|조지 오웰|8|NULL
+b04|나미야 잡화점의 기적|히가시노 게이고|3|현대문학
+
+(5 rows affected)
+== [Q2] Oracle (+) 표기 -> 오류
+Msg 102, Level 15, State 1, Server a70f428a7f8a, Line 2
+Incorrect syntax near ')'.
+== [Q9] 옛 *= 표기 -> 오류
+Msg 102, Level 15, State 1, Server a70f428a7f8a, Line 2
+Incorrect syntax near '*='.

@@ -1,0 +1,40 @@
+-- 실행 결과: 04_select_from_join/examples/ex02_clause_order_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] 작성 순서대로 쓴 쿼리: 급여 1000 이상 사원만 남긴 뒤 부서별로 묶고 3명 이상인 부서만
+
+DEPTNO|CNT
+30|5
+20|4
+10|3
+
+3 rows selected.
+
+== [Q2] SELECT 절 별칭을 WHERE 에서 사용 -> 오류 (WHERE 가 SELECT 보다 먼저 처리된다)
+SELECT ename, sal * 12 AS annual FROM emp WHERE annual > 30000
+                                                *
+ERROR at line 1:
+ORA-00904: "ANNUAL": invalid identifier
+
+== [Q3] SELECT 절 별칭을 ORDER BY 에서 사용 -> 가능 (ORDER BY 는 SELECT 다음)
+
+ENAME|ANNUAL
+KING|60000
+FORD|36000
+SCOTT|36000
+JONES|35700
+BLAKE|34200
+
+5 rows selected.
+
+== [Q4] HAVING 을 GROUP BY 앞에 작성 (PDF E-05 "서로 바꿀 수 있으나")
+
+DEPTNO|CNT
+20|5
+30|6
+
+2 rows selected.
+
+== [Q5] GROUP BY 에 SELECT 별칭 사용 -> 19c/21c 에서는 오류 (23ai 는 허용: ex03_select_basics_oracle23ai.sql)
+SELECT deptno AS d, COUNT(*) AS cnt FROM emp GROUP BY d
+                                                      *
+ERROR at line 1:
+ORA-00904: "D": invalid identifier

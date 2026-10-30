@@ -1,0 +1,33 @@
+-- 실행 결과: 04_select_from_join/examples/ex05_non_equi_join_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] PDF 쿼리 그대로: BETWEEN 으로 급여 등급 찾기
+
+사원명|급여|급여등급
+SMITH|800|1
+WARD|1250|2
+MARTIN|1280|2
+ALLEN|1600|3
+JONES|2975|4
+KING|8000|5
+
+6 rows selected.
+
+== [Q2] 같은 의미를 >= / <= 로 (ANSI JOIN ... ON 에 비등가 조건)
+
+ENAME|SAL|GRADE
+SMITH|800|1
+WARD|1250|2
+MARTIN|1280|2
+ALLEN|1600|3
+JONES|2975|4
+KING|8000|5
+
+6 rows selected.
+
+== [Q3] 경계값: 1200 은 1등급, 1200.5 는 어느 구간에도 없다(등급 사이 틈) -> INNER 결과에서 빠짐
+
+SAL|GRADE
+1200|1
+1200.5|(null)
+1201|2
+
+3 rows selected.

@@ -1,0 +1,39 @@
+-- 실행 결과: 04_select_from_join/examples/ex06_multi_table_join_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] 3개 테이블 = 조인 조건 최소 2개 (Oracle WHERE 방식)
+
+PLAYER_NAME|POSITION|REGION_NAME|TEAM_NAME|STADIUM_NAME
+강감찬|GK|서울|하늘FC|하늘경기장
+을지문|DF|서울|하늘FC|하늘경기장
+이순신|GK|부산|바다유나이티드|바다경기장
+권율|FW|부산|바다유나이티드|바다경기장
+
+4 rows selected.
+
+== [Q2] ANSI 방식
+
+PLAYER_NAME|POSITION|REGION_NAME|TEAM_NAME|STADIUM_NAME
+강감찬|GK|서울|하늘FC|하늘경기장
+을지문|DF|서울|하늘FC|하늘경기장
+이순신|GK|부산|바다유나이티드|바다경기장
+권율|FW|부산|바다유나이티드|바다경기장
+
+4 rows selected.
+
+== [Q3] 조인 조건 하나를 빠뜨리면: player-team 은 조인되지만 stadium 과는 카티션 곱 (선수-팀 5행 x 경기장 3 = 15행)
+
+ROWS_MISSING_CONDITION
+15
+
+1 row selected.
+
+== [Q4] 모든 선수를 남기려면 LEFT JOIN 을 연쇄해야 한다
+
+PLAYER_NAME|TEAM_NAME|STADIUM_NAME
+강감찬|하늘FC|하늘경기장
+을지문|하늘FC|하늘경기장
+이순신|바다유나이티드|바다경기장
+권율|바다유나이티드|바다경기장
+김유신|숲시티|(null)
+연개소|(null)|(null)
+
+6 rows selected.

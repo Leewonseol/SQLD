@@ -1,0 +1,31 @@
+-- 실행 결과: 04_select_from_join/examples/ex13_relational_ops_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] SELECT(선택, 행 고르기) 연산 = WHERE 절
+student|course
+-------|------
+민수|DB
+지영|DB
+하늘|DB
+
+(3 rows affected)
+== [Q2] PROJECT(추출, 열 고르기) 연산 = SELECT 절. 관계(집합)는 중복이 없으므로 DISTINCT 까지 붙여야 같은 의미
+student
+-------
+민수
+지영
+하늘
+
+(3 rows affected)
+== [Q3] DIVIDE(나누기): 필수 과목(DB, SQL)을 모두 수강한 학생 = 이중 NOT EXISTS
+student
+-------
+민수
+하늘
+
+(2 rows affected)
+== [Q4] DIVIDE 의 다른 구현: 필수 과목과 조인한 뒤 개수 비교
+student
+-------
+민수
+하늘
+
+(2 rows affected)

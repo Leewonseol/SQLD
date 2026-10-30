@@ -1,0 +1,32 @@
+-- 실행 결과: 04_select_from_join/answers/ex07_self_join_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 관리자보다 급여가 많은 사원
+
+View created.
+
+View created.
+
+04-ex07-G1: CHECK_PASS (2행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|SAL|MGR_NAME|MGR_SAL
+FORD|3000|JONES|2975
+SCOTT|3000|JONES|2975
+
+2 rows selected.
+
+== [G2] 부하가 없는 직원
+
+View created.
+
+View created.
+
+04-ex07-G2: CHECK_PASS (2행)
+
+PL/SQL procedure successfully completed.
+
+NAME
+박현석
+황수지
+
+2 rows selected.

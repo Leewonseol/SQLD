@@ -1,0 +1,41 @@
+-- 실행 결과: 04_select_from_join/examples/ex11_on_vs_where_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] 필터를 ON 에
+cust_id|cust_name|order_id|status
+-------|---------|--------|------
+C01|가나|1001|PAID
+C02|다라|1003|PAID
+C03|마바|NULL|NULL
+C04|사아|NULL|NULL
+
+(4 rows affected)
+== [Q2] 필터를 WHERE 에
+cust_id|cust_name|order_id|status
+-------|---------|--------|------
+C01|가나|1001|PAID
+C02|다라|1003|PAID
+
+(2 rows affected)
+== [Q5] 왼쪽 테이블 조건을 ON 에
+cust_id|grade|order_id
+-------|-----|--------
+C01|VIP|NULL
+C02|GOLD|1003
+C03|GOLD|1004
+C04|NULL|NULL
+
+(4 rows affected)
+== [Q6] 주문 없는 고객
+cust_id|cust_name
+-------|---------
+C04|사아
+
+(1 rows affected)
+== [Q7] 고객별 PAID 주문 수(0 포함)
+cust_id|paid_cnt|row_cnt
+-------|--------|-------
+C01|1|1
+C02|1|1
+C03|0|1
+C04|0|1
+
+(4 rows affected)

@@ -1,0 +1,22 @@
+-- 실행 결과: 04_select_from_join/answers/ex02_clause_order_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 급여 1500 이상, 직무별 인원·평균(2명 이상)
+04-ex02-G1: CHECK_PASS (3행)
+job|cnt|avg_sal
+---|---|-------
+ANALYST|2|3000.000000
+MANAGER|3|2758.300000
+SALESMAN|2|1550.000000
+
+(3 rows affected)
+== [G2] 연봉 30000 이상 (계산식 1회)
+04-ex02-G2: CHECK_PASS (5행)
+ename|annual
+-----|------
+BLAKE|34200.00
+FORD|36000.00
+JONES|35700.00
+KING|60000.00
+SCOTT|36000.00
+
+(5 rows affected)

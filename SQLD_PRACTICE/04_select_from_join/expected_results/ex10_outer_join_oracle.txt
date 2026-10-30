@@ -1,0 +1,74 @@
+-- 실행 결과: 04_select_from_join/examples/ex10_outer_join_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] LEFT OUTER JOIN: 모든 책 + 짝이 없는 출판사 값은 NULL
+
+BOOK_ID|BOOK_NAME|WRITER|PUBLISHER_ID|PUBLISHER_NAME
+b01|데미안|헤르만 헤세|1|열린책들
+b02|어린왕자|앙투안 드 생텍쥐페리|2|민음사
+b03|1984|조지 오웰|8|(null)
+b04|나미야 잡화점의 기적|히가시노 게이고|3|현대문학
+
+4 rows selected.
+
+== [Q2] Oracle (+): NULL 이 채워질 쪽(출판사) 컬럼에 (+)
+
+BOOK_ID|BOOK_NAME|WRITER|PUBLISHER_ID|PUBLISHER_NAME
+b01|데미안|헤르만 헤세|1|열린책들
+b02|어린왕자|앙투안 드 생텍쥐페리|2|민음사
+b03|1984|조지 오웰|8|(null)
+b04|나미야 잡화점의 기적|히가시노 게이고|3|현대문학
+
+4 rows selected.
+
+== [Q3] RIGHT OUTER JOIN: 모든 출판사 + 책이 없는 출판사(4 한빛미디어)는 책 쪽 NULL
+
+BOOK_ID|BOOK_NAME|WRITER|PUBLISHER_ID|PUBLISHER_NAME
+b01|데미안|헤르만 헤세|1|열린책들
+b02|어린왕자|앙투안 드 생텍쥐페리|2|민음사
+b04|나미야 잡화점의 기적|히가시노 게이고|3|현대문학
+(null)|(null)|(null)|(null)|한빛미디어
+
+4 rows selected.
+
+== [Q4] PDF E-19 원문 구문 "(+)b.Publisher_id = p.Publisher_id" -> 오류 ((+) 는 컬럼 뒤에 붙는다)
+SELECT b.book_id, p.publisher_name FROM book_list b, publisher p WHERE (+)b.publisher_id = p.publisher_id
+                                                                         *
+ERROR at line 1:
+ORA-00936: missing expression
+
+== [Q5] RIGHT 의 올바른 (+) 표기: b.publisher_id(+) = p.publisher_id
+
+BOOK_ID|BOOK_NAME|WRITER|PUBLISHER_ID|PUBLISHER_NAME
+b01|데미안|헤르만 헤세|1|열린책들
+b02|어린왕자|앙투안 드 생텍쥐페리|2|민음사
+b04|나미야 잡화점의 기적|히가시노 게이고|3|현대문학
+(null)|(null)|(null)|(null)|한빛미디어
+
+4 rows selected.
+
+== [Q6] FULL OUTER JOIN: 4 + 1 = 5행 (b03 의 출판사 NULL, 한빛미디어의 책 NULL)
+
+BOOK_ID|BOOK_NAME|WRITER|PUBLISHER_ID|PUBLISHER_NAME
+b01|데미안|헤르만 헤세|1|열린책들
+b02|어린왕자|앙투안 드 생텍쥐페리|2|민음사
+b03|1984|조지 오웰|8|(null)
+b04|나미야 잡화점의 기적|히가시노 게이고|3|현대문학
+(null)|(null)|(null)|(null)|한빛미디어
+
+5 rows selected.
+
+== [Q7] PDF 의 FULL 대체: (+) 왼쪽 + (+) 오른쪽을 UNION
+
+BOOK_ID|BOOK_NAME|WRITER|PUBLISHER_ID|PUBLISHER_NAME
+b01|데미안|헤르만 헤세|1|열린책들
+b02|어린왕자|앙투안 드 생텍쥐페리|2|민음사
+b03|1984|조지 오웰|8|(null)
+b04|나미야 잡화점의 기적|히가시노 게이고|3|현대문학
+(null)|(null)|(null)|(null)|한빛미디어
+
+5 rows selected.
+
+== [Q8] (+) 를 양쪽에 동시에 -> 오류 (FULL 을 (+) 로 직접 쓸 수 없다)
+SELECT b.book_id FROM book_list b, publisher p WHERE b.publisher_id(+) = p.publisher_id(+)
+                                                                       *
+ERROR at line 1:
+ORA-01468: a predicate may reference only one outer-joined table

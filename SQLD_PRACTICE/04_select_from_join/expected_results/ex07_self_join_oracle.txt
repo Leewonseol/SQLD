@@ -1,0 +1,62 @@
+-- 실행 결과: 04_select_from_join/examples/ex07_self_join_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] PDF E-12 쿼리 원문 그대로: WHERE E1.EMP_ID = E2.EMP_ID (자기 자신과 조인됨)
+
+EMP_ID|NAME|MGR_ID|E2_EMP_ID|E2_NAME
+100|KING|(null)|100|KING
+101|ALLEN|100|101|ALLEN
+102|WARD|100|102|WARD
+103|JONES|102|103|JONES
+104|MARTIN|101|104|MARTIN
+105|SMITH|103|105|SMITH
+
+6 rows selected.
+
+== [Q2] PDF 결과표를 만드는 조건: 사원(E1)의 MGR_ID = 관리자(E2)의 EMP_ID
+
+EMP_ID|NAME|MGR_ID|MGR_EMP_ID|MGR_NAME
+101|ALLEN|100|100|KING
+102|WARD|100|100|KING
+103|JONES|102|102|WARD
+104|MARTIN|101|101|ALLEN
+105|SMITH|103|103|JONES
+
+5 rows selected.
+
+== [Q3] 관리자가 없는 KING 도 출력: OUTER JOIN
+
+EMP_ID|NAME|MGR_NAME
+100|KING|(null)
+101|ALLEN|KING
+102|WARD|KING
+103|JONES|WARD
+104|MARTIN|ALLEN
+105|SMITH|JONES
+
+6 rows selected.
+
+== [Q4] PDF E-02 쿼리 원문 그대로: a.직원ID = b.상사ID, a.이름 AS 직원이름, b.이름 AS 상사
+
+직원이름|상사
+나사장|김철수
+나사장|이지현
+김철수|황수지
+이지현|박현석
+
+4 rows selected.
+
+== [Q5] PDF E-02 결과표(나사장-NULL 포함 5행)를 만드는 쿼리
+
+직원이름|상사
+나사장|(null)
+김철수|나사장
+이지현|나사장
+황수지|김철수
+박현석|이지현
+
+5 rows selected.
+
+== [Q6] 같은 테이블을 두 번 쓰면서 별칭을 생략 -> 오류
+SELECT name FROM staff, staff
+       *
+ERROR at line 1:
+ORA-00918: column ambiguously defined

@@ -1,0 +1,39 @@
+-- 실행 결과: 04_select_from_join/answers/ex05_non_equi_join_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 등급 4 이상 사원
+
+View created.
+
+View created.
+
+04-ex05-G1: CHECK_PASS (6행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|SAL|GRADE
+BLAKE|2850|4
+CLARK|2450|4
+FORD|3000|4
+JONES|2975|4
+KING|5000|5
+SCOTT|3000|4
+
+6 rows selected.
+
+== [G2] 등급별 사원 수
+
+View created.
+
+View created.
+
+04-ex05-G2: CHECK_PASS (5행)
+
+PL/SQL procedure successfully completed.
+
+GRADE|CNT
+1|3
+2|3
+3|2
+4|5
+5|1
+
+5 rows selected.

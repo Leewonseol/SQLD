@@ -1,0 +1,36 @@
+-- 실행 결과: 04_select_from_join/answers/ex02_clause_order_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 급여 1500 이상, 직무별 인원·평균(2명 이상)
+
+View created.
+
+View created.
+
+04-ex02-G1: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+JOB|CNT|AVG_SAL
+ANALYST|2|3000
+MANAGER|3|2758.3
+SALESMAN|2|1550
+
+3 rows selected.
+
+== [G2] 연봉 30000 이상 (계산식 1회)
+
+View created.
+
+View created.
+
+04-ex02-G2: CHECK_PASS (5행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|ANNUAL
+BLAKE|34200
+FORD|36000
+JONES|35700
+KING|60000
+SCOTT|36000
+
+5 rows selected.

@@ -1,0 +1,63 @@
+-- 실행 결과: 04_select_from_join/examples/ex11_on_vs_where_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] 필터를 ON 에: 고객 4명 모두 남고, PAID 주문만 짝지어진다
+
+CUST_ID|CUST_NAME|ORDER_ID|STATUS
+C01|가나|1001|PAID
+C02|다라|1003|PAID
+C03|마바|(null)|(null)
+C04|사아|(null)|(null)
+
+4 rows selected.
+
+== [Q2] 필터를 WHERE 에: 짝이 없는 행(o.status 가 NULL)이 WHERE 에서 제거 -> 사실상 INNER JOIN
+
+CUST_ID|CUST_NAME|ORDER_ID|STATUS
+C01|가나|1001|PAID
+C02|다라|1003|PAID
+
+2 rows selected.
+
+== [Q3] Oracle (+) 로 Q1 과 같은 결과: 상수 조건에도 (+) 를 붙여야 한다
+
+CUST_ID|CUST_NAME|ORDER_ID|STATUS
+C01|가나|1001|PAID
+C02|다라|1003|PAID
+C03|마바|(null)|(null)
+C04|사아|(null)|(null)
+
+4 rows selected.
+
+== [Q4] (+) 를 상수 조건에서 빠뜨리면 Q2 와 같아진다
+
+CUST_ID|CUST_NAME|ORDER_ID|STATUS
+C01|가나|1001|PAID
+C02|다라|1003|PAID
+
+2 rows selected.
+
+== [Q5] 기준(왼쪽) 테이블 조건을 ON 에 두면 왼쪽 행을 거르지 못한다: GOLD 가 아닌 고객도 그대로 남음
+
+CUST_ID|GRADE|ORDER_ID
+C01|VIP|(null)
+C02|GOLD|1003
+C03|GOLD|1004
+C04|(null)|(null)
+
+4 rows selected.
+
+== [Q6] 주문이 하나도 없는 고객 (안티 조인 패턴)
+
+CUST_ID|CUST_NAME
+C04|사아
+
+1 row selected.
+
+== [Q7] 고객별 PAID 주문 수(0 포함): COUNT(o.order_id) 는 NULL 을 세지 않는다
+
+CUST_ID|PAID_CNT|ROW_CNT
+C01|1|1
+C02|1|1
+C03|0|1
+C04|0|1
+
+4 rows selected.

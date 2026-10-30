@@ -1,0 +1,55 @@
+-- 실행 결과: 04_select_from_join/examples/ex07_self_join_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] PDF E-12 쿼리 원문 그대로
+emp_id|name|mgr_id|e2_emp_id|e2_name
+------|----|------|---------|-------
+100|KING|NULL|100|KING
+101|ALLEN|100|101|ALLEN
+102|WARD|100|102|WARD
+103|JONES|102|103|JONES
+104|MARTIN|101|104|MARTIN
+105|SMITH|103|105|SMITH
+
+(6 rows affected)
+== [Q2] e1.mgr_id = e2.emp_id
+emp_id|name|mgr_id|mgr_emp_id|mgr_name
+------|----|------|----------|--------
+101|ALLEN|100|100|KING
+102|WARD|100|100|KING
+103|JONES|102|102|WARD
+104|MARTIN|101|101|ALLEN
+105|SMITH|103|103|JONES
+
+(5 rows affected)
+== [Q3] OUTER JOIN
+emp_id|name|mgr_name
+------|----|--------
+100|KING|NULL
+101|ALLEN|KING
+102|WARD|KING
+103|JONES|WARD
+104|MARTIN|ALLEN
+105|SMITH|JONES
+
+(6 rows affected)
+== [Q4] PDF E-02 쿼리 원문 그대로
+직원이름|상사
+----|--
+나사장|김철수
+나사장|이지현
+김철수|황수지
+이지현|박현석
+
+(4 rows affected)
+== [Q5] PDF E-02 결과표를 만드는 쿼리
+직원이름|상사
+----|--
+나사장|NULL
+김철수|나사장
+이지현|나사장
+황수지|김철수
+박현석|이지현
+
+(5 rows affected)
+== [Q6] 별칭 없이 같은 테이블 두 번 -> 오류
+Msg 1013, Level 16, State 1, Server a70f428a7f8a, Line 2
+The objects "staff" and "staff" in the FROM clause have the same exposed names. Use correlation names to distinguish them.
