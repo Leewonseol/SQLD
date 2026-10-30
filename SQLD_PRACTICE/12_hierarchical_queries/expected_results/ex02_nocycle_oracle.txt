@@ -1,0 +1,20 @@
+-- 실행 결과: 12_hierarchical_queries/examples/ex02_nocycle_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] PDF: 순환 데이터인데 NOCYCLE 을 쓰지 않으면 오류
+ERROR:
+ORA-01436: CONNECT BY loop in user data
+
+no rows selected
+
+== [Q2] PDF: NOCYCLE + CONNECT_BY_ISCYCLE (자식이 조상과 같아 순환이 생기는 행 = 1)
+
+EMP_ID|NAME|LEVEL|IS_CYCLE
+1000|홍길동|1|0
+2000|강감찬|2|1
+
+2 rows selected.
+
+== [Q3] NOCYCLE 없이 CONNECT_BY_ISCYCLE 을 쓰면 오류
+SELECT emp_id, CONNECT_BY_ISCYCLE FROM emp1 START WITH emp_id = 1000 CONNECT BY PRIOR emp_id = mgr_id
+                                                                                *
+ERROR at line 1:
+ORA-30930: NOCYCLE keyword is required with CONNECT_BY_ISCYCLE pseudocolumn

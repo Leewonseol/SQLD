@@ -1,0 +1,32 @@
+-- 실행 결과: 12_hierarchical_queries/examples/ex03_recursive_with_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] 재귀 CTE
+emp_name|mgr_name|lvl|path
+--------|--------|---|----
+A|NULL|1|/A
+B|A|2|/A/B
+C|A|2|/A/C
+D|C|3|/A/C/D
+
+(4 rows affected)
+== [Q2] 깊이 우선 순서: 이름 경로로 정렬
+org|lvl
+---|---
+KING|1
+..BLAKE|2
+....ALLEN|3
+....JAMES|3
+....MARTIN|3
+....TURNER|3
+....WARD|3
+..CLARK|2
+....MILLER|3
+..JONES|2
+....FORD|3
+......SMITH|4
+....SCOTT|3
+......ADAMS|4
+
+(14 rows affected)
+== [Q3] 재귀 부분의 형이 기준 부분과 다르면 오류 (CAST 를 빼면)
+Msg 240, Level 16, State 1, Server a70f428a7f8a, Line 2
+Types don't match between the anchor and the recursive part in column "path" of recursive query "t".

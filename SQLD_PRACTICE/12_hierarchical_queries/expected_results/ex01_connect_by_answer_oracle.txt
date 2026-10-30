@@ -1,0 +1,40 @@
+-- 실행 결과: 12_hierarchical_queries/answers/ex01_connect_by_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] LEVEL 3 사원
+
+View created.
+
+View created.
+
+12-ex01-G1: CHECK_PASS (8행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|MGR|LVL
+ALLEN|7698|3
+FORD|7566|3
+JAMES|7698|3
+MARTIN|7698|3
+MILLER|7782|3
+SCOTT|7566|3
+TURNER|7698|3
+WARD|7698|3
+
+8 rows selected.
+
+== [G2] JONES 의 모든 부하
+
+View created.
+
+View created.
+
+12-ex01-G2: CHECK_PASS (4행)
+
+PL/SQL procedure successfully completed.
+
+ENAME
+ADAMS
+FORD
+SCOTT
+SMITH
+
+4 rows selected.

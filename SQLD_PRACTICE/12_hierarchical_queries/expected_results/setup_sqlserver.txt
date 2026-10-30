@@ -1,0 +1,6 @@
+-- 실행 결과: 12_hierarchical_queries/setup_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+
+(4 rows affected)
+
+(2 rows affected)

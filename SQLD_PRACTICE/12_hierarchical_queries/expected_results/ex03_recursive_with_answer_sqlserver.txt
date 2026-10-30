@@ -1,0 +1,29 @@
+-- 실행 결과: 12_hierarchical_queries/answers/ex03_recursive_with_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 상위 관리자 수
+12-ex03-G1: CHECK_PASS (14행)
+ename|mgr_cnt
+-----|-------
+ADAMS|3
+ALLEN|2
+BLAKE|1
+CLARK|1
+FORD|2
+JAMES|2
+JONES|1
+KING|0
+MARTIN|2
+MILLER|2
+SCOTT|2
+SMITH|3
+TURNER|2
+WARD|2
+
+(14 rows affected)
+== [G2] BLAKE 조직 급여 합계
+12-ex03-G2: CHECK_PASS (1행)
+total
+-----
+9400.00
+
+(1 rows affected)

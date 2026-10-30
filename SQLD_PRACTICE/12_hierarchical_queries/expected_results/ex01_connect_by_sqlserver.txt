@@ -1,0 +1,21 @@
+-- 실행 결과: 12_hierarchical_queries/examples/ex01_connect_by_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q0] CONNECT BY 구문 -> 오류
+Msg 336, Level 15, State 1, Server a70f428a7f8a, Line 2
+Incorrect syntax near 'mgr_name'. If this is intended to be a common table expression, you need to explicitly terminate the previous statement with a semi-colon.
+== [Q1] 재귀 CTE 로 PDF 결과표 재현: 루트·경로·LEVEL·리프 여부
+루트사원|경로|사원|관리자|lvl|is_leaf
+----|--|--|---|---|-------
+A|/A|A|NULL|1|0
+A|/A/B|B|A|2|1
+A|/A/C|C|A|2|0
+A|/A/C/D|D|C|3|1
+
+(4 rows affected)
+== [Q2] 역방향: D 에서 루트까지
+lvl|emp_name|mgr_name|path
+---|--------|--------|----
+1|D|C|/D
+2|C|A|/D/C
+3|A|NULL|/D/C/A
+
+(3 rows affected)

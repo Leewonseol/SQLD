@@ -1,0 +1,39 @@
+-- 실행 결과: 12_hierarchical_queries/examples/ex03_recursive_with_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] 재귀 WITH 로 CONNECT BY 와 같은 결과 (열 이름 목록 필수)
+
+EMP_NAME|MGR_NAME|LVL|PATH
+A|(null)|1|/A
+B|A|2|/A/B
+C|A|2|/A/C
+D|C|3|/A/C/D
+
+4 rows selected.
+
+== [Q2] SEARCH DEPTH FIRST BY (ORDER SIBLINGS BY 와 같은 깊이 우선 순서)
+
+ORG|LVL
+KING|1
+. BLAKE|2
+... ALLEN|3
+... JAMES|3
+... MARTIN|3
+... TURNER|3
+... WARD|3
+. CLARK|2
+... MILLER|3
+. JONES|2
+... FORD|3
+..... SMITH|4
+... SCOTT|3
+..... ADAMS|4
+
+14 rows selected.
+
+== [Q3] CYCLE 절로 순환 감지 (EMP1)
+
+EMP_ID|NAME|LVL|IS_CYCLE
+1000|홍길동|1|N
+2000|강감찬|2|N
+1000|홍길동|3|Y
+
+3 rows selected.

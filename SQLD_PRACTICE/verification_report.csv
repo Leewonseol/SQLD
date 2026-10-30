@@ -267,3 +267,17 @@ file,engine,status,errors_found,errors_expected,unexpected,missing,check_pass,ch
 11_window_functions/examples/ex06_group_by_vs_window_sqlserver.sql,sqlserver,OK,,,,,0,0
 11_window_functions/setup_oracle.sql,oracle,OK,,,,,0,0
 11_window_functions/setup_sqlserver.sql,sqlserver,OK,,,,,0,0
+12_hierarchical_queries/answers/ex01_connect_by_answer_oracle.sql,oracle,OK,,,,,2,0
+12_hierarchical_queries/answers/ex01_connect_by_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+12_hierarchical_queries/answers/ex02_nocycle_answer_oracle.sql,oracle,OK,,,,,2,0
+12_hierarchical_queries/answers/ex02_nocycle_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+12_hierarchical_queries/answers/ex03_recursive_with_answer_oracle.sql,oracle,OK,,,,,2,0
+12_hierarchical_queries/answers/ex03_recursive_with_answer_sqlserver.sql,sqlserver,OK,,,,,2,0
+12_hierarchical_queries/examples/ex01_connect_by_oracle.sql,oracle,OK,,,,,0,0
+12_hierarchical_queries/examples/ex01_connect_by_sqlserver.sql,sqlserver,OK,MSG-336,MSG-336,,,0,0
+12_hierarchical_queries/examples/ex02_nocycle_oracle.sql,oracle,OK,ORA-01436 ORA-30930,ORA-01436 ORA-30930,,,0,0
+12_hierarchical_queries/examples/ex02_nocycle_sqlserver.sql,sqlserver,OK,MSG-530,MSG-530,,,0,0
+12_hierarchical_queries/examples/ex03_recursive_with_oracle.sql,oracle,OK,,,,,0,0
+12_hierarchical_queries/examples/ex03_recursive_with_sqlserver.sql,sqlserver,OK,MSG-240,MSG-240,,,0,0
+12_hierarchical_queries/setup_oracle.sql,oracle,OK,,,,,0,0
+12_hierarchical_queries/setup_sqlserver.sql,sqlserver,OK,,,,,0,0
