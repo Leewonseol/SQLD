@@ -1,0 +1,21 @@
+-- 실행 결과: 06_group_having/answers/ex03_having_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 평균 2000 이상·3명 이상 부서
+06-ex03-G1: CHECK_PASS (2행)
+deptno|avg_sal
+------|-------
+10|2916.700000
+20|2175.000000
+
+(2 rows affected)
+== [G2] 커미션이 모두 NULL 인 부서
+Warning: Null value is eliminated by an aggregate or other SET operation.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+06-ex03-G2: CHECK_PASS (2행)
+deptno
+------
+10
+20
+
+(2 rows affected)

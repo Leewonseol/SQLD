@@ -1,0 +1,27 @@
+-- 실행 결과: 05_where_conditions/answers/ex02_in_not_in_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 관리자 7566·7788·NULL
+05-ex02-G1: CHECK_PASS (4행)
+ename|mgr
+-----|---
+ADAMS|7788
+FORD|7566
+KING|NULL
+SCOTT|7566
+
+(4 rows affected)
+== [G2] 관리자가 7698 이 아닌 사원(NULL 포함)
+05-ex02-G2: CHECK_PASS (9행)
+ename
+-----
+ADAMS
+BLAKE
+CLARK
+FORD
+JONES
+KING
+MILLER
+SCOTT
+SMITH
+
+(9 rows affected)

@@ -1,0 +1,30 @@
+-- 실행 결과: 05_where_conditions/answers/ex07_type_conversion_in_where_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] code = '10'
+
+View created.
+
+View created.
+
+05-ex07-G1: CHECK_PASS (1행)
+
+PL/SQL procedure successfully completed.
+
+ID|CODE
+4|10
+
+1 row selected.
+
+== [G2] 숫자 1 로 해석되는 code 수(오류 없이)
+
+View created.
+
+View created.
+
+05-ex07-G2: CHECK_PASS (1행)
+
+PL/SQL procedure successfully completed.
+
+CNT
+3
+
+1 row selected.

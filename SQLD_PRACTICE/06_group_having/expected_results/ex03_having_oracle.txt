@@ -1,0 +1,48 @@
+-- 실행 결과: 06_group_having/examples/ex03_having_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] HAVING: 그룹 조건. SELECT 에 없는 집계로도 거를 수 있다
+
+DEPTNO|CNT
+10|3
+20|5
+
+2 rows selected.
+
+== [Q2] 그룹 컬럼 조건은 WHERE 와 HAVING 어느 쪽이든 결과가 같다 (WHERE 가 먼저 줄여서 보통 더 효율적)
+
+DEPTNO|CNT
+10|3
+20|5
+
+2 rows selected.
+
+DEPTNO|CNT
+10|3
+20|5
+
+2 rows selected.
+
+== [Q3] WHERE 와 HAVING 의 결과가 다른 경우: 급여 조건을 어디에 두는가
+
+DEPTNO|CNT
+10|2
+20|3
+30|2
+
+3 rows selected.
+
+no rows selected
+
+== [Q4] GROUP BY 없는 HAVING: 테이블 전체가 한 그룹. 조건이 거짓이면 0행
+
+no rows selected
+
+CNT
+14
+
+1 row selected.
+
+== [Q5] HAVING 에 그룹 컬럼도 집계도 아닌 컬럼 -> 오류
+SELECT deptno, COUNT(*) FROM emp GROUP BY deptno HAVING sal > 1000
+                                                        *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression

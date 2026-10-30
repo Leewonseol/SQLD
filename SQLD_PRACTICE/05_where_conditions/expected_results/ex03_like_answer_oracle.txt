@@ -1,0 +1,36 @@
+-- 실행 결과: 05_where_conditions/answers/ex03_like_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] A 포함 5글자 이름
+
+View created.
+
+View created.
+
+05-ex03-G1: CHECK_PASS (5행)
+
+PL/SQL procedure successfully completed.
+
+ENAME
+ADAMS
+ALLEN
+BLAKE
+CLARK
+JAMES
+
+5 rows selected.
+
+== [G2] 대소문자 무시 a 시작, _ 미포함
+
+View created.
+
+View created.
+
+05-ex03-G2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+ID|TXT
+2|AXB
+3|AB
+6|ab
+
+3 rows selected.

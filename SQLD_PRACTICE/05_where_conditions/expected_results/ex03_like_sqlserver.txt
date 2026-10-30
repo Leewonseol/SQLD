@@ -1,0 +1,63 @@
+-- 실행 결과: 05_where_conditions/examples/ex03_like_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] _A%
+ename
+-----
+JAMES
+MARTIN
+WARD
+
+(3 rows affected)
+== [Q2] %S
+ename
+-----
+ADAMS
+JAMES
+JONES
+
+(3 rows affected)
+== [Q3] A_B 패턴
+id|txt
+--|---
+1|A_B
+2|AXB
+
+(2 rows affected)
+== [Q4] ESCAPE
+id|txt
+--|---
+1|A_B
+
+(1 rows affected)
+== [Q5] % 문자 자체
+id|txt
+--|---
+4|100%
+
+(1 rows affected)
+== [Q6] 대소문자: 기본 데이터 정렬 CI(대소문자 구분 안 함) -> ab 도 A% 에 일치
+id|txt
+--|---
+1|A_B
+2|AXB
+3|AB
+6|ab
+
+(4 rows affected)
+== [Q7] NULL 과 LIKE %
+like_all|total
+--------|-----
+6|7
+
+(1 rows affected)
+== [Q8] SQL Server 전용: [ ] 문자 집합. 대괄호로 _ 를 감싸도 문자 그대로
+id|txt
+--|---
+1|A_B
+
+(1 rows affected)
+id|txt
+--|---
+4|100%
+5|1000
+
+(2 rows affected)

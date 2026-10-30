@@ -1,0 +1,31 @@
+-- 실행 결과: 05_where_conditions/answers/ex06_aggregate_in_where_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 4명 이상 직무
+
+View created.
+
+View created.
+
+05-ex06-G1: CHECK_PASS (2행)
+
+PL/SQL procedure successfully completed.
+
+JOB|CNT
+CLERK|4
+SALESMAN|4
+
+2 rows selected.
+
+== [G2] 최고 급여자
+
+View created.
+
+View created.
+
+05-ex06-G2: CHECK_PASS (1행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|SAL
+KING|5000
+
+1 row selected.

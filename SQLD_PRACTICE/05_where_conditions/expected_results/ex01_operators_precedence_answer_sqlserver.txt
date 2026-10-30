@@ -1,0 +1,19 @@
+-- 실행 결과: 05_where_conditions/answers/ex01_operators_precedence_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 20/30번 부서, 급여 1500 이상 3000 미만
+05-ex01-G1: CHECK_PASS (4행)
+ename|deptno|sal
+-----|------|---
+ALLEN|30|1600.00
+BLAKE|30|2850.00
+JONES|20|2975.00
+TURNER|30|1500.00
+
+(4 rows affected)
+== [G2] CLERK 이 아니고 커미션 없음(NULL 또는 0)
+05-ex01-G2: CHECK_PASS (1행)
+cnt
+---
+7
+
+(1 rows affected)

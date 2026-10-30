@@ -1,0 +1,16 @@
+-- 실행 결과: 05_where_conditions/answers/ex05_null_three_valued_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 커미션 500 미만 또는 NULL
+05-ex05-G1: CHECK_PASS (1행)
+cnt
+---
+12
+
+(1 rows affected)
+== [G2] 관리자 7698 아님: NULL 제외/포함
+05-ex05-G2: CHECK_PASS (1행)
+excl_null|incl_null
+---------|---------
+8|9
+
+(1 rows affected)

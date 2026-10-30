@@ -1,0 +1,35 @@
+-- 실행 결과: 05_where_conditions/answers/ex04_between_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 1981-01-01 ~ 1981-06-30 입사
+
+View created.
+
+View created.
+
+05-ex04-G1: CHECK_PASS (5행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|HIRE_YMD
+ALLEN|1981-02-20
+BLAKE|1981-05-01
+CLARK|1981-06-09
+JONES|1981-04-02
+WARD|1981-02-22
+
+5 rows selected.
+
+== [G2] 2024-03-31 하루 전체
+
+View created.
+
+View created.
+
+05-ex04-G2: CHECK_PASS (2행)
+
+PL/SQL procedure successfully completed.
+
+ID
+3
+4
+
+2 rows selected.

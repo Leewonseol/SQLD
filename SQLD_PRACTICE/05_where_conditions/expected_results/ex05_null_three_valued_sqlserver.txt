@@ -1,0 +1,43 @@
+-- 실행 결과: 05_where_conditions/examples/ex05_null_three_valued_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] = NULL (ANSI_NULLS ON 기본)
+eq_null
+-------
+0
+
+(1 rows affected)
+== [Q2] IS NULL / IS NOT NULL
+is_null|is_not_null
+-------|-----------
+10|4
+
+(1 rows affected)
+== [Q3] 부정 조건과 NULL
+gt0|not_gt0
+---|-------
+3|1
+
+(1 rows affected)
+== [Q4] 진리표
+a|b|a_and_b|a_or_b|not_a
+-|-|-------|------|-----
+TRUE|UNKNOWN|UNKNOWN|TRUE|FALSE
+FALSE|UNKNOWN|FALSE|UNKNOWN|TRUE
+UNKNOWN|UNKNOWN|UNKNOWN|UNKNOWN|UNKNOWN
+
+(3 rows affected)
+== [Q5] SQL Server 에서 빈 문자열은 NULL 이 아니다
+
+(1 rows affected)
+eq_empty|empty_string
+--------|------------
+1|EMPTY_IS_NOT_NULL
+
+(1 rows affected)
+
+(1 rows affected)
+== [Q6] (참고·비권장) SET ANSI_NULLS OFF 이면 = NULL 이 참이 된다. 향후 버전에서 제거 예정 기능
+eq_null_ansi_off
+----------------
+10
+
+(1 rows affected)

@@ -1,0 +1,31 @@
+-- 실행 결과: 06_group_having/answers/ex04_logical_order_trace_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 근무지별 집계 최상위 1곳
+
+View created.
+
+View created.
+
+06-ex04-G1: CHECK_PASS (1행)
+
+PL/SQL procedure successfully completed.
+
+LOC|CNT|TOTAL
+DALLAS|4|10075
+
+1 row selected.
+
+== [G2] 직무 내림차순 2~3번째
+
+View created.
+
+View created.
+
+06-ex04-G2: CHECK_PASS (2행)
+
+PL/SQL procedure successfully completed.
+
+JOB
+MANAGER
+PRESIDENT
+
+2 rows selected.

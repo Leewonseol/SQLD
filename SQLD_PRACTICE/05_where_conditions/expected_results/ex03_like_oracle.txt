@@ -1,0 +1,58 @@
+-- 실행 결과: 05_where_conditions/examples/ex03_like_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] _ 는 정확히 한 글자: 두 번째 글자가 A 인 이름
+
+ENAME
+JAMES
+MARTIN
+WARD
+
+3 rows selected.
+
+== [Q2] % 는 0글자 이상: S 로 끝나는 이름
+
+ENAME
+ADAMS
+JAMES
+JONES
+
+3 rows selected.
+
+== [Q3] 'A_B' 패턴: _ 가 와일드카드라 A_B, AXB 둘 다 일치 (AB 는 가운데 글자가 없어 불일치)
+
+ID|TXT
+1|A_B
+2|AXB
+
+2 rows selected.
+
+== [Q4] ESCAPE 로 _ 를 문자 그대로: A_B 만
+
+ID|TXT
+1|A_B
+
+1 row selected.
+
+== [Q5] % 문자 자체를 찾기: 100% 만
+
+ID|TXT
+4|100%
+
+1 row selected.
+
+== [Q6] 대소문자: Oracle 기본 비교는 대소문자를 구분 -> 'ab' 는 'A%' 에 불일치
+
+ID|TXT
+1|A_B
+2|AXB
+3|AB
+
+3 rows selected.
+
+== [Q7] NULL 은 LIKE '%' 에도 일치하지 않는다
+
+LIKE_ALL|TOTAL
+6|7
+
+1 row selected.
+
+(참고: COUNT(*) 와 스칼라 서브쿼리를 한 SELECT 에 섞으면 Oracle 은 오류(not a single-group group function), SQL Server 는 허용)

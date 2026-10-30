@@ -1,0 +1,18 @@
+-- 실행 결과: 06_group_having/answers/ex01_aggregates_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 사원 수·커미션 수·커미션 평균(NULL=0)
+Warning: Null value is eliminated by an aggregate or other SET operation.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+06-ex01-G1: CHECK_PASS (1행)
+emp_cnt|comm_cnt|avg_comm
+-------|--------|--------
+14|4|157.140000
+
+(1 rows affected)
+== [G2] 40번 부서 인원·합계(0)
+06-ex01-G2: CHECK_PASS (1행)
+cnt|total
+---|-----
+0|.00
+
+(1 rows affected)

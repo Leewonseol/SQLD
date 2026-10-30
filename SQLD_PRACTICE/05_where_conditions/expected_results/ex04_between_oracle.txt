@@ -1,0 +1,56 @@
+-- 실행 결과: 05_where_conditions/examples/ex04_between_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] 양 끝 포함: 1250 이상 1600 이하
+
+ENAME|SAL
+MARTIN|1250
+WARD|1250
+MILLER|1300
+TURNER|1500
+ALLEN|1600
+
+5 rows selected.
+
+== [Q2] 순서를 거꾸로 쓰면 (sal >= 1600 AND sal <= 1250) 이 되어 0행
+
+CNT
+0
+
+1 row selected.
+
+== [Q3] NOT BETWEEN: 양 끝 미포함 범위 밖
+
+ENAME|SAL
+SMITH|800
+JAMES|950
+ADAMS|1100
+KING|5000
+
+4 rows selected.
+
+== [Q4] 시각이 포함된 DATE 에 날짜만으로 BETWEEN: 3월 31일 15시가 빠진다
+
+ID|TS
+1|2024-03-01 00:00
+2|2024-03-15 09:30
+3|2024-03-31 00:00
+
+3 rows selected.
+
+== [Q5] 반열린 구간으로 해결: ts >= 3/1 AND ts < 4/1
+
+ID|TS
+1|2024-03-01 00:00
+2|2024-03-15 09:30
+3|2024-03-31 00:00
+4|2024-03-31 15:00
+
+4 rows selected.
+
+== [Q6] 문자열 BETWEEN 은 사전순: 'A' ~ 'C' 는 'C' 로 시작하는 긴 이름(CLARK)을 포함하지 않는다
+
+ENAME
+ADAMS
+ALLEN
+BLAKE
+
+3 rows selected.

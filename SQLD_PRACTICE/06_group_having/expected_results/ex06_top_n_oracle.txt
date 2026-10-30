@@ -1,0 +1,85 @@
+-- 실행 결과: 06_group_having/examples/ex06_top_n_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] WHERE ROWNUM > 1 : 오류는 없지만 0행 (첫 행이 ROWNUM 1 이라 탈락 -> 다음 행이 다시 1 ...)
+
+CNT
+0
+
+1 row selected.
+
+== [Q2] WHERE ROWNUM = 3 : 0행 (1, 2 가 먼저 부여되지 않으면 3 에 도달하지 못한다)
+
+CNT
+0
+
+1 row selected.
+
+== [Q3] WHERE ROWNUM >= 1 : 전체 14행 / ROWNUM = 1 : 1행
+
+GE1|EQ1
+14|1
+
+1 row selected.
+
+== [Q4] ROWNUM <= 3 : 3행. 어떤 3행인지는 읽는 순서(실행 계획)에 달려 있다 -> 단정 불가
+
+ROWNUM|ENAME|SAL
+1|SMITH|800
+2|ALLEN|1600
+3|WARD|1250
+
+3 rows selected.
+
+== [Q5] PDF 의 '잘못된 상위 3명' 쿼리: ROWNUM 이 ORDER BY 보다 먼저 -> 먼저 읽힌 3행을 정렬할 뿐
+
+ENAME|SAL
+ALLEN|1600
+WARD|1250
+SMITH|800
+
+3 rows selected.
+
+== [Q6] 올바른 TOP-N: 인라인 뷰에서 먼저 정렬(동점은 ename 으로 결정) -> 바깥에서 ROWNUM
+
+RN|ENAME|SAL
+1|KING|5000
+2|FORD|3000
+3|SCOTT|3000
+
+3 rows selected.
+
+== [Q7] 12c 이상: FETCH FIRST n ROWS ONLY / WITH TIES / PERCENT / OFFSET
+
+ENAME|SAL
+KING|5000
+FORD|3000
+SCOTT|3000
+
+3 rows selected.
+
+ENAME|SAL
+KING|5000
+SCOTT|3000
+FORD|3000
+
+3 rows selected.
+
+PCT20_ROWS
+3
+
+1 row selected.
+
+ENAME|SAL
+JONES|2975
+BLAKE|2850
+CLARK|2450
+
+3 rows selected.
+
+== [Q8] 페이지 처리(4~6위)를 ROWNUM 으로: 안쪽에서 ROWNUM 을 별칭으로 고정해야 바깥에서 > 비교 가능
+
+RN|ENAME|SAL
+4|JONES|2975
+5|BLAKE|2850
+6|CLARK|2450
+
+3 rows selected.

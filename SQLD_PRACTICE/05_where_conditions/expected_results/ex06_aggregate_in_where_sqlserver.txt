@@ -1,0 +1,22 @@
+-- 실행 결과: 05_where_conditions/examples/ex06_aggregate_in_where_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] WHERE 에 집계함수 -> 오류
+Msg 147, Level 15, State 1, Server a70f428a7f8a, Line 2
+An aggregate may not appear in the WHERE clause unless it is in a subquery contained in a HAVING clause or a select list, and the column being aggregated is an outer reference.
+== [Q2] HAVING
+deptno|avg_sal
+------|-------
+10|2916.670000
+20|2175.000000
+
+(2 rows affected)
+== [Q3] 서브쿼리
+ename|sal
+-----|---
+KING|5000.00
+FORD|3000.00
+SCOTT|3000.00
+JONES|2975.00
+BLAKE|2850.00
+CLARK|2450.00
+
+(6 rows affected)

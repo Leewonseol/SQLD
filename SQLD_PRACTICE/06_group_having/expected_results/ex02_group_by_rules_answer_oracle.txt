@@ -1,0 +1,39 @@
+-- 실행 결과: 06_group_having/answers/ex02_group_by_rules_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 입사 연도별 인원·최고 급여
+
+View created.
+
+View created.
+
+06-ex02-G1: CHECK_PASS (4행)
+
+PL/SQL procedure successfully completed.
+
+HIRE_YEAR|CNT|MAX_SAL
+1980|1|800
+1981|10|5000
+1982|1|1300
+1987|2|3000
+
+4 rows selected.
+
+== [G2] 관리자별 부하 수(NULL 그룹 포함)
+
+View created.
+
+View created.
+
+06-ex02-G2: CHECK_PASS (7행)
+
+PL/SQL procedure successfully completed.
+
+MGR|CNT
+7566|2
+7698|5
+7782|1
+7788|1
+7839|3
+7902|1
+(null)|1
+
+7 rows selected.

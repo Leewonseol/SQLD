@@ -1,0 +1,26 @@
+-- 실행 결과: 05_where_conditions/examples/ex06_aggregate_in_where_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] WHERE 에 집계함수 -> 오류
+SELECT deptno FROM emp WHERE AVG(sal) > 2000 GROUP BY deptno
+                             *
+ERROR at line 1:
+ORA-00934: group function is not allowed here
+
+== [Q2] 그룹 조건은 HAVING 으로
+
+DEPTNO|AVG_SAL
+10|2916.67
+20|2175
+
+2 rows selected.
+
+== [Q3] 전체 집계값과 행을 비교하려면 서브쿼리 (WHERE 안에서 집계는 서브쿼리 안에서만)
+
+ENAME|SAL
+KING|5000
+FORD|3000
+SCOTT|3000
+JONES|2975
+BLAKE|2850
+CLARK|2450
+
+6 rows selected.

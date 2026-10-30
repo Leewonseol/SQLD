@@ -1,0 +1,20 @@
+-- 실행 결과: 06_group_having/answers/ex06_top_n_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] 가장 먼저 입사한 3명
+06-ex06-G1: CHECK_PASS (3행)
+ename|hire_ymd
+-----|--------
+ALLEN|1981-02-20
+SMITH|1980-12-17
+WARD|1981-02-22
+
+(3 rows affected)
+== [G2] 상위 2개 급여 값의 사원(동점 포함)
+06-ex06-G2: CHECK_PASS (3행)
+ename|sal
+-----|---
+FORD|3000.00
+KING|5000.00
+SCOTT|3000.00
+
+(3 rows affected)

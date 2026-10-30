@@ -1,0 +1,106 @@
+-- 실행 결과: 06_group_having/examples/ex05_order_by_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] ASC 기본: Oracle 은 NULL 을 가장 큰 값으로 보아 맨 뒤에
+
+ENAME|COMM
+TURNER|0
+ALLEN|300
+WARD|500
+MARTIN|1400
+BLAKE|(null)
+JAMES|(null)
+
+6 rows selected.
+
+== [Q2] DESC: NULL 이 맨 앞
+
+ENAME|COMM
+BLAKE|(null)
+JAMES|(null)
+MARTIN|1400
+WARD|500
+ALLEN|300
+TURNER|0
+
+6 rows selected.
+
+== [Q3] NULLS FIRST / NULLS LAST 로 위치 지정 (PDF 의 "NULL LAST | NULL FISRT" 는 오기, 정확한 키워드는 NULLS)
+
+ENAME|COMM
+BLAKE|(null)
+JAMES|(null)
+TURNER|0
+ALLEN|300
+WARD|500
+MARTIN|1400
+
+6 rows selected.
+
+ENAME|COMM
+MARTIN|1400
+WARD|500
+ALLEN|300
+TURNER|0
+BLAKE|(null)
+JAMES|(null)
+
+6 rows selected.
+
+== [Q4] 별칭·위치 번호·표현식, 여러 키와 서로 다른 방향
+
+DEPTNO|ENAME|ANNUAL
+20|SMITH|9600
+20|ADAMS|13200
+20|JONES|35700
+20|FORD|36000
+20|SCOTT|36000
+10|MILLER|15600
+10|CLARK|29400
+10|KING|60000
+
+8 rows selected.
+
+== [Q5] SELECT 에 없는 컬럼으로 정렬 (GROUP BY·DISTINCT 가 없으면 허용)
+
+ENAME
+KING
+CLARK
+MILLER
+
+3 rows selected.
+
+== [Q6] DISTINCT 와 SELECT 에 없는 컬럼 정렬 -> 오류
+SELECT DISTINCT job FROM emp ORDER BY sal
+                                      *
+ERROR at line 1:
+ORA-01791: not a SELECTed expression
+
+== [Q7] GROUP BY 후 그룹 컬럼도 집계도 아닌 컬럼으로 정렬 -> 오류
+SELECT deptno, COUNT(*) FROM emp GROUP BY deptno ORDER BY ename
+                                                          *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+== [Q8] GROUP BY 후 SELECT 에 없는 '그룹 컬럼'이나 '집계'로 정렬 -> 허용 (PDF E-08 서술과 비교)
+
+DEPTNO|CNT
+20|2
+10|1
+20|2
+30|1
+
+4 rows selected.
+
+DEPTNO
+30
+20
+10
+
+3 rows selected.
+
+== [Q9] 인라인 뷰 안의 ORDER BY: Oracle 은 허용
+
+ENAME|SAL
+KING|5000
+SCOTT|3000
+
+2 rows selected.

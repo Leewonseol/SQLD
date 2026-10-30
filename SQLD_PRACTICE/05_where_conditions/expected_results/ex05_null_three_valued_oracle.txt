@@ -1,0 +1,37 @@
+-- 실행 결과: 05_where_conditions/examples/ex05_null_three_valued_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] = NULL 은 항상 UNKNOWN -> 0행
+
+EQ_NULL
+0
+
+1 row selected.
+
+== [Q2] IS NULL / IS NOT NULL
+
+IS_NULL|IS_NOT_NULL
+10|4
+
+1 row selected.
+
+== [Q3] 부정 조건도 NULL 행을 돌려주지 않는다: comm > 0 (3) + NOT (comm > 0) (1) = 4 ≠ 14
+
+GT0|NOT_GT0
+3|1
+
+1 row selected.
+
+== [Q4] 진리표: UNKNOWN 과 AND/OR/NOT
+
+A|B|A_AND_B|A_OR_B|NOT_A
+TRUE|UNKNOWN|UNKNOWN|TRUE|FALSE
+FALSE|UNKNOWN|FALSE|UNKNOWN|TRUE
+UNKNOWN|UNKNOWN|UNKNOWN|UNKNOWN|UNKNOWN
+
+3 rows selected.
+
+== [Q5] Oracle 에서 빈 문자열 '' 은 NULL 이다 -> = '' 도 0행, '' IS NULL 은 참
+
+EQ_EMPTY|EMPTY_STRING
+0|EMPTY_IS_NULL
+
+1 row selected.

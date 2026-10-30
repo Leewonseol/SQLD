@@ -1,0 +1,36 @@
+-- 실행 결과: 06_group_having/examples/ex01_aggregates_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] COUNT(*) / COUNT(v) / COUNT(DISTINCT v)
+cnt_star|cnt_v|cnt_dist_v
+--------|-----|----------
+5|4|3
+
+(1 rows affected)
+== [Q2] SUM·AVG·MAX·MIN (v 가 INT 라 AVG 도 INT: 11/4 = 2)
+sum_v|avg_v|max_v|min_v|sum_div_all|avg_isnull|avg_decimal
+-----|-----|-----|-----|-----------|----------|-----------
+11|2|4|1|2|2|2.750000
+
+(1 rows affected)
+== [Q3] 정수 평균 (1, 2) -> 1 (소수 버림)
+avg_v|avg_v_float
+-----|-----------
+1|1.500000
+
+(1 rows affected)
+== [Q4] 빈 집합 집계
+cnt|sum_v|avg_v|max_v
+---|-----|-----|-----
+0|NULL|NULL|NULL
+
+(1 rows affected)
+== [Q5] 빈 집합 + GROUP BY
+v|cnt
+-|---
+
+(0 rows affected)
+== [Q6] 분산·표준편차 함수 이름: SQL Server VAR / STDEV
+var_sal|std_sal
+-------|-------
+1398313.8700000001|1182.5
+
+(1 rows affected)

@@ -1,0 +1,46 @@
+-- 실행 결과: 05_where_conditions/examples/ex02_in_not_in_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] IN (목록) = OR 의 연속
+
+ENAME|MGR
+ALLEN|7698
+WARD|7698
+JONES|7839
+MARTIN|7698
+BLAKE|7839
+CLARK|7839
+TURNER|7698
+JAMES|7698
+
+8 rows selected.
+
+== [Q2] IN 목록에 NULL 을 넣어도 mgr 이 NULL 인 KING 은 나오지 않는다 (NULL = NULL 은 UNKNOWN)
+
+ENAME|MGR
+JONES|7839
+BLAKE|7839
+CLARK|7839
+
+3 rows selected.
+
+== [Q3] NOT IN (7839) : mgr 이 NULL 인 KING 은 'mgr <> 7839' 가 UNKNOWN 이라 제외
+
+CNT
+10
+
+1 row selected.
+
+== [Q4] NOT IN 목록에 NULL 이 하나라도 있으면 결과는 항상 0행
+
+CNT
+0
+
+1 row selected.
+
+== [Q5] 다중 컬럼 IN (Oracle 지원)
+
+ENAME|DEPTNO|JOB
+SCOTT|20|ANALYST
+FORD|20|ANALYST
+MILLER|10|CLERK
+
+3 rows selected.

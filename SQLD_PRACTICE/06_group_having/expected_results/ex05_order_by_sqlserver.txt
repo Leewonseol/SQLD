@@ -1,0 +1,93 @@
+-- 실행 결과: 06_group_having/examples/ex05_order_by_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] ASC: SQL Server 는 NULL 을 가장 작은 값으로 보아 맨 앞에
+ename|comm
+-----|----
+BLAKE|NULL
+JAMES|NULL
+TURNER|.00
+ALLEN|300.00
+WARD|500.00
+MARTIN|1400.00
+
+(6 rows affected)
+== [Q2] DESC: NULL 이 맨 뒤
+ename|comm
+-----|----
+MARTIN|1400.00
+WARD|500.00
+ALLEN|300.00
+TURNER|.00
+BLAKE|NULL
+JAMES|NULL
+
+(6 rows affected)
+== [Q3] NULLS LAST 키워드 없음 -> 구문 오류
+Msg 102, Level 15, State 1, Server a70f428a7f8a, Line 2
+Incorrect syntax near 'NULLS'.
+== [Q3b] CASE 로 NULLS FIRST / NULLS LAST 흉내
+ename|comm
+-----|----
+BLAKE|NULL
+JAMES|NULL
+TURNER|.00
+ALLEN|300.00
+WARD|500.00
+MARTIN|1400.00
+
+(6 rows affected)
+ename|comm
+-----|----
+MARTIN|1400.00
+WARD|500.00
+ALLEN|300.00
+TURNER|.00
+BLAKE|NULL
+JAMES|NULL
+
+(6 rows affected)
+== [Q4] 별칭·위치 번호·여러 키
+deptno|ename|annual
+------|-----|------
+20|SMITH|9600.00
+20|ADAMS|13200.00
+20|JONES|35700.00
+20|FORD|36000.00
+20|SCOTT|36000.00
+10|MILLER|15600.00
+10|CLARK|29400.00
+10|KING|60000.00
+
+(8 rows affected)
+== [Q5] SELECT 에 없는 컬럼으로 정렬
+ename
+-----
+KING
+CLARK
+MILLER
+
+(3 rows affected)
+== [Q6] DISTINCT + SELECT 에 없는 컬럼 정렬 -> 오류
+Msg 145, Level 15, State 1, Server a70f428a7f8a, Line 2
+ORDER BY items must appear in the select list if SELECT DISTINCT is specified.
+== [Q7] GROUP BY + 비그룹 컬럼 정렬 -> 오류
+Msg 8127, Level 16, State 1, Server a70f428a7f8a, Line 2
+Column "emp.ename" is invalid in the ORDER BY clause because it is not contained in either an aggregate function or the GROUP BY clause.
+== [Q8] GROUP BY + SELECT 에 없는 그룹 컬럼·집계 정렬 -> 허용
+deptno|cnt
+------|---
+20|2
+10|1
+20|2
+30|1
+
+(4 rows affected)
+deptno
+------
+30
+20
+10
+
+(3 rows affected)
+== [Q9] 파생 테이블 안의 ORDER BY (TOP 없이) -> 오류
+Msg 1033, Level 15, State 1, Server a70f428a7f8a, Line 2
+The ORDER BY clause is invalid in views, inline functions, derived tables, subqueries, and common table expressions, unless TOP, OFFSET or FOR XML is also specified.

@@ -1,0 +1,32 @@
+-- 실행 결과: 06_group_having/answers/ex03_having_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 평균 2000 이상·3명 이상 부서
+
+View created.
+
+View created.
+
+06-ex03-G1: CHECK_PASS (2행)
+
+PL/SQL procedure successfully completed.
+
+DEPTNO|AVG_SAL
+10|2916.7
+20|2175
+
+2 rows selected.
+
+== [G2] 커미션이 모두 NULL 인 부서
+
+View created.
+
+View created.
+
+06-ex03-G2: CHECK_PASS (2행)
+
+PL/SQL procedure successfully completed.
+
+DEPTNO
+10
+20
+
+2 rows selected.

@@ -1,0 +1,22 @@
+-- 실행 결과: 05_where_conditions/answers/ex03_like_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Changed database context to 'SQLD_LAB'.
+== [G1] A 포함 5글자 이름
+05-ex03-G1: CHECK_PASS (5행)
+ename
+-----
+ADAMS
+ALLEN
+BLAKE
+CLARK
+JAMES
+
+(5 rows affected)
+== [G2] 대소문자 무시 a 시작, _ 미포함
+05-ex03-G2: CHECK_PASS (3행)
+id|txt
+--|---
+2|AXB
+3|AB
+6|ab
+
+(3 rows affected)

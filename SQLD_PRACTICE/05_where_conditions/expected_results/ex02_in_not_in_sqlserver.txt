@@ -1,0 +1,45 @@
+-- 실행 결과: 05_where_conditions/examples/ex02_in_not_in_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] IN (목록)
+ename|mgr
+-----|---
+ALLEN|7698
+WARD|7698
+JONES|7839
+MARTIN|7698
+BLAKE|7839
+CLARK|7839
+TURNER|7698
+JAMES|7698
+
+(8 rows affected)
+== [Q2] IN 목록의 NULL
+ename|mgr
+-----|---
+JONES|7839
+BLAKE|7839
+CLARK|7839
+
+(3 rows affected)
+== [Q3] NOT IN (7839)
+cnt
+---
+10
+
+(1 rows affected)
+== [Q4] NOT IN 목록에 NULL
+cnt
+---
+0
+
+(1 rows affected)
+== [Q5] 다중 컬럼 IN -> SQL Server 미지원(구문 오류)
+Msg 4145, Level 15, State 1, Server a70f428a7f8a, Line 2
+An expression of non-boolean type specified in a context where a condition is expected, near ','.
+== [Q6] 다중 컬럼 IN 대체: OR 로 풀어 쓰기
+ename|deptno|job
+-----|------|---
+SCOTT|20|ANALYST
+FORD|20|ANALYST
+MILLER|10|CLERK
+
+(3 rows affected)

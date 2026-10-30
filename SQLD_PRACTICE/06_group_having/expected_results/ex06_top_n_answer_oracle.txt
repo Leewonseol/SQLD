@@ -1,0 +1,34 @@
+-- 실행 결과: 06_group_having/answers/ex06_top_n_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [G1] 가장 먼저 입사한 3명
+
+View created.
+
+View created.
+
+06-ex06-G1: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|HIRE_YMD
+ALLEN|1981-02-20
+SMITH|1980-12-17
+WARD|1981-02-22
+
+3 rows selected.
+
+== [G2] 상위 2개 급여 값의 사원(동점 포함)
+
+View created.
+
+View created.
+
+06-ex06-G2: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+ENAME|SAL
+FORD|3000
+KING|5000
+SCOTT|3000
+
+3 rows selected.

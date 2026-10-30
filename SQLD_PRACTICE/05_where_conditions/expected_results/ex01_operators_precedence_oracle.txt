@@ -1,0 +1,44 @@
+-- 실행 결과: 05_where_conditions/examples/ex01_operators_precedence_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] 괄호 없음: AND 가 OR 보다 먼저 -> job='SALESMAN' OR (job='MANAGER' AND sal > 2800)
+
+ENAME|JOB|SAL
+ALLEN|SALESMAN|1600
+WARD|SALESMAN|1250
+JONES|MANAGER|2975
+MARTIN|SALESMAN|1250
+BLAKE|MANAGER|2850
+TURNER|SALESMAN|1500
+
+6 rows selected.
+
+== [Q2] 괄호로 OR 를 먼저
+
+ENAME|JOB|SAL
+JONES|MANAGER|2975
+BLAKE|MANAGER|2850
+
+2 rows selected.
+
+== [Q3] NOT 은 비교 연산자보다 늦게, AND 보다 먼저: NOT deptno = 10 AND sal > 2000 = (NOT (deptno = 10)) AND sal > 2000
+
+ENAME|DEPTNO|SAL
+JONES|20|2975
+BLAKE|30|2850
+SCOTT|20|3000
+FORD|20|3000
+
+4 rows selected.
+
+== [Q4] 부정 비교 연산자 != , ^= , <> , NOT 컬럼 = (모두 같은 결과 건수)
+
+NE1|NE2|NE3|NE4|NOT_GT
+8|8|8|8|8
+
+1 row selected.
+
+== [Q5] SQL 연산자의 부정: NOT BETWEEN, NOT IN, NOT LIKE, IS NOT NULL
+
+ENAME|SAL|COMM
+SMITH|800|(null)
+
+1 row selected.
