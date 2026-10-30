@@ -1,0 +1,37 @@
+-- 실행 결과: 03_normalization/examples/ex02_anomalies_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+== [Q1] 삽입 이상: 수강생이 없는 새 과목 C4(데이터베이스) 를 등록할 수 없다 (PK 일부인 stu_no 에 NULL 불가)
+INSERT INTO n03_enroll (stu_no, course_cd, course_nm) VALUES (NULL, 'C4', '데이터베이스')
+                                                              *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SQLD_LAB"."N03_ENROLL"."STU_NO")
+
+== [Q2] 갱신 이상: DB 학과장을 바꾸면서 일부 행만 바꾸면 같은 학과에 학과장이 둘이 된다
+
+2 rows updated.
+
+DEPT|HEADS|HEAD_VALUES
+AI|1|정교수
+DB|2|박교수,한교수
+
+2 rows selected.
+
+Rollback complete.
+
+== [Q3] 삭제 이상: S3 의 C3 수강 기록을 지우면 '통계' 과목의 존재 자체가 사라진다
+
+1 row deleted.
+
+C3_ROWS_LEFT
+0
+
+1 row selected.
+
+Rollback complete.
+
+== [Q4] 중복 저장량: 같은 사실(학과장, 과목명)이 몇 번 반복 저장되는가
+
+WHAT|STORED|DISTINCT_FACTS
+dept_head 저장 횟수|5|2
+course_nm 저장 횟수|5|3
+
+2 rows selected.

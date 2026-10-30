@@ -1,0 +1,22 @@
+-- 실행 결과: 03_normalization/examples/ex01_functional_dependency_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] 함수 종속 검사: 각 X 그룹에서 Y 가 2개 이상이면 위반
+fd|violations
+--|----------
+stu_no -> stu_name|0
+stu_no -> dept|0
+dept -> dept_head|0
+course_cd -> course_nm|0
+(stu_no,course_cd) -> grade|0
+dept -> stu_name (종속 아님)|1
+course_cd -> grade (종속 아님)|2
+
+(7 rows affected)
+== [Q2] 종속의 종류 판별 (기본키 = stu_no + course_cd)
+  완전 함수 종속 : (stu_no, course_cd) -> grade          (키 전체에 종속)
+  부분 함수 종속 : stu_no -> stu_name, dept / course_cd -> course_nm   (키의 일부에 종속 -> 2NF 위반)
+  이행 함수 종속 : stu_no -> dept -> dept_head            (키가 아닌 속성을 거쳐 종속 -> 3NF 위반)
+rows_total|students|courses|depts
+----------|--------|-------|-----
+5|3|3|2
+
+(1 rows affected)

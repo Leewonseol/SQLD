@@ -1,0 +1,62 @@
+-- 실행 결과: 03_normalization/examples/ex07_denormalization_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+Table created.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row updated.
+
+Commit complete.
+
+== [Q1] 반정규화 값과 원천 값의 일치 검사 쿼리 (불일치 행 수)
+
+MISMATCHES
+0
+
+1 row selected.
+
+== [Q2] 상세만 바꾸고 합계를 갱신하지 않으면 불일치가 생긴다 (갱신 이상의 재등장)
+
+1 row updated.
+
+MISMATCHES
+1
+
+1 row selected.
+
+Rollback complete.
+
+== [Q3] 트리거로 동기화: 상세가 바뀌면 합계를 다시 계산 (문장 단위 트리거)
+
+Trigger created.
+
+1 row updated.
+
+1 row created.
+
+ORD_ID|TOTAL_AMT
+1|650
+
+1 row selected.
+
+MISMATCHES
+0
+
+1 row selected.
+
+Rollback complete.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.

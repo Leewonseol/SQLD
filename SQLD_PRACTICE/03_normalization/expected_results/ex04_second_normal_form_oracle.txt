@@ -1,0 +1,47 @@
+-- 실행 결과: 03_normalization/examples/ex04_second_normal_form_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+== [Q1] 분해: 학번에만 종속된 속성 -> 학생, 과목코드에만 종속 -> 과목, 키 전체에 종속 -> 수강
+
+Table created.
+
+Table created.
+
+Table created.
+
+Table altered.
+
+Table altered.
+
+Table altered.
+
+Table altered.
+
+Table altered.
+
+STUDENTS|COURSES|ENROLLS
+3|3|5
+
+1 row selected.
+
+== [Q2] 무손실 분해 검증: 분해한 테이블을 JOIN 하면 원래 테이블과 정확히 같은가 (양방향 차집합 0)
+
+DIFF_ROWS
+0
+
+1 row selected.
+
+== [Q3] 이상 현상 해소: 수강생 없는 새 과목을 등록할 수 있다
+
+1 row created.
+
+COURSES_NOW
+4
+
+1 row selected.
+
+Rollback complete.

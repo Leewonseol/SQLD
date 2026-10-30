@@ -1,0 +1,63 @@
+-- 실행 결과: 03_normalization/answers/ex04_order_ledger_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+Commit complete.
+
+Table created.
+
+Table created.
+
+Table created.
+
+Table created.
+
+Table created.
+
+Table altered.
+
+Table altered.
+
+Table altered.
+
+Table altered.
+
+Table altered.
+
+Table altered.
+
+Table altered.
+
+Table altered.
+
+Table altered.
+
+View created.
+
+View created.
+
+03-G4-lossless: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+GRADES|CUSTS|PRODUCTS|ORDERS|ITEMS
+2|2|2|2|3
+
+1 row selected.

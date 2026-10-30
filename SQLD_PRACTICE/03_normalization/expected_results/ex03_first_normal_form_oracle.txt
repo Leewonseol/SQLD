@@ -1,0 +1,53 @@
+-- 실행 결과: 03_normalization/examples/ex03_first_normal_form_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+== [Q1] 1NF 위반: 한 칸에 여러 값('SQL,독서')
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+== [Q2] 다중값 컬럼 검색의 함정: 'SQL' 을 LIKE 로 찾으면 'NoSQL' 도 걸린다
+
+STU_NO
+S1
+S2
+S3
+
+3 rows selected.
+
+== [Q3] 1NF 로 분해: (학번, 취미) 한 행에 하나씩. 정규식으로 쉼표 목록을 행으로 펼친다
+
+Table created.
+
+6 rows created.
+
+STU_NO|HOBBY
+S1|SQL
+S1|독서
+S2|NoSQL
+S3|SQL
+S3|독서
+S3|등산
+
+6 rows selected.
+
+== [Q4] 정확한 검색: = 비교
+
+STU_NO
+S1
+S3
+
+2 rows selected.
+
+Rollback complete.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.

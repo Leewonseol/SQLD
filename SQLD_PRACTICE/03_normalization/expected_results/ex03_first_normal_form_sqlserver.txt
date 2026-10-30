@@ -1,0 +1,32 @@
+-- 실행 결과: 03_normalization/examples/ex03_first_normal_form_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] 1NF 위반 테이블
+
+(3 rows affected)
+== [Q2] LIKE 함정
+stu_no
+------
+S1
+S2
+S3
+
+(3 rows affected)
+== [Q3] 1NF 로 분해
+
+(6 rows affected)
+stu_no|hobby
+------|-----
+S1|SQL
+S1|독서
+S2|NoSQL
+S3|SQL
+S3|독서
+S3|등산
+
+(6 rows affected)
+== [Q4] 정확한 검색
+stu_no
+------
+S1
+S3
+
+(2 rows affected)

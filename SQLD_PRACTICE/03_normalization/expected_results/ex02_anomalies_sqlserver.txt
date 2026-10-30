@@ -1,0 +1,29 @@
+-- 실행 결과: 03_normalization/examples/ex02_anomalies_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] 삽입 이상
+Msg 515, Level 16, State 2, Server a70f428a7f8a, Line 2
+Cannot insert the value NULL into column 'stu_no', table 'SQLD_LAB.dbo.n03_enroll'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+== [Q2] 갱신 이상
+
+(2 rows affected)
+dept|heads|head_values
+----|-----|-----------
+AI|1|정교수
+DB|2|박교수,한교수
+
+(2 rows affected)
+== [Q3] 삭제 이상
+
+(1 rows affected)
+c3_rows_left
+------------
+0
+
+(1 rows affected)
+== [Q4] 중복 저장량
+what|stored|distinct_facts
+----|------|--------------
+dept_head 저장 횟수|5|2
+course_nm 저장 횟수|5|3
+
+(2 rows affected)

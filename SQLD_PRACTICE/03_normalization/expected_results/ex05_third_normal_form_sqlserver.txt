@@ -1,0 +1,40 @@
+-- 실행 결과: 03_normalization/examples/ex05_third_normal_form_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] 정규화 전
+emp_no|name|dept_no|dept_name|dept_loc
+------|----|-------|---------|--------
+2401|김지민|100|영업부|서울
+2402|이사원|101|개발부|서울
+2403|유현지|201|생산부|부산
+
+(3 rows affected)
+== [Q2] 정규화 전 쿼리
+emp_no|name|dept_name
+------|----|---------
+2401|김지민|영업부
+
+(1 rows affected)
+== [Q3] 3NF 분해
+
+(3 rows affected)
+
+(3 rows affected)
+== [Q4] 정규화 후 쿼리(조인)
+emp_no|name|dept_name
+------|----|---------
+2401|김지민|영업부
+
+(1 rows affected)
+== [Q5] 무손실 검증
+diff_rows
+---------
+0
+
+(1 rows affected)
+== [Q6] 부서 위치 변경은 한 행만
+
+(1 rows affected)
+emp_no|dept_loc
+------|--------
+2401|대전
+
+(1 rows affected)

@@ -1,0 +1,26 @@
+-- 실행 결과: 03_normalization/examples/ex06_bcnf_lossy_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+(3 rows affected)
+== [Q1] 함수 종속 확인
+prof_to_course_viol|course_to_prof_viol
+-------------------|-------------------
+0|1
+
+(1 rows affected)
+== [Q2] 잘못된 분해 -> 가짜 행
+student|course|prof
+-------|------|----
+s1|DB|P3
+s1|SQL|P1
+s1|SQL|P2
+s2|SQL|P1
+s2|SQL|P2
+
+(5 rows affected)
+== [Q3] BCNF 분해 -> 무손실
+student|course|prof
+-------|------|----
+s1|DB|P3
+s1|SQL|P1
+s2|SQL|P2
+
+(3 rows affected)

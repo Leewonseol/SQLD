@@ -1,0 +1,44 @@
+-- 실행 결과: 03_normalization/examples/ex06_bcnf_lossy_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+Commit complete.
+
+== [Q1] 함수 종속 확인: prof -> course 는 성립(위반 0), course -> prof 는 불성립(SQL 에 교수 둘)
+
+PROF_TO_COURSE_VIOL|COURSE_TO_PROF_VIOL
+0|1
+
+1 row selected.
+
+== [Q2] 잘못된 분해 (학생, 과목) + (과목, 교수) 를 과목으로 다시 조인 -> 원래 3행보다 많은 가짜 행 (손실 분해)
+
+STUDENT|COURSE|PROF
+s1|DB|P3
+s1|SQL|P1
+s1|SQL|P2
+s2|SQL|P1
+s2|SQL|P2
+
+5 rows selected.
+
+== [Q3] BCNF 분해 (교수, 과목) + (학생, 교수) 를 교수로 조인 -> 원래 3행 그대로 (무손실)
+
+STUDENT|COURSE|PROF
+s1|DB|P3
+s1|SQL|P1
+s2|SQL|P2
+
+3 rows selected.
+
+== [Q4] 대가: BCNF 분해 후에는 '(학생, 과목) -> 교수'(학생은 과목당 교수 1명)를 한 테이블의 PK/UNIQUE 로 강제할 수 없다
+(과목이 다른 테이블에 있어서) -> 종속성 보존 손실. 트리거 등이 필요하다 (설계 설명, 실행 대상 아님)
+
+PL/SQL procedure successfully completed.

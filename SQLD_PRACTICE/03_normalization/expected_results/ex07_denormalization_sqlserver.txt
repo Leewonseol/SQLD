@@ -1,0 +1,35 @@
+-- 실행 결과: 03_normalization/examples/ex07_denormalization_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+(1 rows affected)
+
+(2 rows affected)
+
+(1 rows affected)
+== [Q1] 일치 검사
+mismatches
+----------
+0
+
+(1 rows affected)
+== [Q2] 상세만 바꾸면 불일치
+
+(1 rows affected)
+mismatches
+----------
+1
+
+(1 rows affected)
+== [Q3] 트리거로 동기화
+
+(1 rows affected)
+
+(1 rows affected)
+ord_id|total_amt
+------|---------
+1|650
+
+(1 rows affected)
+mismatches
+----------
+0
+
+(1 rows affected)

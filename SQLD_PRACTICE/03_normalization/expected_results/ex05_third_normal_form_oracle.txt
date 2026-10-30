@@ -1,0 +1,57 @@
+-- 실행 결과: 03_normalization/examples/ex05_third_normal_form_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+== [Q1] PDF E-01: 사원(사번 PK, 이름, 부서번호, 부서명, 부서위치) 에서 사번 -> 부서번호 -> 부서명·부서위치 (이행 종속)
+
+EMP_NO|NAME|DEPT_NO|DEPT_NAME|DEPT_LOC
+2401|김지민|100|영업부|서울
+2402|이사원|101|개발부|서울
+2403|유현지|201|생산부|부산
+
+3 rows selected.
+
+== [Q2] PDF 정규화 전 쿼리(사번 2401 의 사번·이름·부서명). PDF 원문 'WHERE 사='2401'' 은 컬럼명 오기 -> 사번
+
+EMP_NO|NAME|DEPT_NAME
+2401|김지민|영업부
+
+1 row selected.
+
+== [Q3] 3NF 분해: 사원(사번, 이름, 부서번호 FK) + 부서(부서번호 PK, 부서명, 부서위치)
+
+Table created.
+
+Table created.
+
+Table altered.
+
+Table altered.
+
+Table altered.
+
+== [Q4] PDF 정규화 후 쿼리: 함께 보려면 조인이 필요하다 (조인 키 = 외래키 부서번호)
+
+EMP_NO|NAME|DEPT_NAME
+2401|김지민|영업부
+
+1 row selected.
+
+== [Q5] 무손실 검증: 분해 후 JOIN 결과 = 원래 테이블
+
+DIFF_ROWS
+0
+
+1 row selected.
+
+== [Q6] 갱신 이상 해소: 부서 위치 변경은 부서 테이블 한 행만
+
+1 row updated.
+
+EMP_NO|DEPT_LOC
+2401|대전
+
+1 row selected.
+
+Rollback complete.
