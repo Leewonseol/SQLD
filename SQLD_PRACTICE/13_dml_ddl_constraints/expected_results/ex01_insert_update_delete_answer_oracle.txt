@@ -1,0 +1,28 @@
+-- 실행 결과: 13_dml_ddl_constraints/answers/ex01_insert_update_delete_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+Table created.
+
+1 row created.
+
+1 row updated.
+
+1 row deleted.
+
+Commit complete.
+
+View created.
+
+View created.
+
+13-ex01-G1: CHECK_PASS (4행)
+
+PL/SQL procedure successfully completed.
+
+DEPTNO|DNAME|LOC
+10|ACCOUNTING|NEW YORK
+30|SALES|CHICAGO
+40|OPERATIONS|BUSAN
+50|IT|SEOUL
+
+4 rows selected.

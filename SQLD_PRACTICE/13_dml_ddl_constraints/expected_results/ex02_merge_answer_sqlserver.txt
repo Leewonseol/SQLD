@@ -1,0 +1,12 @@
+-- 실행 결과: 13_dml_ddl_constraints/answers/ex02_merge_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+(2 rows affected)
+
+(2 rows affected)
+13-ex02-G1: CHECK_PASS (3행)
+item|qty
+----|---
+box|4
+ink|5
+pen|12
+
+(3 rows affected)

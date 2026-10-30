@@ -1,0 +1,17 @@
+-- 실행 결과: 13_dml_ddl_constraints/answers/ex01_insert_update_delete_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+(4 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+13-ex01-G1: CHECK_PASS (4행)
+deptno|dname|loc
+------|-----|---
+10|ACCOUNTING|NEW YORK
+30|SALES|CHICAGO
+40|OPERATIONS|BUSAN
+50|IT|SEOUL
+
+(4 rows affected)

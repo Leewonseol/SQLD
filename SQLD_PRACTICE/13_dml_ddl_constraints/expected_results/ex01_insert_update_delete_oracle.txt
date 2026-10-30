@@ -1,0 +1,70 @@
+-- 실행 결과: 13_dml_ddl_constraints/examples/ex01_insert_update_delete_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+Table created.
+
+== [Q1] INSERT: 컬럼 목록 생략(모든 컬럼 순서대로) / 일부 컬럼만 -> 나머지는 DEFAULT 또는 NULL
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+ID|NAME|GRADE|POINT
+1|kim|VIP|100
+2|lee|BASIC|0
+3|park|(null)|0
+
+3 rows selected.
+
+== [Q2] 여러 행 INSERT: INSERT ALL (19c) / INSERT ... SELECT
+
+2 rows created.
+
+3 rows created.
+
+CNT
+8
+
+1 row selected.
+
+== [Q3] UPDATE: WHERE 로 대상 제한, 여러 컬럼 동시 변경, 자기 컬럼 참조
+
+2 rows updated.
+
+ID|GRADE|POINT
+2|GOLD|50
+3|GOLD|50
+
+2 rows selected.
+
+== [Q4] DELETE: WHERE 없는 DELETE 는 모든 행 (Oracle 은 FROM 생략 가능: DELETE d13_member WHERE ...)
+
+3 rows deleted.
+
+CNT_AFTER_DELETE
+5
+
+1 row selected.
+
+== [Q5] 제약 위반 INSERT 는 문장 전체가 실패한다 (PK 중복, NOT NULL)
+INSERT INTO d13_member (id, name) VALUES (1, 'dup')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SQLD_LAB.PK_D13_MEMBER) violated
+
+INSERT INTO d13_member (id, name) VALUES (9, NULL)
+                                             *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SQLD_LAB"."D13_MEMBER"."NAME")
+
+== [Q6] 값 개수와 컬럼 수 불일치 -> 오류
+INSERT INTO d13_member VALUES (10, 'short')
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+
+Rollback complete.
+
+PL/SQL procedure successfully completed.

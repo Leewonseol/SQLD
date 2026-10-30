@@ -1,0 +1,40 @@
+-- 실행 결과: 13_dml_ddl_constraints/examples/ex06_ctas_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q0] CREATE TABLE AS SELECT -> 오류
+Msg 156, Level 15, State 1, Server a70f428a7f8a, Line 2
+Incorrect syntax near the keyword 'SELECT'.
+== [Q1] 원본 EMP 의 키 제약
+type_desc|cnt
+---------|---
+FOREIGN_KEY_CONSTRAINT|2
+PRIMARY_KEY_CONSTRAINT|1
+
+(2 rows affected)
+== [Q2] SELECT INTO: 데이터·컬럼·NULL 허용 여부만 복사, PK/FK 는 복사하지 않는다
+
+(14 rows affected)
+key_constraints
+---------------
+0
+
+(1 rows affected)
+ename_allows_null|copied_rows
+-----------------|-----------
+0|14
+
+(1 rows affected)
+== [Q3] PK 가 없으니 중복 입력
+
+(1 rows affected)
+dup_7369
+--------
+2
+
+(1 rows affected)
+== [Q4] 구조만 복사
+
+(0 rows affected)
+rows_struct_only
+----------------
+0
+
+(1 rows affected)

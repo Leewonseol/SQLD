@@ -1,0 +1,19 @@
+-- 실행 결과: 13_dml_ddl_constraints/answers/ex06_ctas_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+Table created.
+
+Table altered.
+
+View created.
+
+View created.
+
+13-ex06-G1: CHECK_PASS (1행)
+
+PL/SQL procedure successfully completed.
+
+ROW_CNT|PK_CNT
+5|1
+
+1 row selected.

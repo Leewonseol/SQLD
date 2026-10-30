@@ -1,0 +1,25 @@
+-- 실행 결과: 13_dml_ddl_constraints/answers/ex03_ddl_create_alter_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+Table created.
+
+Table altered.
+
+Table altered.
+
+View created.
+
+View created.
+
+13-ex03-G1: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+COLUMN_NAME|NULLABLE
+book_title|N
+id|N
+price|Y
+
+3 rows selected.
+
+PL/SQL procedure successfully completed.

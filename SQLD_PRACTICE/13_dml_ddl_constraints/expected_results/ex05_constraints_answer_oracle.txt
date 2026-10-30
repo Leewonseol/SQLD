@@ -1,0 +1,37 @@
+-- 실행 결과: 13_dml_ddl_constraints/answers/ex05_constraints_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+INSERT INTO d13_g_stu VALUES (4, NULL, 'd@x', 50)
+                                 *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SQLD_LAB"."D13_G_STU"."NAME")
+
+INSERT INTO d13_g_stu VALUES (5, 'e', 'e@x', 200)
+*
+ERROR at line 1:
+ORA-02290: check constraint (SQLD_LAB.SYS_C008628) violated
+
+Commit complete.
+
+View created.
+
+View created.
+
+13-ex05-G1: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+ID
+1
+2
+3
+
+3 rows selected.

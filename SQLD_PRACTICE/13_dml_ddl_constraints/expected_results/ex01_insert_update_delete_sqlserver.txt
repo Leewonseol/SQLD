@@ -1,0 +1,52 @@
+-- 실행 결과: 13_dml_ddl_constraints/examples/ex01_insert_update_delete_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+== [Q1] INSERT
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+id|name|grade|point
+--|----|-----|-----
+1|kim|VIP|100
+2|lee|BASIC|0
+3|park|NULL|0
+
+(3 rows affected)
+== [Q2] 여러 행 INSERT: VALUES (..), (..) / INSERT ... SELECT
+
+(2 rows affected)
+
+(3 rows affected)
+cnt
+---
+8
+
+(1 rows affected)
+== [Q3] UPDATE
+
+(2 rows affected)
+id|grade|point
+--|-----|-----
+2|GOLD|50
+3|GOLD|50
+
+(2 rows affected)
+== [Q4] DELETE (FROM 생략 가능)
+
+(3 rows affected)
+cnt_after_delete
+----------------
+5
+
+(1 rows affected)
+== [Q5] 제약 위반 INSERT
+Msg 2627, Level 14, State 1, Server a70f428a7f8a, Line 2
+Violation of PRIMARY KEY constraint 'pk_d13_member'. Cannot insert duplicate key in object 'dbo.d13_member'. The duplicate key value is (1).
+The statement has been terminated.
+Msg 515, Level 16, State 2, Server a70f428a7f8a, Line 1
+Cannot insert the value NULL into column 'name', table 'SQLD_LAB.dbo.d13_member'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+== [Q6] 값 개수 불일치
+Msg 213, Level 16, State 1, Server a70f428a7f8a, Line 2
+Column name or number of supplied values does not match table definition.

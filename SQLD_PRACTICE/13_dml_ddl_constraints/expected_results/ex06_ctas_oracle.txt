@@ -1,0 +1,49 @@
+-- 실행 결과: 13_dml_ddl_constraints/examples/ex06_ctas_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+== [Q1] 원본 EMP 의 제약: PK, FK 2개, NOT NULL(ename)
+
+CONSTRAINT_TYPE|CNT
+C|1
+P|1
+R|2
+
+3 rows selected.
+
+== [Q2] CTAS: 데이터와 컬럼(자료형)·NOT NULL 만 복사, PK/FK/UNIQUE/CHECK/DEFAULT 는 복사하지 않는다
+
+Table created.
+
+CONSTRAINT_TYPE|CNT
+C|1
+
+1 row selected.
+
+COPIED_ROWS
+14
+
+1 row selected.
+
+== [Q3] PK 가 없으니 중복 입력이 된다
+
+1 row created.
+
+DUP_7369
+2
+
+1 row selected.
+
+Rollback complete.
+
+== [Q4] 구조만 복사: WHERE 1 = 0
+
+PL/SQL procedure successfully completed.
+
+Table created.
+
+ROWS_STRUCT_ONLY
+0
+
+1 row selected.
+
+PL/SQL procedure successfully completed.

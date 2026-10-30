@@ -76,7 +76,7 @@ def run_sqlserver(sql: str) -> str:
         ["docker", "exec", "-i", ENV("MSSQL_CONTAINER", "sqld_mssql"),
          "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost",
          "-U", ENV("MSSQL_USER", "sqld_lab"), "-P", ENV("MSSQL_PASSWORD", "Sqld_Lab_2026!"),
-         "-C", "-d", "SQLD_LAB", "-f", "65001", "-s", "|", "-W"],
+         "-C", "-I", "-d", "SQLD_LAB", "-f", "65001", "-s", "|", "-W"],
         input=body.encode("utf-8"), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=600)
     return p.stdout.decode("utf-8", "replace")
 

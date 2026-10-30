@@ -1,0 +1,29 @@
+-- 실행 결과: 13_dml_ddl_constraints/answers/ex02_merge_answer_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+Commit complete.
+
+2 rows merged.
+
+Commit complete.
+
+View created.
+
+View created.
+
+13-ex02-G1: CHECK_PASS (3행)
+
+PL/SQL procedure successfully completed.
+
+ITEM|QTY
+box|4
+ink|5
+pen|12
+
+3 rows selected.

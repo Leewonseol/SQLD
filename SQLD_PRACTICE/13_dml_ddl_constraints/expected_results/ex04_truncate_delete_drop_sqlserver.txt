@@ -1,0 +1,32 @@
+-- 실행 결과: 13_dml_ddl_constraints/examples/ex04_truncate_delete_drop_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+(5 rows affected)
+
+(1 rows affected)
+== [Q1] DELETE 를 명시적 트랜잭션 안에서 -> ROLLBACK 으로 복구
+
+(1 rows affected)
+after_delete
+------------
+0
+
+(1 rows affected)
+after_rollback
+--------------
+1
+
+(1 rows affected)
+== [Q2] 자동 커밋 모드의 TRUNCATE: 이미 커밋됨 (ROLLBACK 할 트랜잭션이 없다)
+after_truncate
+--------------
+0
+
+(1 rows affected)
+== [Q2b] 트랜잭션 없이 ROLLBACK -> 오류
+Msg 3903, Level 16, State 1, Server a70f428a7f8a, Line 2
+The ROLLBACK TRANSACTION request has no corresponding BEGIN TRANSACTION.
+== [Q3] FK 가 참조하는 부모 TRUNCATE -> 오류
+Msg 4712, Level 16, State 1, Server a70f428a7f8a, Line 2
+Cannot truncate table 'd13_parent' because it is being referenced by a FOREIGN KEY constraint.
+== [Q5] 자식 FK 가 있는 부모 DROP -> 오류 (SQL Server 는 CASCADE 옵션이 없다: FK 먼저 삭제)
+Msg 3726, Level 16, State 1, Server a70f428a7f8a, Line 2
+Could not drop object 'd13_parent' because it is referenced by a FOREIGN KEY constraint.

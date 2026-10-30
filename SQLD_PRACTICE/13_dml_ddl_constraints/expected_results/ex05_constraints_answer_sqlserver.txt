@@ -1,0 +1,20 @@
+-- 실행 결과: 13_dml_ddl_constraints/answers/ex05_constraints_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+(1 rows affected)
+
+(1 rows affected)
+Msg 2627, Level 14, State 1, Server a70f428a7f8a, Line 1
+Violation of UNIQUE KEY constraint 'UQ__d13_g_st__AB6E61648ABFF9CA'. Cannot insert duplicate key in object 'dbo.d13_g_stu'. The duplicate key value is (<NULL>).
+The statement has been terminated.
+Msg 515, Level 16, State 2, Server a70f428a7f8a, Line 1
+Cannot insert the value NULL into column 'name', table 'SQLD_LAB.dbo.d13_g_stu'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+Msg 547, Level 16, State 1, Server a70f428a7f8a, Line 1
+The INSERT statement conflicted with the CHECK constraint "CK__d13_g_stu__age__2E06CDA9". The conflict occurred in database "SQLD_LAB", table "dbo.d13_g_stu", column 'age'.
+The statement has been terminated.
+13-ex05-G1: CHECK_PASS (2행)
+id
+--
+1
+2
+
+(2 rows affected)

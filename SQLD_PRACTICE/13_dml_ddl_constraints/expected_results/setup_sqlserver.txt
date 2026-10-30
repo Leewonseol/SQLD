@@ -1,0 +1,2 @@
+-- 실행 결과: 13_dml_ddl_constraints/setup_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+13 examples are self-contained (tables d13_*)

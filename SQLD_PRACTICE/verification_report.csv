@@ -281,3 +281,27 @@ file,engine,status,errors_found,errors_expected,unexpected,missing,check_pass,ch
 12_hierarchical_queries/examples/ex03_recursive_with_sqlserver.sql,sqlserver,OK,MSG-240,MSG-240,,,0,0
 12_hierarchical_queries/setup_oracle.sql,oracle,OK,,,,,0,0
 12_hierarchical_queries/setup_sqlserver.sql,sqlserver,OK,,,,,0,0
+13_dml_ddl_constraints/answers/ex01_insert_update_delete_answer_oracle.sql,oracle,OK,,,,,1,0
+13_dml_ddl_constraints/answers/ex01_insert_update_delete_answer_sqlserver.sql,sqlserver,OK,,,,,1,0
+13_dml_ddl_constraints/answers/ex02_merge_answer_oracle.sql,oracle,OK,,,,,1,0
+13_dml_ddl_constraints/answers/ex02_merge_answer_sqlserver.sql,sqlserver,OK,,,,,1,0
+13_dml_ddl_constraints/answers/ex03_ddl_create_alter_answer_oracle.sql,oracle,OK,,,,,1,0
+13_dml_ddl_constraints/answers/ex03_ddl_create_alter_answer_sqlserver.sql,sqlserver,OK,,,,,1,0
+13_dml_ddl_constraints/answers/ex05_constraints_answer_oracle.sql,oracle,OK,ORA-01400 ORA-02290,ORA-01400 ORA-02290,,,1,0
+13_dml_ddl_constraints/answers/ex05_constraints_answer_sqlserver.sql,sqlserver,OK,MSG-2627 MSG-515 MSG-547,MSG-2627 MSG-515 MSG-547,,,1,0
+13_dml_ddl_constraints/answers/ex06_ctas_answer_oracle.sql,oracle,OK,,,,,1,0
+13_dml_ddl_constraints/answers/ex06_ctas_answer_sqlserver.sql,sqlserver,OK,,,,,1,0
+13_dml_ddl_constraints/examples/ex01_insert_update_delete_oracle.sql,oracle,OK,ORA-00001 ORA-00947 ORA-01400,ORA-00001 ORA-00947 ORA-01400,,,0,0
+13_dml_ddl_constraints/examples/ex01_insert_update_delete_sqlserver.sql,sqlserver,OK,MSG-213 MSG-2627 MSG-515,MSG-213 MSG-2627 MSG-515,,,0,0
+13_dml_ddl_constraints/examples/ex02_merge_oracle.sql,oracle,OK,ORA-30926 ORA-38104,ORA-30926 ORA-38104,,,0,0
+13_dml_ddl_constraints/examples/ex02_merge_sqlserver.sql,sqlserver,OK,MSG-10713 MSG-8672,MSG-10713 MSG-8672,,,0,0
+13_dml_ddl_constraints/examples/ex03_ddl_create_alter_oracle.sql,oracle,OK,ORA-01441 ORA-02296,ORA-01441 ORA-02296,,,0,0
+13_dml_ddl_constraints/examples/ex03_ddl_create_alter_sqlserver.sql,sqlserver,OK,MSG-102 MSG-2628 MSG-515,MSG-102 MSG-2628 MSG-515,,,0,0
+13_dml_ddl_constraints/examples/ex04_truncate_delete_drop_oracle.sql,oracle,OK,ORA-02266 ORA-02449 ORA-03291,ORA-02266 ORA-02449 ORA-03291,,,0,0
+13_dml_ddl_constraints/examples/ex04_truncate_delete_drop_sqlserver.sql,sqlserver,OK,MSG-3726 MSG-3903 MSG-4712,MSG-3726 MSG-3903 MSG-4712,,,0,0
+13_dml_ddl_constraints/examples/ex05_constraints_oracle.sql,oracle,OK,ORA-00001 ORA-00905 ORA-01400 ORA-02290 ORA-02291 ORA-02292,ORA-00001 ORA-00905 ORA-01400 ORA-02290 ORA-02291 ORA-02292,,,0,0
+13_dml_ddl_constraints/examples/ex05_constraints_sqlserver.sql,sqlserver,OK,MSG-2601 MSG-2627 MSG-515 MSG-547,MSG-2601 MSG-2627 MSG-515 MSG-547,,,0,0
+13_dml_ddl_constraints/examples/ex06_ctas_oracle.sql,oracle,OK,,,,,0,0
+13_dml_ddl_constraints/examples/ex06_ctas_sqlserver.sql,sqlserver,OK,MSG-156,MSG-156,,,0,0
+13_dml_ddl_constraints/setup_oracle.sql,oracle,OK,,,,,0,0
+13_dml_ddl_constraints/setup_sqlserver.sql,sqlserver,OK,,,,,0,0

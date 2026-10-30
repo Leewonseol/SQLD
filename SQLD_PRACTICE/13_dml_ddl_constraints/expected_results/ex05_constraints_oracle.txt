@@ -1,0 +1,109 @@
+-- 실행 결과: 13_dml_ddl_constraints/examples/ex05_constraints_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+Table created.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+Commit complete.
+
+== [Q1] UNIQUE 는 NULL 을 여러 개 허용한다 (Oracle) -> 성공
+
+1 row created.
+
+NULL_EMAIL_ROWS
+2
+
+1 row selected.
+
+== [Q2] CHECK 는 NULL 이면 통과 (조건이 UNKNOWN 이면 위반이 아니다)
+
+1 row created.
+
+EMPNO|SAL
+4|(null)
+
+1 row selected.
+
+== [Q3] 위반 사례: CHECK / UNIQUE / PK / NOT NULL / FK(없는 부모) / 자기참조 FK(없는 멘토)
+INSERT INTO d13_emp VALUES (5, 'x', 'x@x', -1, 10, NULL)
+*
+ERROR at line 1:
+ORA-02290: check constraint (SQLD_LAB.CK_D13_EMP_SAL) violated
+
+INSERT INTO d13_emp VALUES (6, 'y', 'k@x', 10, 10, NULL)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SQLD_LAB.UQ_D13_EMP_EMAIL) violated
+
+INSERT INTO d13_emp VALUES (1, 'z', 'z@x', 10, 10, NULL)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SQLD_LAB.PK_D13_EMP) violated
+
+INSERT INTO d13_emp VALUES (7, NULL, 'n@x', 10, 10, NULL)
+                               *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SQLD_LAB"."D13_EMP"."ENAME")
+
+INSERT INTO d13_emp VALUES (8, 'w', 'w@x', 10, 99, NULL)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SQLD_LAB.FK_D13_EMP_DEPT) violated - parent key not found
+
+INSERT INTO d13_emp VALUES (9, 'v', 'v@x', 10, 10, 77)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SQLD_LAB.FK_D13_EMP_MENTOR) violated - parent key not found
+
+== [Q4] ON DELETE SET NULL: 부모(10번) 삭제 -> 자식의 deptno 가 NULL
+
+1 row deleted.
+
+EMPNO|DEPTNO
+1|(null)
+2|20
+3|(null)
+4|(null)
+
+4 rows selected.
+
+Rollback complete.
+
+== [Q5] 자식이 참조 중인 자기참조 행(멘토 1) 삭제 -> 오류 (기본 옵션 = NO ACTION)
+DELETE FROM d13_emp WHERE empno = 1
+*
+ERROR at line 1:
+ORA-02292: integrity constraint (SQLD_LAB.FK_D13_EMP_MENTOR) violated - child record found
+
+== [Q6] Oracle 은 ON UPDATE CASCADE 를 지원하지 않는다 -> 오류
+CREATE TABLE d13_bad (id NUMBER REFERENCES d13_dept(deptno) ON UPDATE CASCADE)
+                                                               *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+== [Q7] 제약조건 목록 (데이터 사전)
+
+CONSTRAINT_NAME|CONSTRAINT_TYPE|SEARCH_CONDITION_VC
+CK_D13_EMP_SAL|C|sal > 0
+FK_D13_EMP_DEPT|R|(null)
+FK_D13_EMP_MENTOR|R|(null)
+NN_D13_EMP_ENAME|C|"ENAME" IS NOT NULL
+PK_D13_EMP|P|(null)
+UQ_D13_EMP_EMAIL|U|(null)
+
+6 rows selected.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.

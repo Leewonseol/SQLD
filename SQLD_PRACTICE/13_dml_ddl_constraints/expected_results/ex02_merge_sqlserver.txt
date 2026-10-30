@@ -1,0 +1,32 @@
+-- 실행 결과: 13_dml_ddl_constraints/examples/ex02_merge_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+(3 rows affected)
+
+(3 rows affected)
+== [Q1] MERGE: 합계가 0 이 되는 행은 DELETE, 나머지 UPDATE, 없으면 INSERT
+
+(3 rows affected)
+item|qty
+----|---
+box|7
+ink|5
+pen|13
+
+(3 rows affected)
+== [Q1b] WHEN NOT MATCHED BY SOURCE: 원본에 없는 대상 행(ink) 삭제
+
+(4 rows affected)
+item|qty
+----|---
+box|7
+cap|0
+pen|13
+
+(3 rows affected)
+== [Q2] 세미콜론 없는 MERGE -> 오류
+Msg 10713, Level 15, State 1, Server a70f428a7f8a, Line 2
+A MERGE statement must be terminated by a semi-colon (;).
+== [Q3] 원본 키 중복 -> 오류
+
+(1 rows affected)
+Msg 8672, Level 16, State 1, Server a70f428a7f8a, Line 2
+The MERGE statement attempted to UPDATE or DELETE the same row more than once. This happens when a target row matches more than one source row. A MERGE statement cannot UPDATE/DELETE the same row of the target table multiple times. Refine the ON clause to ensure a target row matches at most one source row, or use the GROUP BY clause to group the source rows.

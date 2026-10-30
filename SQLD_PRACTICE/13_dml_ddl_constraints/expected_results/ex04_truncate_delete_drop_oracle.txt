@@ -1,0 +1,83 @@
+-- 실행 결과: 13_dml_ddl_constraints/examples/ex04_truncate_delete_drop_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+Table created.
+
+Table created.
+
+5 rows created.
+
+1 row created.
+
+Commit complete.
+
+== [Q1] DELETE (DML): WHERE 가능, ROLLBACK 으로 되돌릴 수 있다
+
+1 row deleted.
+
+AFTER_DELETE
+0
+
+1 row selected.
+
+Rollback complete.
+
+AFTER_ROLLBACK
+1
+
+1 row selected.
+
+== [Q2] TRUNCATE (DDL): 자동 커밋 -> ROLLBACK 해도 돌아오지 않는다
+
+Table truncated.
+
+Rollback complete.
+
+AFTER_TRUNCATE_ROLLBACK
+0
+
+1 row selected.
+
+== [Q3a] 자식 테이블이 비어 있으면 FK 가 참조하는 부모도 TRUNCATE 된다 (21c·23ai 실행 결과. 19c 미실행)
+
+Table truncated.
+
+PARENT_AFTER_TRUNCATE
+0
+
+1 row selected.
+
+5 rows created.
+
+1 row created.
+
+Commit complete.
+
+== [Q3b] 자식에 행이 있으면 부모 TRUNCATE 불가 -> 오류
+TRUNCATE TABLE d13_parent
+               *
+ERROR at line 1:
+ORA-02266: unique/primary keys in table referenced by enabled foreign keys
+
+== [Q4] TRUNCATE 에는 WHERE 가 없다 -> 오류
+TRUNCATE TABLE d13_child WHERE id = 1
+                         *
+ERROR at line 1:
+ORA-03291: Invalid truncate option - missing STORAGE keyword
+
+== [Q5] DROP: 구조까지 삭제. 자식 FK 가 있으면 CASCADE CONSTRAINTS 필요
+DROP TABLE d13_parent
+           *
+ERROR at line 1:
+ORA-02449: unique/primary keys in table referenced by foreign keys
+
+Table dropped.
+
+FK_LEFT
+0
+
+1 row selected.
+
+PL/SQL procedure successfully completed.

@@ -1,0 +1,10 @@
+-- 실행 결과: 13_dml_ddl_constraints/answers/ex03_ddl_create_alter_answer_sqlserver.sql | 엔진: sqlserver | 실행기: tools/run_labs.py
+Caution: Changing any part of an object name could break scripts and stored procedures.
+13-ex03-G1: CHECK_PASS (3행)
+column_name|nullable
+-----------|--------
+book_title|N
+id|N
+price|Y
+
+(3 rows affected)

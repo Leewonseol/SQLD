@@ -1,0 +1,56 @@
+-- 실행 결과: 13_dml_ddl_constraints/examples/ex02_merge_oracle.sql | 엔진: oracle | 실행기: tools/run_labs.py
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
+
+Table created.
+
+Table created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+1 row created.
+
+Commit complete.
+
+== [Q1] 있으면 UPDATE, 없으면 INSERT. Oracle 은 ON 조건에 괄호 필수. MATCHED 안의 DELETE WHERE 로 0 이 된 행 삭제
+
+3 rows merged.
+
+ITEM|QTY
+box|7
+ink|5
+pen|13
+
+3 rows selected.
+
+Rollback complete.
+
+== [Q2] ON 절에 쓴 컬럼을 UPDATE SET 으로 바꾸면 오류
+MERGE INTO d13_stock t USING d13_stock_in s ON (t.item = s.item) WHEN MATCHED THEN UPDATE SET t.item = s.item
+                                                *
+ERROR at line 1:
+ORA-38104: Columns referenced in the ON Clause cannot be updated: "T"."ITEM"
+
+== [Q3] 원본에 같은 키가 두 번 있으면(대상 1행에 원본 2행이 매칭) 오류
+
+1 row created.
+
+MERGE INTO d13_stock t USING d13_stock_in s ON (t.item = s.item) WHEN MATCHED THEN UPDATE SET t.qty = t.qty + s.qty
+                             *
+ERROR at line 1:
+ORA-30926: unable to get a stable set of rows in the source tables
+
+Rollback complete.
+
+PL/SQL procedure successfully completed.
+
+PL/SQL procedure successfully completed.
