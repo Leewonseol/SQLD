@@ -77,7 +77,7 @@ ROWS_AFTER_FAILED_DDL_ROLLBACK
 INSERT INTO d14_acc VALUES (1, 999)
 *
 ERROR at line 1:
-ORA-00001: unique constraint (SQLD_LAB.SYS_C008653) violated
+ORA-00001: unique constraint (SQLD_LAB.SYS_C009113) violated
 
 Commit complete.
 

@@ -40,12 +40,12 @@ ORA-01400: cannot insert NULL into ("SQLD_LAB"."M01_G_DOCTOR"."DEPT_CD")
 INSERT INTO m01_g_appt VALUES (101, 999, 10, DATE '2024-05-02', '예약')
 *
 ERROR at line 1:
-ORA-02291: integrity constraint (SQLD_LAB.SYS_C008795) violated - parent key not found
+ORA-02291: integrity constraint (SQLD_LAB.SYS_C008958) violated - parent key not found
 
 INSERT INTO m01_g_presc VALUES (1001, 100)
 *
 ERROR at line 1:
-ORA-00001: unique constraint (SQLD_LAB.SYS_C008799) violated
+ORA-00001: unique constraint (SQLD_LAB.SYS_C008962) violated
 
 == 규칙 6: 같은 의사·같은 일시 두 번째 예약도 거부
 INSERT INTO m01_g_appt VALUES (102, 1, 10, DATE '2024-05-01', '예약')

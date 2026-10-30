@@ -101,7 +101,7 @@ ROWS_AFTER_FAILED_DDL_ROLLBACK
 INSERT INTO d14_acc VALUES (1, 999)
 *
 ERROR at line 1:
-ORA-00001: unique constraint (SQLD_LAB.SYS_C008653) violated
+ORA-00001: unique constraint (SQLD_LAB.SYS_C009113) violated
 
 Commit complete.
 
@@ -191,7 +191,7 @@ id|bal
 
 (1 rows affected)
 Msg 2627, Level 14, State 1, Server a70f428a7f8a, Line 2
-Violation of PRIMARY KEY constraint 'PK__d14_acc__3213E83FC801FDF6'. Cannot insert duplicate key in object 'dbo.d14_acc'. The duplicate key value is (1).
+Violation of PRIMARY KEY constraint 'PK__d14_acc__3213E83FFCB83117'. Cannot insert duplicate key in object 'dbo.d14_acc'. The duplicate key value is (1).
 The statement has been terminated.
 id|bal
 --|---
@@ -204,7 +204,7 @@ id|bal
 
 (1 rows affected)
 Msg 2627, Level 14, State 1, Server a70f428a7f8a, Line 5
-Violation of PRIMARY KEY constraint 'PK__d14_acc__3213E83FC801FDF6'. Cannot insert duplicate key in object 'dbo.d14_acc'. The duplicate key value is (1).
+Violation of PRIMARY KEY constraint 'PK__d14_acc__3213E83FFCB83117'. Cannot insert duplicate key in object 'dbo.d14_acc'. The duplicate key value is (1).
 id|bal|trancount
 --|---|---------
 2|130|0

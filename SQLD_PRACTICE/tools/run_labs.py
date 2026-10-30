@@ -205,7 +205,8 @@ def main(argv):
     if report_path.exists():
         with report_path.open(encoding="utf-8") as fh:
             for row in csv.DictReader(fh):
-                old[row["file"]] = row
+                if (ROOT / row["file"]).exists():  # 이름이 바뀌거나 지워진 파일의 기록은 남기지 않는다
+                    old[row["file"]] = row
     ng = 0
     for f in files:
         r = execute(f)

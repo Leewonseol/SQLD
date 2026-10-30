@@ -17,7 +17,7 @@ ORA-01400: cannot insert NULL into ("SQLD_LAB"."D13_G_STU"."NAME")
 INSERT INTO d13_g_stu VALUES (5, 'e', 'e@x', 200)
 *
 ERROR at line 1:
-ORA-02290: check constraint (SQLD_LAB.SYS_C008628) violated
+ORA-02290: check constraint (SQLD_LAB.SYS_C009107) violated
 
 Commit complete.
 
